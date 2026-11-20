@@ -285,3 +285,76 @@ node memory/memory-bank.cjs record \
 ```bash
 node tests/run-audit.cjs
 ```
+
+
+---
+
+## 10. Upstream Lineage, Integrated Repositories & Skill Suites
+
+This harness synthesizes and refines concepts, workflows, and tools from leading open-source agent ecosystems:
+
+### Core Engineering & Methodology Repositories
+
+1. **[obra/superpowers](https://github.com/obra/superpowers)** (Jesse Vincent)
+   - *Core Philosophy:* Disciplined software engineering methodology for autonomous agents.
+   - *Integrated Skills:* `brainstorming`, `writing-plans`, `executing-plans`, `test-driven-development`, `systematic-debugging`, `subagent-driven-development`, `using-git-worktrees`, `verification-before-completion`, `requesting-code-review`, `receiving-code-review`.
+
+2. **[addyosmani/agent-skills](https://github.com/addyosmani/agent-skills)** (Addy Osmani)
+   - *Core Philosophy:* Production-grade engineering patterns that prevent agents from making unconstrained code modifications.
+   - *Integrated Skills:* `context-engineering`, `planning-and-task-breakdown`, `frontend-ui-engineering`, `performance-optimization`, `spec-driven-development`, `code-simplification`, `api-and-interface-design`, `observability-and-instrumentation`, `security-and-hardening`, `shipping-and-launch`.
+
+3. **[DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail)** (Dietrich Gebert)
+   - *Core Philosophy:* Lazy Senior Developer Mode (v5.3.3) — "the best code is the code never written". Shortest working diffs, zero speculative wrappers, deletion over addition.
+   - *Integrated Skills:* `ponytail`, `ponytail-review`, `ponytail-audit`, `ponytail-debt`, `ponytail-gain`.
+
+4. **[vaibhav-space/my-ai-coding-workflow](https://github.com/vaibhav-space/my-ai-coding-workflow)** (Vaibhav)
+   - *Core Philosophy:* Three-phase architecture and review process (`1-planning.md`, `2-critical-plan-review.md`, `3-production-readiness-review.md`), interactive HTML plan rendering (`plan-template.html`), and human-curated failure mode logs (`gotchas.md`).
+
+5. **[abdoabdo22334456-prog/how-did-i-make-my-antigravity-faster](https://github.com/abdoabdo22334456-prog/how-did-i-make-my-antigravity-faster)**
+   - *Core Philosophy:* Runtime performance, background process management, RAM mitigation, and port collision defense (`port-guard.ps1`, `local-ports-registry.json`).
+
+6. **[promptfoo/promptfoo](https://github.com/promptfoo/promptfoo)**
+   - *Core Philosophy:* Deterministic evaluations and regression benchmarks for LLM coding agents.
+   - *Integrated Assets:* `evals/promptfoo.yaml` (benchmarking diff minimalism, credential safety, TDD adherence).
+
+7. **[rohitg00/agentmemory](https://github.com/rohitg00/agentmemory) & [mem0ai/mem0](https://github.com/mem0ai/mem0)**
+   - *Core Philosophy:* Persistent cross-session agent memory without vendor lock-in.
+   - *Integrated Implementation:* `memory/memory-bank.cjs` providing local zero-API TF-IDF retrieval and two-way sync with human-readable gotchas.
+
+8. **[e2b-dev/E2B](https://github.com/e2b-dev/E2B)**
+   - *Core Philosophy:* Secure isolated execution environments and sandboxing for autonomous coding agents.
+   - *Integrated Assets:* Docker sandbox templates with 4GB cgroups limits and non-root execution (`Dockerfile.sandbox`, `devcontainer.json`).
+
+9. **[yusufkaraaslan/Skill_Seekers](https://github.com/yusufkaraaslan/Skill_Seekers)**
+   - *Core Philosophy:* Automated documentation scraping and dynamic skill extraction from libraries and APIs (`skill-builder`, `skill-audit`).
+
+---
+
+### Google DeepMind Science Suite (Computational Biology & Chemistry)
+
+Derived from the Google DeepMind Science ecosystem (`google-deepmind/science-skills`), providing direct database integration, structural biology tools, and bioinformatics pipelines:
+
+* **Structural Biology & Protein Analysis:**
+  - `alphafold-database-fetch-and-analyze`: Fetch and analyze AlphaFold predicted 3D structures and pLDDT scores.
+  - `biomolecular-structure-viewer`: Interactive 3D molecular structure visualizer via Mol*.
+  - `pdb-database`: Query and download RCSB Protein Data Bank experimental 3D structures.
+  - `uniprot-database`: Comprehensive protein sequence, domain, taxonomy, and function annotations.
+  - `pymol`: Scripted 3D structural alignment, contact analysis, and publication-ready rendering.
+  - `foldseek-structural-search`: Fast 3D structural similarity searches.
+  - `interpro-database` & `human-protein-atlas-database`: Protein family domains and spatial expression.
+
+* **Genomics, Variant Impact & Regulatory Biology:**
+  - `alphagenome-single-variant-analysis`: Deep learning predictions of variant effects on gene expression, chromatin, and histone marks.
+  - `alphagenome-variant-impact-score`: AVI functional impact scores, saturation mutagenesis scans.
+  - `alphagenome-atlas-website-links`: Deep links to genomic coordinates on AlphaGenome Atlas.
+  - `dbsnp-database`, `clinvar-database`, `gnomad-database`, `ensembl-database`: Variant pathogenicity, allele frequencies, and gene transcript maps.
+  - `jaspar-database`, `unibind-database`, `encode-ccres-database`, `gtex-database`: Transcription factor motifs, regulatory elements, and eQTL expression.
+
+* **Cheminformatics & Drug Discovery:**
+  - `chembl-database` & `pubchem-database`: Bioactive compounds, binding affinities (IC50, Ki), and chemical structures.
+  - `cheminformatics-core`, `cheminformatics-ml`, `cheminformatics-physics`, `cheminformatics-reactions`: RDKit physicochemical descriptors, QSAR models, 3D conformers, and reaction retrosynthesis.
+  - `reactome-database`, `string-database`, `openfda-database`, `clinical-trials-database`: Pathway enrichment, PPI networks, FDA adverse events, and NCT trials.
+
+* **Scientific Literature & Provenance:**
+  - `literature-search-pubmed`, `literature-search-biorxiv`, `literature-search-arxiv`, `literature-search-europepmc`, `literature-search-openalex`: Verified scientific literature retrieval.
+  - `provenance_tracker.py`, `Snakefile.template`, `dvc.yaml.template`: Snakemake pipelines, SHA-256 dataset hashing, and experiment parameter tracking.
