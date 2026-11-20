@@ -1,0 +1,40 @@
+# Snakemake Workflow Template for Computational Biology & Cheminformatics
+# Ensures deterministic, reproducible execution of computational pipelines.
+
+configfile: "params.yaml"
+
+rule all:
+    input:
+        "results/reports/final_summary.html",
+        "results/metrics/provenance.json"
+
+rule fetch_uniprot_sequence:
+    output:
+        "data/raw/{accession}.fasta"
+    params:
+        accession=config["uniprot_accession"]
+    shell:
+        """
+        curl -s "https://rest.uniprot.org/uniprotkb/{params.accession}.fasta" -o {output}
+        """
+
+rule run_structural_feature_extraction:
+    input:
+        fasta="data/raw/{accession}.fasta"
+    output:
+        descriptors="results/features/{accession}_descriptors.json"
+    params:
+        seed=config["random_seed"]
+    script:
+        "scripts/extract_features.py"
+
+rule generate_provenance_and_summary:
+    input:
+        descriptors="results/features/{accession}_descriptors.json"
+    output:
+        report="results/reports/final_summary.html",
+        provenance="results/metrics/provenance.json"
+    shell:
+        """
+        python scripts/provenance_tracker.py --input {input.descriptors} --out-report {output.report} --out-provenance {output.provenance}
+        """

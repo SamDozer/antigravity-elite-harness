@@ -1,0 +1,25 @@
+{
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "_comment": "Antigravity Stryker Mutator Configuration for TypeScript / JavaScript",
+  "packageManager": "npm",
+  "reporters": [
+    "html",
+    "clear-text",
+    "progress"
+  ],
+  "testRunner": "vitest",
+  "coverageAnalysis": "perTest",
+  "mutate": [
+    "src/**/*.ts",
+    "src/**/*.js",
+    "!src/**/*.spec.ts",
+    "!src/**/*.test.ts",
+    "!src/**/*.d.ts"
+  ],
+  "thresholds": {
+    "high": 80,
+    "low": 65,
+    "break": 75
+  },
+  "timeoutMS": 10000
+}

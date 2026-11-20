@@ -1,0 +1,24 @@
+stages:
+  prepare_data:
+    cmd: python scripts/prepare_data.py --config params.yaml
+    deps:
+      - data/raw/
+      - scripts/prepare_data.py
+    params:
+      - random_seed
+      - split_ratio
+    outs:
+      - data/processed/train.parquet
+      - data/processed/test.parquet
+
+  evaluate_model:
+    cmd: python scripts/evaluate.py --config params.yaml
+    deps:
+      - data/processed/test.parquet
+      - scripts/evaluate.py
+    metrics:
+      - results/metrics/scores.json:
+          cache: false
+    plots:
+      - results/plots/pr_curve.json:
+          cache: false

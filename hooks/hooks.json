@@ -1,0 +1,29 @@
+﻿{
+  "antigravity-system-guard": {
+    "enabled": true,
+    "PreToolUse": [
+      {
+        "matcher": "run_command",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/Hossam/.gemini/config/scripts/pre-tool-guard.cjs\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "write_file|edit_file",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/Hossam/.gemini/config/scripts/post-tool-audit.cjs\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

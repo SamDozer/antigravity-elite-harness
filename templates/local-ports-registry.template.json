@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "1.0.0",
+  "description": "Central registry of locally assigned ports across user projects and system services to prevent collisions.",
+  "ranges": {
+    "desktop_electron_backends": {
+      "start": 31000,
+      "end": 31999,
+      "description": "Local APIs & companion servers for Electron and Windows desktop apps"
+    },
+    "web_fullstack_servers": {
+      "start": 32000,
+      "end": 32999,
+      "description": "Web apps, Vite, Next.js, and frontend/fullstack dev servers"
+    },
+    "automation_tools_mcp": {
+      "start": 33000,
+      "end": 33999,
+      "description": "MCP servers, Python background utilities, CLI daemons, and automations"
+    },
+    "media_streaming_websocket": {
+      "start": 34000,
+      "end": 34999,
+      "description": "Audio/video streaming, WebSockets, real-time sync, and game bridges"
+    }
+  },
+  "reserved_system_ports": [
+    { "port": 135, "name": "Windows RPC", "category": "system" },
+    { "port": 139, "name": "NetBIOS Session", "category": "system" },
+    { "port": 445, "name": "Microsoft-DS SMB", "category": "system" },
+    { "port": 1234, "name": "LM Studio Local LLM", "category": "ai" },
+    { "port": 1433, "name": "Microsoft SQL Server", "category": "database" },
+    { "port": 3000, "name": "Default React / Next.js / Node Server", "category": "framework" },
+    { "port": 3306, "name": "MySQL / MariaDB", "category": "database" },
+    { "port": 4200, "name": "Angular CLI", "category": "framework" },
+    { "port": 5000, "name": "Flask / ASP.NET", "category": "framework" },
+    { "port": 5040, "name": "Windows svchost DeviceBroker", "category": "system" },
+    { "port": 5173, "name": "Vite Dev Server", "category": "framework" },
+    { "port": 5357, "name": "WSDAPI Web Services for Devices", "category": "system" },
+    { "port": 5432, "name": "PostgreSQL", "category": "database" },
+    { "port": 6379, "name": "Redis Cache", "category": "database" },
+    { "port": 7860, "name": "Gradio / Stable Diffusion WebUI", "category": "ai" },
+    { "port": 8000, "name": "FastAPI / Django Dev Server", "category": "framework" },
+    { "port": 8080, "name": "HTTP Alternate / Tomcat / Spring", "category": "framework" },
+    { "port": 8081, "name": "React Native Metro Bundler", "category": "framework" },
+    { "port": 8888, "name": "Jupyter Notebook Server", "category": "ai" },
+    { "port": 9000, "name": "Portainer / MinIO", "category": "tool" },
+    { "port": 11434, "name": "Ollama Local Model Server", "category": "ai" },
+    { "port": 27017, "name": "MongoDB", "category": "database" }
+  ],
+  "allocated_projects": []
+}

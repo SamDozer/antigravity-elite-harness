@@ -1,0 +1,40 @@
+rules:
+  - id: agent-prevent-dangerous-eval
+    patterns:
+      - pattern-either:
+          - pattern: eval(...)
+          - pattern: Function(...)
+          - pattern: window.execScript(...)
+    message: "CRITICAL: Dynamic code execution via eval/Function is strictly forbidden in AI-generated code."
+    languages: [javascript, typescript]
+    severity: ERROR
+
+  - id: agent-prevent-command-injection
+    patterns:
+      - pattern-either:
+          - pattern: child_process.exec($CMD, ...)
+          - pattern: execSync($CMD, ...)
+      - pattern-not: child_process.exec("...", ...)
+      - pattern-not: execSync("...", ...)
+    message: "HIGH: Potential command injection via child_process.exec with dynamic input. Use execFile or spawn with argument arrays."
+    languages: [javascript, typescript]
+    severity: ERROR
+
+  - id: agent-prevent-path-traversal
+    patterns:
+      - pattern-either:
+          - pattern: fs.readFileSync(path.join(..., $REQ.params, ...))
+          - pattern: fs.writeFileSync(path.join(..., $REQ.query, ...))
+          - pattern: open(os.path.join(..., request.args.get(...), ...))
+    message: "HIGH: Potential path traversal vulnerability. Validate and sanitize filename against a whitelist before file access."
+    languages: [javascript, typescript, python]
+    severity: ERROR
+
+  - id: agent-prevent-raw-sql-concat
+    patterns:
+      - pattern-either:
+          - pattern: $DB.query("..." + $VAL + "...")
+          - pattern: $DB.execute(f"SELECT ... { $VAL } ...")
+    message: "CRITICAL: Raw SQL string concatenation detected. Use parameterized queries or prepared statements."
+    languages: [javascript, typescript, python]
+    severity: ERROR

@@ -1,0 +1,22 @@
+﻿# Pre-commit configuration for Antigravity-assisted codebases
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-added-large-files
+        args: ['--maxkb=1000']
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.18.4
+    hooks:
+      - id: gitleaks
+
+  - repo: https://github.com/returntocorp/semgrep
+    rev: v1.78.0
+    hooks:
+      - id: semgrep
+        args: ['--config=auto', '--error']

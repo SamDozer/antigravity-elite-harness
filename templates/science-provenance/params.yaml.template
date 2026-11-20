@@ -1,0 +1,18 @@
+# Computational Biology & Cheminformatics Experiment Parameters
+random_seed: 42
+
+dataset:
+  name: "chembl33_bioactivity"
+  version: "33.0"
+  split_ratio: 0.80
+
+model:
+  algorithm: "lightgbm"
+  n_estimators: 300
+  learning_rate: 0.05
+  max_depth: 6
+
+reproducibility:
+  enforce_deterministic: true
+  record_environment: true
+  hash_algorithm: "sha256"

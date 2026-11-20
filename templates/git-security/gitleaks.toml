@@ -1,0 +1,10 @@
+﻿# Gitleaks security configuration
+title = "Antigravity Gitleaks Custom Config"
+
+[allowlist]
+description = "Global allowlists for test fixtures and mock keys"
+paths = [
+  '''\.agent/tests/.*''',
+  '''node_modules/.*''',
+  '''scratch/.*'''
+]

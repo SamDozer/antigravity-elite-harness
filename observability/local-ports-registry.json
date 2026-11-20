@@ -1,0 +1,32 @@
+﻿{
+  "ranges": {
+    "desktop_electron_backends": {
+      "start": 31000,
+      "end": 31999,
+      "description": "Desktop & Electron Backends"
+    },
+    "web_fullstack_servers": {
+      "start": 32000,
+      "end": 32999,
+      "description": "Web & Fullstack Dev Servers"
+    },
+    "automation_tools_mcp": {
+      "start": 33000,
+      "end": 33999,
+      "description": "Automation, MCP & CLI Services"
+    },
+    "media_streaming_websocket": {
+      "start": 34000,
+      "end": 34999,
+      "description": "Media, WebSockets & Streaming"
+    }
+  },
+  "allocated_projects": [],
+  "reserved_system_ports": [
+    { "port": 3000, "name": "Default React/Next Dev", "category": "system" },
+    { "port": 5000, "name": "Default Flask Dev", "category": "system" },
+    { "port": 5173, "name": "Default Vite Dev", "category": "system" },
+    { "port": 8000, "name": "Default Django/FastAPI Dev", "category": "system" },
+    { "port": 8080, "name": "Default Web Alternate", "category": "system" }
+  ]
+}

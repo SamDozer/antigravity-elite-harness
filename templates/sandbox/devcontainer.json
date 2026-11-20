@@ -1,0 +1,12 @@
+﻿{
+  "name": "Antigravity Safe Sandbox",
+  "dockerFile": "Dockerfile.sandbox",
+  "remoteUser": "developer",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  }
+}

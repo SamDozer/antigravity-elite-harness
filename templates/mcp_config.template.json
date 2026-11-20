@@ -1,0 +1,24 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@executeautomation/playwright-mcp-server"]
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "context7-mcp"]
+    },
+    "notebooklm": {
+      "command": "python",
+      "args": ["-m", "notebooklm_mcp"]
+    },
+    "obsidian": {
+      "command": "npx",
+      "args": ["-y", "obsidian-mcp-server"]
+    },
+    "blender-mcp": {
+      "command": "python",
+      "args": ["-m", "blender_mcp"]
+    }
+  }
+}
