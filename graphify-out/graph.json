@@ -1,24 +1,31 @@
 {
   "project": "antigravity-elite-harness",
-  "timestamp": "2026-11-20T03:42:30.477Z",
-  "total_nodes": 63,
-  "total_edges": 16,
+  "timestamp": "2026-11-20T04:54:12.782Z",
+  "total_nodes": 121,
+  "total_edges": 42,
   "communities": [
+    "Quality & CI/CD",
+    "Observability & Rules",
+    "Agent Roles (RBAB)",
     "Security & Lifecycle",
     "Memory & Context",
     "Task Orchestration",
-    "Agent Roles (RBAB)",
-    "Quality & CI/CD",
     "Science & Provenance",
-    "Observability & Rules"
+    "Skills: CompBio",
+    "Skills: Core",
+    "Skills: Frontend"
   ],
   "god_nodes": [
     {
-      "id": "tasks/beads-tracker.cjs",
-      "degree": 4
+      "id": "tests/run-audit.cjs",
+      "degree": 17
     },
     {
-      "id": "tests/run-audit.cjs",
+      "id": "scripts/validate_skills.py",
+      "degree": 13
+    },
+    {
+      "id": "tasks/beads-tracker.cjs",
       "degree": 4
     },
     {
@@ -475,6 +482,412 @@
       "community": "Observability & Rules",
       "path": "tests/run-audit.cjs",
       "size": 10
+    },
+    {
+      "id": "scripts/validate_skills.py",
+      "label": "validate_skills.py",
+      "community": "Quality & CI/CD",
+      "path": "scripts/validate_skills.py",
+      "size": 20
+    },
+    {
+      "id": "rules/global-core.md",
+      "label": "global-core.md",
+      "community": "Observability & Rules",
+      "path": "rules/global-core.md",
+      "size": 15
+    },
+    {
+      "id": "skills/comp-bio/bio-literature-grounding/assets/verified_identifiers_cache.json",
+      "label": "verified_identifiers_cache.json",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/bio-literature-grounding/assets/verified_identifiers_cache.json",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/bio-literature-grounding/references/database_apis.md",
+      "label": "database_apis.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/bio-literature-grounding/references/database_apis.md",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/bio-literature-grounding/scripts/verify_ids.py",
+      "label": "verify_ids.py",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/bio-literature-grounding/scripts/verify_ids.py",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/bio-literature-grounding/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/bio-literature-grounding/SKILL.md",
+      "size": 15
+    },
+    {
+      "id": "skills/comp-bio/bio-orchestrator/assets/provenance_manifest.json",
+      "label": "provenance_manifest.json",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/bio-orchestrator/assets/provenance_manifest.json",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/bio-orchestrator/references/bio_data_standards.md",
+      "label": "bio_data_standards.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/bio-orchestrator/references/bio_data_standards.md",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/bio-orchestrator/scripts/inspect_biofile.py",
+      "label": "inspect_biofile.py",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/bio-orchestrator/scripts/inspect_biofile.py",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/bio-orchestrator/scripts/__pycache__/inspect_biofile.cpython-314.pyc",
+      "label": "inspect_biofile.cpython-314.pyc",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/bio-orchestrator/scripts/__pycache__/inspect_biofile.cpython-314.pyc",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/bio-orchestrator/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/bio-orchestrator/SKILL.md",
+      "size": 15
+    },
+    {
+      "id": "skills/comp-bio/bio-sequence-stats/assets/diff_exp_template.py",
+      "label": "diff_exp_template.py",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/bio-sequence-stats/assets/diff_exp_template.py",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/bio-sequence-stats/references/coordinate_systems.md",
+      "label": "coordinate_systems.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/bio-sequence-stats/references/coordinate_systems.md",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/bio-sequence-stats/scripts/stats_guard.py",
+      "label": "stats_guard.py",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/bio-sequence-stats/scripts/stats_guard.py",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/bio-sequence-stats/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/bio-sequence-stats/SKILL.md",
+      "size": 15
+    },
+    {
+      "id": "skills/comp-bio/hpc-containers-pipelines/assets/slurm_template.sh",
+      "label": "slurm_template.sh",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/hpc-containers-pipelines/assets/slurm_template.sh",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/hpc-containers-pipelines/references/hpc_best_practices.md",
+      "label": "hpc_best_practices.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/hpc-containers-pipelines/references/hpc_best_practices.md",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/hpc-containers-pipelines/scripts/validate_slurm.py",
+      "label": "validate_slurm.py",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/hpc-containers-pipelines/scripts/validate_slurm.py",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/hpc-containers-pipelines/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/hpc-containers-pipelines/SKILL.md",
+      "size": 15
+    },
+    {
+      "id": "skills/comp-bio/scientific-figures/assets/pub_style.mplstyle",
+      "label": "pub_style.mplstyle",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/scientific-figures/assets/pub_style.mplstyle",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/scientific-figures/references/journal_guidelines.md",
+      "label": "journal_guidelines.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/scientific-figures/references/journal_guidelines.md",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/scientific-figures/scripts/check_figure.py",
+      "label": "check_figure.py",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/scientific-figures/scripts/check_figure.py",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/scientific-figures/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/scientific-figures/SKILL.md",
+      "size": 15
+    },
+    {
+      "id": "skills/comp-bio/structural-bio-md/assets/sample_nvt.mdp",
+      "label": "sample_nvt.mdp",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/structural-bio-md/assets/sample_nvt.mdp",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/structural-bio-md/references/gromacs-sanity-checks.md",
+      "label": "gromacs-sanity-checks.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/structural-bio-md/references/gromacs-sanity-checks.md",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/structural-bio-md/scripts/validate_pdb.py",
+      "label": "validate_pdb.py",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/structural-bio-md/scripts/validate_pdb.py",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/structural-bio-md/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/structural-bio-md/SKILL.md",
+      "size": 15
+    },
+    {
+      "id": "skills/core/architect-planner/assets/implementation_plan.template.md",
+      "label": "implementation_plan.template.md",
+      "community": "Skills: Core",
+      "path": "skills/core/architect-planner/assets/implementation_plan.template.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/architect-planner/references/plan_rubric.md",
+      "label": "plan_rubric.md",
+      "community": "Skills: Core",
+      "path": "skills/core/architect-planner/references/plan_rubric.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/architect-planner/scripts/validate_plan.py",
+      "label": "validate_plan.py",
+      "community": "Skills: Core",
+      "path": "skills/core/architect-planner/scripts/validate_plan.py",
+      "size": 10
+    },
+    {
+      "id": "skills/core/architect-planner/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: Core",
+      "path": "skills/core/architect-planner/SKILL.md",
+      "size": 15
+    },
+    {
+      "id": "skills/core/diff-reviewer/assets/review_report.template.md",
+      "label": "review_report.template.md",
+      "community": "Skills: Core",
+      "path": "skills/core/diff-reviewer/assets/review_report.template.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/diff-reviewer/references/review_vectors.md",
+      "label": "review_vectors.md",
+      "community": "Skills: Core",
+      "path": "skills/core/diff-reviewer/references/review_vectors.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/diff-reviewer/scripts/review_diff.py",
+      "label": "review_diff.py",
+      "community": "Skills: Core",
+      "path": "skills/core/diff-reviewer/scripts/review_diff.py",
+      "size": 10
+    },
+    {
+      "id": "skills/core/diff-reviewer/scripts/__pycache__/review_diff.cpython-314.pyc",
+      "label": "review_diff.cpython-314.pyc",
+      "community": "Skills: Core",
+      "path": "skills/core/diff-reviewer/scripts/__pycache__/review_diff.cpython-314.pyc",
+      "size": 10
+    },
+    {
+      "id": "skills/core/diff-reviewer/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: Core",
+      "path": "skills/core/diff-reviewer/SKILL.md",
+      "size": 15
+    },
+    {
+      "id": "skills/frontend/app-ui-system/assets/tokens.css",
+      "label": "tokens.css",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/app-ui-system/assets/tokens.css",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/app-ui-system/references/font-pairings.md",
+      "label": "font-pairings.md",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/app-ui-system/references/font-pairings.md",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/app-ui-system/references/palettes.md",
+      "label": "palettes.md",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/app-ui-system/references/palettes.md",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/app-ui-system/scripts/check_contrast.py",
+      "label": "check_contrast.py",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/app-ui-system/scripts/check_contrast.py",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/app-ui-system/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/app-ui-system/SKILL.md",
+      "size": 15
+    },
+    {
+      "id": "skills/frontend/data-viz-ui/assets/colorblind_palettes.json",
+      "label": "colorblind_palettes.json",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/data-viz-ui/assets/colorblind_palettes.json",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/data-viz-ui/references/dataviz_heuristics.md",
+      "label": "dataviz_heuristics.md",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/data-viz-ui/references/dataviz_heuristics.md",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/data-viz-ui/scripts/export_viz_helper.js",
+      "label": "export_viz_helper.js",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/data-viz-ui/scripts/export_viz_helper.js",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/data-viz-ui/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/data-viz-ui/SKILL.md",
+      "size": 15
+    },
+    {
+      "id": "skills/frontend/frontend-interaction-states/assets/skeleton_patterns.css",
+      "label": "skeleton_patterns.css",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/frontend-interaction-states/assets/skeleton_patterns.css",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/frontend-interaction-states/references/interaction_patterns.md",
+      "label": "interaction_patterns.md",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/frontend-interaction-states/references/interaction_patterns.md",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/frontend-interaction-states/scripts/check_state_coverage.py",
+      "label": "check_state_coverage.py",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/frontend-interaction-states/scripts/check_state_coverage.py",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/frontend-interaction-states/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/frontend-interaction-states/SKILL.md",
+      "size": 15
+    },
+    {
+      "id": "skills/frontend/ui-visual-qa/assets/audit_config.json",
+      "label": "audit_config.json",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/ui-visual-qa/assets/audit_config.json",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/ui-visual-qa/references/qa_checklist.md",
+      "label": "qa_checklist.md",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/ui-visual-qa/references/qa_checklist.md",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/ui-visual-qa/scripts/visual_audit.mjs",
+      "label": "visual_audit.mjs",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/ui-visual-qa/scripts/visual_audit.mjs",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/ui-visual-qa/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/ui-visual-qa/SKILL.md",
+      "size": 15
+    },
+    {
+      "id": "skills/frontend/web-editorial-design/assets/editorial_baseline.css",
+      "label": "editorial_baseline.css",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/web-editorial-design/assets/editorial_baseline.css",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/web-editorial-design/references/editorial_pairings.md",
+      "label": "editorial_pairings.md",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/web-editorial-design/references/editorial_pairings.md",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/web-editorial-design/references/motion_patterns.md",
+      "label": "motion_patterns.md",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/web-editorial-design/references/motion_patterns.md",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/web-editorial-design/scripts/audit_typography.py",
+      "label": "audit_typography.py",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/web-editorial-design/scripts/audit_typography.py",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/web-editorial-design/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/web-editorial-design/SKILL.md",
+      "size": 15
     }
   ],
   "edges": [
@@ -557,6 +970,136 @@
       "source": "tests/run-audit.cjs",
       "target": "observability/trace-analyzer.cjs",
       "relation": "verifies"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/comp-bio/bio-literature-grounding/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/comp-bio/bio-literature-grounding/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/comp-bio/bio-orchestrator/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/comp-bio/bio-orchestrator/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/comp-bio/bio-sequence-stats/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/comp-bio/bio-sequence-stats/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/comp-bio/hpc-containers-pipelines/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/comp-bio/hpc-containers-pipelines/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/comp-bio/scientific-figures/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/comp-bio/scientific-figures/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/comp-bio/structural-bio-md/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/comp-bio/structural-bio-md/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/core/architect-planner/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/core/architect-planner/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/core/diff-reviewer/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/core/diff-reviewer/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/frontend/app-ui-system/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/frontend/app-ui-system/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/frontend/data-viz-ui/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/frontend/data-viz-ui/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/frontend/frontend-interaction-states/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/frontend/frontend-interaction-states/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/frontend/ui-visual-qa/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/frontend/ui-visual-qa/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/frontend/web-editorial-design/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/frontend/web-editorial-design/SKILL.md",
+      "label": "audits"
     }
   ]
 }
