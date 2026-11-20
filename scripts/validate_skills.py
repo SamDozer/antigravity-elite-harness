@@ -18,21 +18,26 @@ REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 SKILLS_DIR = os.path.join(REPO_ROOT, 'skills')
 
 def parse_frontmatter(content: str):
-    """Extracts yaml frontmatter dict from file content."""
+    """Extracts yaml frontmatter dict from file content, supporting multiline strings."""
     match = re.match(r"^---\r?\n([\s\S]*?)\r?\n---", content)
     if not match:
         return None
     fm_text = match.group(1)
     fm = {}
+    current_key = None
     for line in fm_text.splitlines():
-        line = line.strip()
-        if not line or line.startswith('#'):
+        stripped = line.strip()
+        if not stripped or stripped.startswith('#'):
             continue
-        if ':' in line:
+        if ':' in line and not line.startswith(' '):
             parts = line.split(':', 1)
-            key = parts[0].strip()
+            current_key = parts[0].strip()
             val = parts[1].strip()
-            fm[key] = val
+            if val in ('>', '|'):
+                val = ''
+            fm[current_key] = val
+        elif current_key:
+            fm[current_key] = (fm[current_key] + ' ' + stripped).strip()
     return fm
 
 def audit_skill(skill_dir: str):

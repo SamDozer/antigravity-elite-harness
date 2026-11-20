@@ -23,7 +23,7 @@ RULES = [
         "id": "V2-SQLI",
         "vector": "Security & Injection",
         "severity": "CRITICAL",
-        "pattern": r"(SELECT|UPDATE|INSERT|DELETE).*(\$\{.*\}|\+.*req\.|\+.*params)",
+        "pattern": r"(?:SELECT|UPDATE|INSERT|DELETE).*(?:\$\{.*\}|\+.*(?:req\.|params|input|userId|user_id)|f['\"].*\{[a-zA-Z0-9_]+\})",
         "message": "Possible raw SQL string interpolation. Use parameterized queries."
     },
     # Vector 3: Memory Leaks
@@ -50,15 +50,15 @@ BIO_RULES = [
         "id": "V8-DATA-LEAKAGE",
         "vector": "Scientific Integrity",
         "severity": "CRITICAL",
-        "pattern": r"(StandardScaler|MinMaxScaler|SimpleImputer)\(\)\.fit_transform\([A-Za-z0-9_]+\)(?!.*train)",
-        "message": "ML Data Leakage: fit_transform applied to whole dataset before train/test splitting."
+        "pattern": r"(?:StandardScaler|MinMaxScaler|RobustScaler|SimpleImputer|SelectKBest|PCA)\(\)\.fit(?:_transform)?\((?!\s*(?:X_|df_)?train\b)[A-Za-z0-9_.]+\)",
+        "message": "ML Data Leakage: fit/fit_transform applied across dataset without restricting to training split."
     },
     # Vector 8: Silent NaN drops
     {
         "id": "V8-SILENT-DROPNA",
         "vector": "Scientific Integrity",
         "severity": "HIGH",
-        "pattern": r"\.dropna\(inplace=True\)|\.dropna\(\)(?!.*log)",
+        "pattern": r"\.dropna\([^)]*\)(?!.*(?:log|print|len))",
         "message": "Silent dropna() removes biological samples or features without logging retained row counts."
     },
     # Vector 8: Hardcoded paths
@@ -66,16 +66,48 @@ BIO_RULES = [
         "id": "V8-HARDCODED-PATH",
         "vector": "Scientific Integrity",
         "severity": "HIGH",
-        "pattern": r"['\"][A-Za-z]:\\[Users|Documents]|['\"]\/home\/[a-zA-Z0-9_-]+\/",
+        "pattern": r"['\"][A-Za-z]:[\\/]+(?:Users|Documents|home)[\\/]|['\"]/(?:home|Users)/[a-zA-Z0-9_.-]+/",
         "message": "Hardcoded local machine path detected. Pipeline will break on cluster nodes or containers."
     },
-    # Vector 8: Unit mismatch suspicion
+    # Vector 8: Unpinned dependencies
     {
-        "id": "V8-UNIT-CONV",
+        "id": "V8-UNPINNED-DEP",
+        "vector": "Scientific Integrity",
+        "severity": "HIGH",
+        "pattern": r"(?:pip\s+install|conda\s+install)\s+[a-zA-Z0-9_-]+(?:\s*$|\s+&&)(?![=<>])|RUN\s+pip\s+install\s+[a-zA-Z0-9_-]+(?:\s*$|\s+&&)(?![=<>])",
+        "message": "Unpinned dependency installation detected. Pin exact versions for reproducible container/HPC runs."
+    },
+    # Vector 8: Unit mismatch - Distance (nm vs Angstrom)
+    {
+        "id": "V8-UNIT-DIST",
         "vector": "Scientific Integrity",
         "severity": "MEDIUM",
-        "pattern": r"(\.distance|\.rmsd|coordinates).*(\*\s*100|\/\s*100)",
+        "pattern": r"(\.distance|\.rmsd|coordinates).*(\*\s*100\b|\/\s*100\b)",
         "message": "Suspicious distance multiplier (* 100 or / 100). Verify nm to Angstrom conversion (factor is 10, not 100)."
+    },
+    # Vector 8: Unit mismatch - Energy (kJ/mol vs kcal/mol)
+    {
+        "id": "V8-UNIT-ENERGY",
+        "vector": "Scientific Integrity",
+        "severity": "MEDIUM",
+        "pattern": r"(?:kcal|kJ|kj|free_energy|delta_g|potential).*[\*\/]\s*(?:1000\b|4\.2\b|4\.184\b)",
+        "message": "Energy conversion detected. Verify 1 kcal = 4.184 kJ factor and unit consistency (kJ/mol vs. kcal/mol)."
+    },
+    # Vector 8: Unit mismatch - Log2 vs Natural Log in fold-change
+    {
+        "id": "V8-UNIT-LOG",
+        "vector": "Scientific Integrity",
+        "severity": "HIGH",
+        "pattern": r"\b(?:log2fc|fold_change|log_fc|lfc)\s*=\s*.*np\.log\(",
+        "message": "Natural log np.log() used for fold change calculation instead of base-2 np.log2()."
+    },
+    # Vector 8: Indexing & Silent Broadcasting
+    {
+        "id": "V8-BROADCASTING",
+        "vector": "Scientific Integrity",
+        "severity": "MEDIUM",
+        "pattern": r"\.reshape\(-1,\s*1\)(?!.*assert)",
+        "message": "Unchecked array reshape(-1, 1). Verify dimension compatibility to prevent silent broadcasting errors."
     }
 ]
 
