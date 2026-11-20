@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Knowledge Graph - Antigravity Elite Harness</title>
+  <style>
+    body { margin: 0; background: #0f172a; color: #f8fafc; font-family: system-ui, sans-serif; display: flex; flex-direction: column; height: 100vh; }
+    header { padding: 1rem 1.5rem; background: #1e293b; border-bottom: 1px solid #334155; display: flex; justify-content: space-between; align-items: center; }
+    h1 { margin: 0; font-size: 1.25rem; }
+    .stats { font-size: 0.875rem; color: #94a3b8; }
+    #canvas-container { flex: 1; position: relative; }
+    svg { width: 100%; height: 100%; }
+    .node circle { stroke: #fff; stroke-width: 1.5px; cursor: pointer; }
+    .node text { fill: #cbd5e1; font-size: 11px; pointer-events: none; }
+    .link { stroke: #475569; stroke-opacity: 0.6; stroke-width: 1.5px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Knowledge Graph: Antigravity Elite Harness</h1>
+    <div class="stats">63 Nodes | 16 Edges | 7 Communities</div>
+  </header>
+  <div id="canvas-container">
+    <svg id="graph"></svg>
+  </div>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script>
+    const data = {"project":"antigravity-elite-harness","timestamp":"2026-11-20T03:42:30.477Z","total_nodes":63,"total_edges":16,"communities":["Security & Lifecycle","Memory & Context","Task Orchestration","Agent Roles (RBAB)","Quality & CI/CD","Science & Provenance","Observability & Rules"],"god_nodes":[{"id":"tasks/beads-tracker.cjs","degree":4},{"id":"tests/run-audit.cjs","degree":4},{"id":"hooks/pre-tool-guard.cjs","degree":3},{"id":"memory/memory-bank.cjs","degree":3},{"id":"hooks/hooks.json","degree":2}],"nodes":[{"id":".github/pull_request_template.md","label":"pull_request_template.md","community":"Quality & CI/CD","path":".github/pull_request_template.md","size":10},{"id":".github/workflows/agent-pipeline.yml","label":"agent-pipeline.yml","community":"Quality & CI/CD","path":".github/workflows/agent-pipeline.yml","size":10},{"id":".gitignore","label":".gitignore","community":"Observability & Rules","path":".gitignore","size":10},{"id":"agents/agents.json","label":"agents.json","community":"Agent Roles (RBAB)","path":"agents/agents.json","size":10},{"id":"agents/architect.md","label":"architect.md","community":"Agent Roles (RBAB)","path":"agents/architect.md","size":10},{"id":"agents/debugger.md","label":"debugger.md","community":"Agent Roles (RBAB)","path":"agents/debugger.md","size":10},{"id":"agents/developer.md","label":"developer.md","community":"Agent Roles (RBAB)","path":"agents/developer.md","size":10},{"id":"agents/performance-engineer.md","label":"performance-engineer.md","community":"Agent Roles (RBAB)","path":"agents/performance-engineer.md","size":10},{"id":"agents/qa-engineer.md","label":"qa-engineer.md","community":"Agent Roles (RBAB)","path":"agents/qa-engineer.md","size":10},{"id":"agents/researcher.md","label":"researcher.md","community":"Agent Roles (RBAB)","path":"agents/researcher.md","size":10},{"id":"agents/ROLES_AND_BOUNDARIES.md","label":"ROLES_AND_BOUNDARIES.md","community":"Agent Roles (RBAB)","path":"agents/ROLES_AND_BOUNDARIES.md","size":10},{"id":"agents/scientific-reviewer.md","label":"scientific-reviewer.md","community":"Agent Roles (RBAB)","path":"agents/scientific-reviewer.md","size":10},{"id":"agents/security-auditor.md","label":"security-auditor.md","community":"Agent Roles (RBAB)","path":"agents/security-auditor.md","size":10},{"id":"evals/promptfoo.yaml","label":"promptfoo.yaml","community":"Observability & Rules","path":"evals/promptfoo.yaml","size":10},{"id":"hooks/hooks.json","label":"hooks.json","community":"Security & Lifecycle","path":"hooks/hooks.json","size":10},{"id":"hooks/post-tool-audit.cjs","label":"post-tool-audit.cjs","community":"Security & Lifecycle","path":"hooks/post-tool-audit.cjs","size":10},{"id":"hooks/pre-tool-guard.cjs","label":"pre-tool-guard.cjs","community":"Security & Lifecycle","path":"hooks/pre-tool-guard.cjs","size":10},{"id":"memory/memory-bank.cjs","label":"memory-bank.cjs","community":"Memory & Context","path":"memory/memory-bank.cjs","size":10},{"id":"memory/memory-bank.jsonl","label":"memory-bank.jsonl","community":"Memory & Context","path":"memory/memory-bank.jsonl","size":10},{"id":"observability/local-ports-registry.json","label":"local-ports-registry.json","community":"Observability & Rules","path":"observability/local-ports-registry.json","size":10},{"id":"observability/LOCAL_PORTS_DIRECTORY.md","label":"LOCAL_PORTS_DIRECTORY.md","community":"Observability & Rules","path":"observability/LOCAL_PORTS_DIRECTORY.md","size":10},{"id":"observability/port-guard.ps1","label":"port-guard.ps1","community":"Observability & Rules","path":"observability/port-guard.ps1","size":10},{"id":"observability/trace-analyzer.cjs","label":"trace-analyzer.cjs","community":"Observability & Rules","path":"observability/trace-analyzer.cjs","size":10},{"id":"README.md","label":"README.md","community":"Observability & Rules","path":"README.md","size":10},{"id":"rules/adaptive-responsive-ui.md","label":"adaptive-responsive-ui.md","community":"Observability & Rules","path":"rules/adaptive-responsive-ui.md","size":10},{"id":"rules/electron-first.md","label":"electron-first.md","community":"Observability & Rules","path":"rules/electron-first.md","size":10},{"id":"rules/GEMINI.md","label":"GEMINI.md","community":"Observability & Rules","path":"rules/GEMINI.md","size":10},{"id":"rules/goal-sloc-debloat.md","label":"goal-sloc-debloat.md","community":"Observability & Rules","path":"rules/goal-sloc-debloat.md","size":10},{"id":"rules/local-port-allocation-guard.md","label":"local-port-allocation-guard.md","community":"Observability & Rules","path":"rules/local-port-allocation-guard.md","size":10},{"id":"rules/modern-frontend-design.md","label":"modern-frontend-design.md","community":"Observability & Rules","path":"rules/modern-frontend-design.md","size":10},{"id":"rules/ponytail.md","label":"ponytail.md","community":"Observability & Rules","path":"rules/ponytail.md","size":10},{"id":"rules/python-library-first.md","label":"python-library-first.md","community":"Observability & Rules","path":"rules/python-library-first.md","size":10},{"id":"rules/superpowers-methodology.md","label":"superpowers-methodology.md","community":"Observability & Rules","path":"rules/superpowers-methodology.md","size":10},{"id":"rules/universal-quality-gate.md","label":"universal-quality-gate.md","community":"Observability & Rules","path":"rules/universal-quality-gate.md","size":10},{"id":"SECURITY_ARCHITECTURE.md","label":"SECURITY_ARCHITECTURE.md","community":"Security & Lifecycle","path":"SECURITY_ARCHITECTURE.md","size":10},{"id":"tasks/beads-tracker.cjs","label":"beads-tracker.cjs","community":"Task Orchestration","path":"tasks/beads-tracker.cjs","size":10},{"id":"templates/ci-cd/.github/workflows/agent-pipeline.yml","label":"agent-pipeline.yml","community":"Quality & CI/CD","path":"templates/ci-cd/.github/workflows/agent-pipeline.yml","size":10},{"id":"templates/ci-cd/pull_request_template.md","label":"pull_request_template.md","community":"Quality & CI/CD","path":"templates/ci-cd/pull_request_template.md","size":10},{"id":"templates/ci-cd/semgrep.yml","label":"semgrep.yml","community":"Quality & CI/CD","path":"templates/ci-cd/semgrep.yml","size":10},{"id":"templates/git-security/.pre-commit-config.yaml","label":".pre-commit-config.yaml","community":"Observability & Rules","path":"templates/git-security/.pre-commit-config.yaml","size":10},{"id":"templates/git-security/gitleaks.toml","label":"gitleaks.toml","community":"Observability & Rules","path":"templates/git-security/gitleaks.toml","size":10},{"id":"templates/gotchas.template.md","label":"gotchas.template.md","community":"Observability & Rules","path":"templates/gotchas.template.md","size":10},{"id":"templates/local-ports-registry.template.json","label":"local-ports-registry.template.json","community":"Observability & Rules","path":"templates/local-ports-registry.template.json","size":10},{"id":"templates/LOCAL_PORTS_DIRECTORY.template.md","label":"LOCAL_PORTS_DIRECTORY.template.md","community":"Observability & Rules","path":"templates/LOCAL_PORTS_DIRECTORY.template.md","size":10},{"id":"templates/mcp_config.template.json","label":"mcp_config.template.json","community":"Observability & Rules","path":"templates/mcp_config.template.json","size":10},{"id":"templates/plan-template.html","label":"plan-template.html","community":"Observability & Rules","path":"templates/plan-template.html","size":10},{"id":"templates/review-workflow/1-planning.md","label":"1-planning.md","community":"Observability & Rules","path":"templates/review-workflow/1-planning.md","size":10},{"id":"templates/review-workflow/2-critical-plan-review.md","label":"2-critical-plan-review.md","community":"Observability & Rules","path":"templates/review-workflow/2-critical-plan-review.md","size":10},{"id":"templates/review-workflow/3-production-readiness-review.md","label":"3-production-readiness-review.md","community":"Observability & Rules","path":"templates/review-workflow/3-production-readiness-review.md","size":10},{"id":"templates/sandbox/devcontainer.json","label":"devcontainer.json","community":"Observability & Rules","path":"templates/sandbox/devcontainer.json","size":10},{"id":"templates/sandbox/docker-compose.sandbox.yml","label":"docker-compose.sandbox.yml","community":"Observability & Rules","path":"templates/sandbox/docker-compose.sandbox.yml","size":10},{"id":"templates/sandbox/Dockerfile.sandbox","label":"Dockerfile.sandbox","community":"Observability & Rules","path":"templates/sandbox/Dockerfile.sandbox","size":10},{"id":"templates/science-provenance/dvc.yaml.template","label":"dvc.yaml.template","community":"Science & Provenance","path":"templates/science-provenance/dvc.yaml.template","size":10},{"id":"templates/science-provenance/params.yaml.template","label":"params.yaml.template","community":"Science & Provenance","path":"templates/science-provenance/params.yaml.template","size":10},{"id":"templates/science-provenance/provenance_tracker.py","label":"provenance_tracker.py","community":"Science & Provenance","path":"templates/science-provenance/provenance_tracker.py","size":10},{"id":"templates/science-provenance/SCIENTIFIC_PROVENANCE_GUIDE.md","label":"SCIENTIFIC_PROVENANCE_GUIDE.md","community":"Science & Provenance","path":"templates/science-provenance/SCIENTIFIC_PROVENANCE_GUIDE.md","size":10},{"id":"templates/science-provenance/Snakefile.template","label":"Snakefile.template","community":"Science & Provenance","path":"templates/science-provenance/Snakefile.template","size":10},{"id":"templates/testing/fast-check.example.ts","label":"fast-check.example.ts","community":"Quality & CI/CD","path":"templates/testing/fast-check.example.ts","size":10},{"id":"templates/testing/hypothesis_example.py","label":"hypothesis_example.py","community":"Quality & CI/CD","path":"templates/testing/hypothesis_example.py","size":10},{"id":"templates/testing/mutmut.ini.template","label":"mutmut.ini.template","community":"Quality & CI/CD","path":"templates/testing/mutmut.ini.template","size":10},{"id":"templates/testing/stryker.config.json.template","label":"stryker.config.json.template","community":"Quality & CI/CD","path":"templates/testing/stryker.config.json.template","size":10},{"id":"templates/testing/TESTING_STRATEGY.md","label":"TESTING_STRATEGY.md","community":"Quality & CI/CD","path":"templates/testing/TESTING_STRATEGY.md","size":10},{"id":"tests/run-audit.cjs","label":"run-audit.cjs","community":"Observability & Rules","path":"tests/run-audit.cjs","size":10}],"edges":[{"source":"hooks/hooks.json","target":"hooks/pre-tool-guard.cjs","relation":"executes_pre_tool"},{"source":"hooks/hooks.json","target":"hooks/post-tool-audit.cjs","relation":"executes_post_tool"},{"source":"SECURITY_ARCHITECTURE.md","target":"hooks/pre-tool-guard.cjs","relation":"specifies_policy"},{"source":"agents/ROLES_AND_BOUNDARIES.md","target":"agents/agents.json","relation":"manifests_roles"},{"source":"agents/ROLES_AND_BOUNDARIES.md","target":"tasks/beads-tracker.cjs","relation":"assigns_tasks"},{"source":"tasks/beads-tracker.cjs","target":"memory/memory-bank.cjs","relation":"recalls_gotchas"},{"source":"rules/GEMINI.md","target":"tasks/beads-tracker.cjs","relation":"mandates_dag"},{"source":"rules/GEMINI.md","target":"memory/memory-bank.cjs","relation":"mandates_memory_recall"},{"source":".github/workflows/agent-pipeline.yml","target":"templates/ci-cd/semgrep.yml","relation":"uses_sast_rules"},{"source":".github/workflows/agent-pipeline.yml","target":"templates/testing/stryker.config.json.template","relation":"executes_mutation"},{"source":"templates/science-provenance/Snakefile.template","target":"templates/science-provenance/provenance_tracker.py","relation":"computes_provenance"},{"source":"templates/science-provenance/dvc.yaml.template","target":"templates/science-provenance/params.yaml.template","relation":"tracks_parameters"},{"source":"tests/run-audit.cjs","target":"memory/memory-bank.cjs","relation":"verifies"},{"source":"tests/run-audit.cjs","target":"tasks/beads-tracker.cjs","relation":"verifies"},{"source":"tests/run-audit.cjs","target":"hooks/pre-tool-guard.cjs","relation":"verifies"},{"source":"tests/run-audit.cjs","target":"observability/trace-analyzer.cjs","relation":"verifies"}]};
+    const colorScale = d3.scaleOrdinal()
+      .domain(["Security & Lifecycle", "Memory & Context", "Task Orchestration", "Agent Roles (RBAB)", "Quality & CI/CD", "Science & Provenance", "Observability & Rules"])
+      .range(["#ef4444", "#3b82f6", "#10b981", "#8b5cf6", "#f59e0b", "#ec4899", "#06b6d4"]);
+
+    const svg = d3.select("#graph");
+    const width = window.innerWidth;
+    const height = window.innerHeight - 60;
+
+    const simulation = d3.forceSimulation(data.nodes)
+      .force("link", d3.forceLink(data.edges).id(d => d.id).distance(90))
+      .force("charge", d3.forceManyBody().strength(-200))
+      .force("center", d3.forceCenter(width / 2, height / 2));
+
+    const link = svg.append("g")
+      .selectAll("line")
+      .data(data.edges)
+      .join("line")
+      .attr("class", "link");
+
+    const node = svg.append("g")
+      .selectAll("g")
+      .data(data.nodes)
+      .join("g")
+      .attr("class", "node")
+      .call(d3.drag()
+        .on("start", (e, d) => { if (!e.active) simulation.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+        .on("drag", (e, d) => { d.fx = e.x; d.fy = e.y; })
+        .on("end", (e, d) => { if (!e.active) simulation.alphaTarget(0); d.fx = null; d.fy = null; }));
+
+    node.append("circle")
+      .attr("r", d => d.id.includes("beads") || d.id.includes("memory") || d.id.includes("ROLES") ? 9 : 6)
+      .attr("fill", d => colorScale(d.community));
+
+    node.append("text")
+      .attr("x", 10)
+      .attr("y", 3)
+      .text(d => d.label);
+
+    simulation.on("tick", () => {
+      link
+        .attr("x1", d => d.source.x)
+        .attr("y1", d => d.source.y)
+        .attr("x2", d => d.target.x)
+        .attr("y2", d => d.target.y);
+
+      node.attr("transform", d => `translate(${d.x},${d.y})`);
+    });
+  </script>
+</body>
+</html>
