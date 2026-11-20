@@ -28,7 +28,7 @@ Guards against coordinate indexing errors, statistical false positives, and mach
 ### 1. Apply Multiple Testing Correction
 Run `scripts/stats_guard.py` to calculate Benjamini-Hochberg FDR on raw p-values:
 ```bash
-python skills/comp-bio/bio-sequence-stats/scripts/stats_guard.py --pvalues data/raw_pvals.csv --alpha 0.05
+python skills/comp-bio/bio-sequence-stats/scripts/stats_guard.py fdr --pvalues data/raw_pvals.csv --alpha 0.05
 ```
 
 ### 2. Verify Coordinate Systems

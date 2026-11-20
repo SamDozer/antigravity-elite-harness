@@ -22,5 +22,20 @@
     "title": "Signatures of mutational processes in human cancer",
     "container_title": "Nature",
     "year": 2013
+  },
+  "ensembl:ENSG00000141510": {
+    "ensembl_id": "ENSG00000141510",
+    "symbol": "TP53",
+    "species": "homo_sapiens",
+    "biotype": "protein_coding",
+    "description": "cellular tumor antigen p53",
+    "locus": "chr17:7668402-7687538"
+  },
+  "pubmed:23945592": {
+    "pmid": "23945592",
+    "title": "Signatures of mutational processes in human cancer",
+    "journal": "Nature",
+    "pubdate": "2013 Aug 22",
+    "first_author": "Alexandrov LB"
   }
 }

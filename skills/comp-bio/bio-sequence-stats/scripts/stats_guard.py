@@ -76,6 +76,15 @@ def main():
             # Comma-separated list
             pvals = [float(x.strip()) for x in args.pvalues.split(',') if x.strip()]
 
+        if not pvals:
+            print("[FAIL] No valid numerical p-values found in input.", file=sys.stderr)
+            sys.exit(1)
+
+        invalid_p = [p for p in pvals if p < 0.0 or p > 1.0]
+        if invalid_p:
+            print(f"⚠️ [WARN] {len(invalid_p)} p-value(s) outside [0.0, 1.0] (e.g. {invalid_p[:3]}). Clamping to [0.0, 1.0].")
+            pvals = [max(0.0, min(1.0, p)) for p in pvals]
+
         adj, sig = benjamini_hochberg(pvals, args.alpha)
         sig_count = sum(sig)
 

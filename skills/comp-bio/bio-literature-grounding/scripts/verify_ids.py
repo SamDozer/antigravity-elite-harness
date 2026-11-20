@@ -105,10 +105,61 @@ def verify_doi(doi: str, cache):
     save_cache(cache)
     return True, entry, False
 
+def verify_ensembl(ensembl_id: str, cache):
+    clean_id = ensembl_id.strip().upper()
+    key = f"ensembl:{clean_id}"
+    if key in cache:
+        return True, cache[key], True
+
+    url = f"https://rest.ensembl.org/lookup/id/{clean_id}?content-type=application/json"
+    res = query_endpoint(url, headers={'Content-Type': 'application/json', 'User-Agent': 'Antigravity-Harness-Verifier/1.0'})
+    if "error" in res:
+        return False, res, False
+
+    entry = {
+        "ensembl_id": clean_id,
+        "symbol": res.get("display_name", "Unknown"),
+        "species": res.get("species", "Unknown"),
+        "biotype": res.get("biotype", "Unknown"),
+        "description": res.get("description", "No Description"),
+        "locus": f"chr{res.get('seq_region_name')}:{res.get('start')}-{res.get('end')}" if res.get('seq_region_name') else "N/A"
+    }
+    cache[key] = entry
+    save_cache(cache)
+    return True, entry, False
+
+def verify_pubmed(pmid: str, cache):
+    clean_pmid = str(pmid).strip()
+    key = f"pubmed:{clean_pmid}"
+    if key in cache:
+        return True, cache[key], True
+
+    url = f"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id={clean_pmid}&retmode=json"
+    res = query_endpoint(url)
+    if "error" in res:
+        return False, res, False
+
+    result_block = res.get("result", {})
+    item = result_block.get(clean_pmid, {})
+    if not item or "title" not in item:
+        return False, {"error": f"PMID {clean_pmid} not found in PubMed"}, False
+
+    authors = [a.get("name") for a in item.get("authors", []) if isinstance(a, dict) and "name" in a]
+    entry = {
+        "pmid": clean_pmid,
+        "title": item.get("title", "No Title"),
+        "journal": item.get("source", "Unknown Journal"),
+        "pubdate": item.get("pubdate", "Unknown Date"),
+        "first_author": authors[0] if authors else "Unknown"
+    }
+    cache[key] = entry
+    save_cache(cache)
+    return True, entry, False
+
 def main():
-    parser = argparse.ArgumentParser(description="Verify biological database IDs and publication DOIs.")
-    parser.add_argument("--type", choices=["uniprot", "pdb", "doi"], required=True)
-    parser.add_argument("--id", required=True, help="Accession / PDB ID / DOI to verify")
+    parser = argparse.ArgumentParser(description="Verify biological database IDs and publication DOIs/PMIDs.")
+    parser.add_argument("--type", choices=["uniprot", "pdb", "doi", "ensembl", "pubmed", "pmid"], required=True)
+    parser.add_argument("--id", required=True, help="Accession / PDB ID / DOI / Ensembl ID / PMID to verify")
     args = parser.parse_args()
 
     cache = load_cache()
@@ -119,6 +170,10 @@ def main():
         ok, data, from_cache = verify_pdb(args.id, cache)
     elif args.type == "doi":
         ok, data, from_cache = verify_doi(args.id, cache)
+    elif args.type == "ensembl":
+        ok, data, from_cache = verify_ensembl(args.id, cache)
+    elif args.type in ["pubmed", "pmid"]:
+        ok, data, from_cache = verify_pubmed(args.id, cache)
 
     print("====================================================")
     print(f"IDENTIFIER GROUNDING REPORT: {args.type.upper()} '{args.id}'")

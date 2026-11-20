@@ -9,7 +9,7 @@ import sys
 import os
 import argparse
 
-def validate_pdb(pdb_path: str):
+def validate_pdb(pdb_path: str, min_plddt: float = None):
     if not os.path.exists(pdb_path):
         print(f"[FAIL] PDB file not found: {pdb_path}", file=sys.stderr)
         return False
@@ -66,7 +66,7 @@ def validate_pdb(pdb_path: str):
         return False
 
     avg_bfactor = sum(b_factors) / len(b_factors) if b_factors else 0.0
-    is_alphafold = all(0.0 <= b <= 100.0 for b in b_factors[:100]) and avg_bfactor > 50.0
+    is_alphafold = len(b_factors) > 0 and all(0.0 <= b <= 100.0 for b in b_factors[:100]) and avg_bfactor > 30.0
 
     print("====================================================")
     print(f"PDB STRUCTURE AUDIT: {os.path.basename(pdb_path)}")
@@ -80,6 +80,29 @@ def validate_pdb(pdb_path: str):
     print(f"Average B-Factor:   {avg_bfactor:.2f} ({'Likely AlphaFold pLDDT' if is_alphafold else 'Crystallographic B-factor'})")
 
     warnings = []
+    errors = []
+
+    if is_alphafold and b_factors:
+        v_high = sum(1 for b in b_factors if b >= 90.0)
+        conf = sum(1 for b in b_factors if 70.0 <= b < 90.0)
+        low = sum(1 for b in b_factors if 50.0 <= b < 70.0)
+        disordered = sum(1 for b in b_factors if b < 50.0)
+        total = len(b_factors)
+        print("\nAlphaFold pLDDT Confidence Breakdown:")
+        print(f"  Very High (>90):   {v_high:,} atoms ({v_high/total*100:.1f}%)")
+        print(f"  Confident (70-90): {conf:,} atoms ({conf/total*100:.1f}%)")
+        print(f"  Low (50-70):       {low:,} atoms ({low/total*100:.1f}%)")
+        print(f"  Disordered (<50):  {disordered:,} atoms ({disordered/total*100:.1f}%)")
+
+        if disordered / total > 0.3:
+            warnings.append(f"{disordered/total*100:.1f}% of residues are predicted disordered (pLDDT < 50). Avoid active-site docking.")
+
+        if min_plddt is not None:
+            if avg_bfactor < min_plddt:
+                errors.append(f"Structure average pLDDT ({avg_bfactor:.2f}) fails minimum threshold ({min_plddt:.2f}).")
+            else:
+                print(f"✅ [PASS] Structure average pLDDT ({avg_bfactor:.2f}) satisfies threshold >= {min_plddt:.2f}.")
+
     if altlocs:
         warnings.append(f"Contains {len(altlocs)} alternate location flags. Strip altlocs before docking.")
     if not chains:
@@ -92,16 +115,25 @@ def validate_pdb(pdb_path: str):
         for w in warnings:
             print(f"  - {w}")
 
+    if errors:
+        print("\n❌ ERRORS:")
+        for e in errors:
+            print(f"  - {e}")
+        print("====================================================")
+        print("VERDICT: REJECTED (Failed quality threshold)")
+        return False
+
     print("====================================================")
     print("VERDICT: PASS (Coordinates parsed successfully)")
     return True
 
 def main():
-    parser = argparse.ArgumentParser(description="Audit PDB coordinate file for structural anomalies.")
+    parser = argparse.ArgumentParser(description="Audit PDB coordinate file for structural anomalies and pLDDT confidence.")
     parser.add_argument("--pdb", required=True, help="Path to PDB file")
+    parser.add_argument("--min-plddt", type=float, default=None, help="Minimum acceptable average pLDDT score")
     args = parser.parse_args()
 
-    success = validate_pdb(args.pdb)
+    success = validate_pdb(args.pdb, min_plddt=args.min_plddt)
     sys.exit(0 if success else 1)
 
 if __name__ == "__main__":
