@@ -1,0 +1,16 @@
+# Computational Biology Experiment Parameters
+random_seed: 42
+
+target:
+  gene_symbol: "BRCA1"
+  uniprot_accession: "P38398"
+  species: "Homo sapiens"
+
+database_versions:
+  uniprot_release: "2026_01"
+  chembl_release: "33"
+  pdb_sync_date: "2026-11-01"
+
+filtering:
+  min_plddt_confidence: 70.0
+  max_missing_residues_pct: 5.0

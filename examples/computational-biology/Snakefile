@@ -1,0 +1,29 @@
+# Snakemake Pipeline for Reproducible Target Analysis
+configfile: "params.yaml"
+
+rule all:
+    input:
+        "results/target_summary.json",
+        "results/run_provenance.json"
+
+rule fetch_target_sequence:
+    output:
+        "data/{uniprot}.fasta"
+    params:
+        acc=config["target"]["uniprot_accession"]
+    shell:
+        """
+        curl -s "https://rest.uniprot.org/uniprotkb/{params.acc}.fasta" -o {output}
+        """
+
+rule compute_features_and_provenance:
+    input:
+        fasta="data/{uniprot}.fasta",
+        config="params.yaml"
+    output:
+        summary="results/target_summary.json",
+        provenance="results/run_provenance.json"
+    shell:
+        """
+        python scripts/run_analysis.py --fasta {input.fasta} --config {input.config} --out-summary {output.summary} --out-provenance {output.provenance}
+        """

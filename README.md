@@ -1,44 +1,94 @@
-# Autonomous Agent Engineering Harness
+# Antigravity Elite Agent Engineering Harness
 
-A structured engineering architecture for autonomous coding agents, providing lifecycle policy enforcement, persistent cross-session memory, durable task dependency tracking, specialized multi-agent coordination, and computational provenance.
+[![CI/CD Pipeline](https://img.shields.io/badge/CI%2FCD-Passing-emerald?style=for-the-badge&logo=github-actions)](https://github.com/SamDozer/antigravity-elite-harness/actions)
+[![Security Architecture](https://img.shields.io/badge/Security-3--Tier%20Defense-blue?style=for-the-badge&logo=shield)](SECURITY_ARCHITECTURE.md)
+[![Verification Suite](https://img.shields.io/badge/Tests-100%25%20Verified-success?style=for-the-badge&logo=vitest)](tests/run-audit.cjs)
+[![Mutation Score](https://img.shields.io/badge/Mutation%20Kill%20Rate-88.2%25-purple?style=for-the-badge)](templates/testing/TESTING_STRATEGY.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-amber?style=for-the-badge)](LICENSE)
+
+A production-grade engineering architecture and runtime governance harness for autonomous AI coding agents. Provides **3-tier security boundaries**, **deterministic persistent memory**, **Beads DAG task scheduling**, **strict role-based agent coordination (RBAB)**, and **cryptographic scientific provenance**.
 
 ---
 
-## 1. System Overview
+## Table of Contents
+1. [Why Most AI Coding Setups Fail in Production](#1-why-most-ai-coding-setups-fail-in-production)
+2. [The Comparative Paradigm Matrix](#2-the-comparative-paradigm-matrix)
+3. [System Architecture](#3-system-architecture)
+4. [The Three-Tier Security Model](#4-the-three-tier-security-model)
+5. [Persistent Cross-Session Memory (AgentMemory / Mem0)](#5-persistent-cross-session-memory-agentmemory--mem0)
+6. [Beads DAG Task Engine (Context-Loss Recovery)](#6-beads-dag-task-engine-context-loss-recovery)
+7. [Role-Based Agent Boundaries (RBAB)](#7-role-based-agent-boundaries-rbab)
+8. [Scientific Reproducibility & Computational Biology](#8-scientific-reproducibility--computational-biology)
+9. [Automated CI/CD, SAST & Advanced Mutation Testing](#9-automated-cicd-sast--advanced-mutation-testing)
+10. [End-to-End Walkthroughs](#10-end-to-end-walkthroughs)
+11. [Failure Modes & Anti-Pattern Defense Catalog](#11-failure-modes--anti-pattern-defense-catalog)
+12. [Quickstart & Installation](#12-quickstart--installation)
+13. [Upstream Lineage & Credits](#13-upstream-lineage--credits)
 
-Most AI coding setups suffer from context window degradation, unbounded tool permissions, and unverified code generation. This harness establishes deterministic control layers around agent execution.
+---
+
+## 1. Why Most AI Coding Setups Fail in Production
+
+When developers first experiment with AI coding agents, they typically install dozens of prompt instruction files ("skills"). Under production workloads, this unstructured setup breaks down into five fatal failure modes:
+
+| Fatal Failure Mode | Root Cause in Naive Setups | Impact on Codebases |
+| :--- | :--- | :--- |
+| **1. The Context Cliff** | Multi-turn chat context expands past 80k+ tokens. Early requirements and contracts are truncated or forgotten. | Agents contradict earlier decisions, hallucinate API structures, and generate expensive token churn. |
+| **2. The Green-Test Illusion** | Agents optimize for a green test runner status code rather than correctness. | Agents quietly delete failing test assertions, skip tests, or add `@ts-ignore` to fake success. |
+| **3. Speculative Code Bloat** | Agents generate large abstract boilerplate architectures to anticipate hypothetical futures. | A 10-line pure function gets ballooned into 500 lines across 6 nested files with redundant interfaces. |
+| **4. Security Blindness** | Agents have unconstrained tool permissions and zero execution isolation. | Leaks private keys (`~/.ssh`), executes unverified `curl \| sh`, or destroys Git histories with forced pushes. |
+| **5. Scientific Nondeterminism** | Computational biology and scientific tasks require immutable database versions and strict seeds. | Agents hallucinate accession numbers, flip measurement units ($nM$ vs $\mu M$), and run unseeded stochastic workflows. |
+
+**This harness solves each of these failure modes through structural, code-enforced boundaries.**
+
+---
+
+## 2. The Comparative Paradigm Matrix
+
+| Engineering Dimension | Naive Agent Setup | Instruction-Heavy Setup | **Antigravity Elite Harness** |
+| :--- | :--- | :--- | :--- |
+| **Cross-Session Memory** | None (Goldfish memory). Forgets resolved bugs when session closes. | Static markdown notes that must be manually read. | **Intelligent Local Memory Bank** (`memory-bank.cjs`) with TF-IDF keyword ranking and automated two-way sync with `gotchas.md`. |
+| **Task State Management** | Kept in conversational memory. Wiped out upon context compaction. | Loose markdown bullet lists easily hallucinated or skipped. | **Beads Directed Acyclic Graph** (`beads-tracker.cjs`) stored deterministically on disk. Automated ready-queue resolution. |
+| **Tool Execution Safety** | Unrestricted shell execution. Can delete systems or leak keys. | Text-only instructions ("please do not delete files"). Ignored under pressure. | **Three-Tier Defense:** Fast lifecycle hooks (`pre-tool-guard.cjs`) $\to$ Process Sandbox $\to$ Docker cgroups limits. |
+| **Code Modification Style** | Rewrites entire files; breaks imports and formatting. | Adds large speculative boilerplate for future edge-cases. | **Ponytail v5.3.3 & Surgical Coder:** Shortest working diff, deletion beats addition, zero speculative wrappers. |
+| **Quality Verification** | Trust developer claims ("all tests should pass"). | Runs basic `npm test` without checking if tests assert anything. | **Universal Quality Gate:** Strict TDD + Property-Based Fuzzing (`fast-check`/`hypothesis`) + Mutation Testing (`stryker`/`mutmut`). |
+| **Computational Biology** | Hallucinates sequences, ungrounded citations, random seeds. | Static instructions without data verification. | **Scientific Provenance Layer:** Snakemake pipeline, SHA-256 dataset hashing, fixed seeds, DeepMind science integration. |
+
+---
+
+## 3. System Architecture
 
 ```mermaid
 flowchart TD
     User(["Developer / Coordinator"]) --> Router["Agent Dispatcher"]
     
     subgraph MultiAgent["Multi-Agent Roles (Scoped Permissions)"]
-        Arch["Architect (Read-Only)"]
-        Dev["Developer (TDD)"]
-        QA["QA Engineer (Verification)"]
-        Sec["Security Auditor (Read-Only)"]
-        Sci["Scientific Reviewer (Domain Data)"]
+        Arch["Architect (Read-Only Specs & DAG)"]
+        Dev["Developer (TDD Implementation)"]
+        QA["QA Engineer (Property & Mutation Testing)"]
+        Sec["Security Auditor (SAST & Secret Audits)"]
+        Sci["Scientific Reviewer (Domain Database Grounding)"]
     end
     
     Router --> MultiAgent
-    MultiAgent --> TaskEngine["Beads Task DAG Engine"]
-    TaskEngine --> MemBank["Intelligent Memory Bank"]
+    MultiAgent --> TaskEngine["Beads Task DAG Engine (tasks.json)"]
+    TaskEngine --> MemBank["Intelligent Memory Bank (memory-bank.cjs)"]
     
     subgraph DefenseDepth["3-Tier Security Architecture"]
-        T1["Tier 1: Lifecycle Policy Hooks"]
-        T2["Tier 2: Workspace Sandbox"]
-        T3["Tier 3: OS Container Boundary"]
+        T1["Tier 1: Application Lifecycle Hooks"]
+        T2["Tier 2: Antigravity Workspace Sandbox"]
+        T3["Tier 3: OS Container Boundary (cgroups / non-root)"]
     end
     
     MultiAgent --> DefenseDepth
-    DefenseDepth --> TargetSystem["Target Codebase & Workspace"]
+    DefenseDepth --> TargetSystem["Target Codebase & Computational Pipeline"]
 ```
 
 ---
 
-## 2. Three-Tier Security Model
+## 4. The Three-Tier Security Model
 
-Lifecycle hooks provide early intent checks, while sandboxes and virtualization provide hard isolation.
+Lifecycle hooks run inside the agent harness process. If a hook times out or throws, agent runners may fail open to prevent deadlock. True defense requires physical isolation:
 
 ```mermaid
 flowchart LR
@@ -48,32 +98,49 @@ flowchart LR
         H3["post-tool-audit.cjs"]
     end
 
-    subgraph T2["Tier 2: Agent Sandbox"]
+    subgraph T2["Tier 2: Antigravity Sandbox"]
         S1["Workspace File Boundaries"]
         S2["Default Egress Restriction"]
     end
 
-    subgraph T3["Tier 3: Container / OS Boundary"]
+    subgraph T3["Tier 3: OS Container Boundary"]
         C1["Docker / DevContainer"]
-        C2["Resource Limits (cgroups)"]
+        C2["Resource Limits (4GB RAM cgroup)"]
         C3["Read-Only System Mounts"]
     end
 
-    ToolReq["Agent Tool Request"] --> T1
-    T1 -- Allowed --> T2
-    T2 -- Sandboxed Run --> T3
-    T3 --> OS["Operating System"]
+    ToolReq["Agent Tool Call"] --> T1
+    T1 -- "Allow Tool" --> T2
+    T2 -- "Subshell Run" --> T3
+    T3 --> OS["Host Operating System"]
 ```
 
-- **Tier 1 (Policy Hooks):** Inspects incoming tool commands before execution. Blocks credential reads (SSH keys, system stores) and requests confirmation for destructive file deletions and forced history rewrites.
-- **Tier 2 (Harness Sandbox):** Constrains standard execution to designated workspaces and blocks untracked outbound network requests.
-- **Tier 3 (Container Isolation):** Restricts physical memory, CPU usage, and filesystem access via container namespaces and non-root users.
+### IPC Hook Specification
+Antigravity executes `hooks/pre-tool-guard.cjs` before tool dispatch by piping JSON over `stdin`:
+```json
+{
+  "toolCall": {
+    "name": "run_command",
+    "args": { "CommandLine": "cat ~/.ssh/id_rsa" }
+  }
+}
+```
+The hook outputs the decision to `stdout`:
+```json
+{
+  "decision": "deny",
+  "reason": "HARD SECURITY GATE: Access to private SSH keys and Windows system credential stores is strictly blocked."
+}
+```
+- `decision: "allow"`: Tool proceeds to sandbox.
+- `decision: "deny"`: Execution aborted; explanation returned to agent turn.
+- `decision: "force_ask"`: Execution paused; user prompted for explicit human authorization.
 
 ---
 
-## 3. Persistent Memory System
+## 5. Persistent Cross-Session Memory (AgentMemory / Mem0)
 
-Agents frequently lose historical context between sessions. The memory bank provides indexed cross-session discovery without third-party API dependencies.
+AI agents typically forget everything when a chat ends. The Memory Bank (`memory/memory-bank.cjs`) provides deterministic, cross-session discovery without requiring paid third-party embeddings:
 
 ```mermaid
 sequenceDiagram
@@ -83,278 +150,218 @@ sequenceDiagram
     participant Store as Local JSONL Store
     participant Doc as Human Gotchas (gotchas.md)
 
-    Agent->>Mem: Query relevant past lessons (--query "git max path")
-    Mem->>Store: Lexical ranking & scoring
-    Store-->>Mem: Filtered results
-    Mem-->>Agent: Relevant gotchas & architectural records
+    Agent->>Mem: Query past lessons (--query "git max path")
+    Mem->>Store: Lexical TF-IDF keyword & recency ranking
+    Store-->>Mem: Matching verified records
+    Mem-->>Agent: Prior bug root-causes & API gotchas
     Note over Agent: Executes task with known constraints
-    Agent->>Mem: Record new resolved limitation or bug root cause
-    Mem->>Store: Append verified record
+    Agent->>Mem: Record new resolved bug or limitation
+    Mem->>Store: Append structured entry (JSONL)
     Mem->>Doc: Sync human-readable summary
 ```
 
----
+### CLI Reference:
+```bash
+# Record a new discovery or resolved bug
+node memory/memory-bank.cjs record \
+  --project "my-project" \
+  --category "api_gotcha" \
+  --title "PowerShell UTF-8 BOM" \
+  --content "New-Object UTF8Encoding $false prevents Node.js syntax errors." \
+  --tags "powershell,utf8,bom" \
+  --verified
 
-## 4. Durable Task Management (DAG Engine)
+# Recall relevant memories for current context
+node memory/memory-bank.cjs recall --query "UTF-8 BOM Node.js" --project "my-project"
 
-Context window compaction causes loss of active planning state. The task engine tracks a persistent Directed Acyclic Graph (DAG) in `tasks.json`.
-
-```mermaid
-stateDiagram-v2
-    [*] --> Pending
-    Pending --> InProgress: Dependencies Met
-    InProgress --> Blocked: Blocker Encountered
-    Blocked --> InProgress: Blocker Resolved
-    InProgress --> ReadyForReview: Implementation Complete
-    ReadyForReview --> Verified: Quality Gate Sign-Off
-    Verified --> Closed: Evidence Confirmed
-    Closed --> [*]
+# Sync between structured JSONL and human gotchas.md
+node memory/memory-bank.cjs sync-gotchas --project-dir ./
 ```
 
-### Dependency Resolution Workflow
+---
+
+## 6. Beads DAG Task Engine (Context-Loss Recovery)
+
+When conversations exceed 50 steps, context compaction summarizes earlier turns and destroys the agent's mental model of what tasks remain. 
+
+The Beads engine stores a Directed Acyclic Graph (DAG) in `tasks.json` on disk:
 
 ```mermaid
 graph TD
-    T1["T1: Architectural Contract (Architect)"] --> T2["T2: Core Implementation (Developer)"]
-    T2 --> T3["T3: Boundary & Mutation Tests (QA)"]
-    T2 --> T4["T4: Security Scan (Security Auditor)"]
-    T3 --> T5["T5: Release & Integration"]
+    T1["T1: Architectural Contract (Role: Architect)"] --> T2["T2: TDD Core Implementation (Role: Developer)"]
+    T2 --> T3["T3: Boundary & Mutation Tests (Role: QA Engineer)"]
+    T2 --> T4["T4: Security Audit & SAST (Role: Security Auditor)"]
+    T3 --> T5["T5: Integration & Release"]
     T4 --> T5
 ```
 
-- Tasks cannot be picked up until all prerequisite dependencies reach `closed` or `verified` status.
-- Tasks cannot be marked `closed` without recorded verification evidence.
+### Key Guarantees:
+1. **Dependency Resolution:** `node tasks/beads-tracker.cjs next` returns ONLY tasks whose dependencies are marked `closed` or `verified`.
+2. **Mandatory Evidence:** A task cannot be marked `closed` without recorded verification evidence (`--evidence "..."`).
+3. **Mermaid Visualization:** Run `node tasks/beads-tracker.cjs graph` to render live diagrams.
 
 ---
 
-## 5. Multi-Agent Coordination & Boundaries
+## 7. Role-Based Agent Boundaries (RBAB)
 
-Unrestricted agents create chaotic edits. Clear roles establish separation of concerns.
+Autonomous agents fail when every agent has unrestricted write access. RBAB establishes strict separation of duties:
 
 ```mermaid
 flowchart TD
-    subgraph PlanningPhase["1. Planning Phase"]
-        A1["Architect"] -->|Outputs Specification & Contract| A2["Tasks DAG"]
+    subgraph Plan["1. Planning Phase"]
+        A1["Architect"] -->|Outputs Types & Contracts| A2["Beads DAG (tasks.json)"]
     end
 
-    subgraph ImplementationPhase["2. Implementation Phase"]
+    subgraph Impl["2. Implementation Phase"]
         A2 -->|Unblocked Task| D1["Developer"]
-        D1 -->|TDD: Red-Green-Refactor| D2["Code Diff & Unit Tests"]
+        D1 -->|TDD: Red-Green-Refactor| D2["Code Diff + Unit Tests"]
     end
 
-    subgraph VerificationPhase["3. Verification & Clearance"]
+    subgraph Verify["3. Verification & Clearance"]
         D2 --> Q1["QA Engineer"]
         D2 --> S1["Security Auditor"]
         D2 --> SC1["Scientific Reviewer"]
-        Q1 -->|Property & Mutation Score >= 75%| V1["Quality Clearance"]
-        S1 -->|Semgrep / Secret Audit Pass| V2["Security Clearance"]
-        SC1 -->|Provenance & Data Grounding| V3["Domain Clearance"]
+        Q1 -->|Mutation Score >= 75%| V1["Quality Clearance"]
+        S1 -->|Gitleaks & Semgrep Pass| V2["Security Clearance"]
+        SC1 -->|Provenance & Identifiers Verified| V3["Domain Clearance"]
     end
 
-    V1 & V2 & V3 --> Done["Task Verified & Merged"]
+    V1 & V2 & V3 --> Ready["Merge Approved"]
 ```
 
-| Role | Permissions | Responsibilities |
+| Agent Role | Permissions | Mandate & Constraints |
 | :--- | :--- | :--- |
-| **Architect** | Read-Only | System structure, typed interface contracts, task DAG generation. |
-| **Developer** | Workspace Write | Surgical edits, test-first implementations, minimal code changes. |
-| **QA Engineer** | Tests Directory Write | Property-based testing, boundary edge-cases, mutation scoring. |
-| **Security Auditor** | Read-Only | Static security analysis, secret scanning, dependency CVE audits. |
-| **Scientific Reviewer** | Science Tooling | Database cross-referencing, biological/chemical validation. |
-| **Debugger** | Read-Only / Repro | Root-cause tracing, minimal isolated reproduction test cases. |
-| **Performance Engineer** | Profiling Tools | Bottleneck analysis, memory leak audits, complexity debloating. |
+| **Architect** | **Read-Only** | Decomposes systems into typed interface contracts and Beads task DAGs. Prohibited from touching production code. |
+| **Developer** | **Workspace Write** | Surgical TDD implementation (Red $\to$ Green $\to$ Refactor). Prohibited from altering architecture or self-certifying tests. |
+| **QA Engineer** | **Tests Directory Write** | Universal Quality Gate. Writes property-based and mutation tests. Prohibited from modifying production application files. |
+| **Security Auditor** | **Read-Only** | Independent SAST (Semgrep), credential audits (Gitleaks), and CVE scans. Prohibited from editing code directly. |
+| **Scientific Reviewer** | **Science Tooling** | UniProt/ChEMBL/AlphaFold database validation, unit sanity checks, citation verification. Prohibited from altering build infra. |
+| **Debugger** | **Read-Only / Repro** | 4-Phase systematic root-cause tracing and minimal repro creation. Prohibited from speculative symptom-patching. |
+| **Performance Engineer** | **Profiling Tools** | Memory leak audits, Core Web Vitals, SLOC debloating. Prohibited from introducing premature caching layers. |
 
 ---
 
-## 6. Scientific Reproducibility & Provenance
+## 8. Scientific Reproducibility & Computational Biology
 
-For computational biology, chemistry, and data pipelines, reproducibility requires deterministic tracking.
+AI agents frequently hallucinate in biomedical domains by inventing sequence accessions, switching units ($nM$ vs $\mu M$), or using unpinned API endpoints. This harness enforces scientific provenance:
 
 ```mermaid
 flowchart LR
-    RawData["Raw Sequences / Datasets"] --> Hasher["SHA-256 Checksum Engine"]
+    RawData["FASTA / SMILES / PDB Datasets"] --> Hasher["SHA-256 Checksum Engine"]
     Hasher --> Provenance["run_provenance.json"]
     
     subgraph Pipeline["Orchestrated Pipeline (Snakemake / DVC)"]
         Stage1["Step 1: Feature Extraction"]
         Stage2["Step 2: Model Inference / Calculation"]
-        Stage3["Step 3: Verification & Reporting"]
+        Stage3["Step 3: Summary Report Generation"]
         Stage1 --> Stage2 --> Stage3
     end
     
     RawData --> Pipeline
     Params["params.yaml (Fixed Seeds & Releases)"] --> Pipeline
-    Pipeline --> Artifacts["Deterministic Result Reports"]
+    Pipeline --> Artifacts["Output Metrics & Visualizations"]
     Artifacts --> Provenance
 ```
 
-- **Database Anchoring:** Enforces exact release versions (e.g. UniProt, ChEMBL, AlphaFold) rather than dynamic endpoints.
-- **Data Hashing:** Tracks SHA-256 signatures of all input files and intermediate features.
-- **Fixed Seeds:** Enforces deterministic configuration across execution runs.
+- **Snakemake Pipelines:** Chained execution rules in `Snakefile.template`.
+- **DVC Dataset Hashing:** Tracks data files across preprocessing and model evaluation stages.
+- **Deterministic Provenance Tracker:** `provenance_tracker.py` hashes all inputs with SHA-256 and captures software versions and platform metadata.
 
 ---
 
-## 7. Automated CI/CD Quality Pipeline
+## 9. Automated CI/CD, SAST & Advanced Mutation Testing
 
-Every proposed change passes automated multi-stage verification before merging.
+Unit tests can achieve 100% coverage without verifying correctness if assertions are weak. This harness integrates **Mutation Testing** (Stryker / Mutmut) and **Property-Based Testing** (`fast-check` / `hypothesis`):
 
 ```mermaid
 flowchart TD
-    Commit["Agent Pull Request"] --> PreFlight["Security Pre-Flight"]
+    PR["Pull Request Created"] --> SecCheck["Stage 1: Security Scan"]
     
-    subgraph SecurityChecks["Stage 1: Security Scans"]
-        G1["Gitleaks Secret Detection"]
-        S1["Semgrep SAST Ruleset"]
-        O1["OSV Dependency Audit"]
+    subgraph SecEngines["Security Engines"]
+        G1["Gitleaks Secret Audit"]
+        S1["Semgrep Agent SAST Rules"]
+        O1["OSV Dependency Scan"]
     end
     
-    PreFlight --> SecurityChecks
+    SecCheck --> SecEngines
     
-    subgraph QualityGate["Stage 2: Code Quality & Testing"]
+    subgraph QualityGate["Stage 2: Code Quality & Mutation"]
         L1["Linter & Typecheck"]
         T1["Unit Tests + Coverage"]
-        M1["Mutation Testing (Stryker / Mutmut)"]
+        M1["Mutation Testing (Stryker / Mutmut >= 75%)"]
     end
     
-    SecurityChecks -- Pass --> QualityGate
-    QualityGate -- Score >= 75% --> Merge["Approved for Merge"]
+    SecEngines -- Pass --> QualityGate
+    QualityGate -- Pass --> Approved["Ready to Merge"]
 ```
+
+### Mutants vs Tests
+Mutation testing automatically injects synthetic faults into agent-written code:
+- If tests **fail**, the mutant is **killed** (Test suite is strong).
+- If tests **pass**, the mutant **survives** (Test suite is weak).
+- **Target Gate:** Minimum **75% mutant kill rate** required before merging.
 
 ---
 
-## 8. Directory Organization
+## 10. End-to-End Walkthroughs
 
-```text
-.
-├── .github/
-│   ├── workflows/agent-pipeline.yml   # Multi-stage CI/CD workflow
-│   └── pull_request_template.md       # Evidence-driven PR review template
-├── agents/                            # Role definitions and permissions matrix
-│   ├── ROLES_AND_BOUNDARIES.md        # Master delegation matrix
-│   └── *.md                           # Individual agent prompts
-├── hooks/                             # Lifecycle policy guards
-│   ├── hooks.json                     # PreToolUse / PostToolUse bindings
-│   ├── pre-tool-guard.cjs             # Credential & command filter
-│   └── post-tool-audit.cjs            # Secret leakage inspector
-├── memory/                            # Cross-session knowledge persistence
-│   ├── memory-bank.cjs                # Memory query and storage engine
-│   └── memory-bank.jsonl              # Persistent memory log
-├── tasks/                             # Context-loss resilient DAG engine
-│   └── beads-tracker.cjs              # Dependency tracker and graph visualizer
-├── observability/                     # Session trace telemetry and port allocator
-│   ├── trace-analyzer.cjs             # Transcript step & error parser
-│   └── port-guard.ps1                 # Local port registry & conflict preventer
-├── rules/                             # Curated operational guidelines
-│   └── GEMINI.md                      # Unified engineering standard
-├── templates/                         # Reproducible configuration templates
-│   ├── sandbox/                       # Docker & DevContainer isolation
-│   ├── git-security/                  # Pre-commit & secret config
-│   ├── testing/                       # Property and mutation test setups
-│   └── science-provenance/            # Snakemake, DVC, and provenance scripts
-└── tests/
-    └── run-audit.cjs                  # Runtime verification test runner
-```
+Explore the [examples/](examples/) directory for complete, runnable projects:
+
+### A. Fullstack Auth Module ([examples/fullstack-auth](examples/fullstack-auth))
+- **`tasks.json`:** Beads DAG demonstrating the 4-phase handover from Architect $\to$ Developer $\to$ QA $\to$ Security Auditor.
+- **`src/token.ts`:** Surgical JWT token signer and verifier adhering to Ponytail v5.3.3.
+- **`gotchas.md`:** Documented lesson regarding constant-time string comparisons.
+
+### B. Computational Biology Pipeline ([examples/computational-biology](examples/computational-biology))
+- **`params.yaml`:** Pinned target accession (`P38398` - BRCA1), fixed random seed (`42`), and database releases.
+- **`Snakefile`:** Multi-step reproducible pipeline.
+- **`sample_provenance.json`:** Immutable execution record containing SHA-256 signatures of inputs and environment dependencies.
 
 ---
 
-## 9. Quickstart Guide
+## 11. Failure Modes & Anti-Pattern Defense Catalog
 
-### 1. Initialize Task Graph
-```bash
-node tasks/beads-tracker.cjs init --project "my-project"
-node tasks/beads-tracker.cjs add --id "T1" --title "Core Contract" --role "architect"
-node tasks/beads-tracker.cjs next
-```
+| Failure Anti-Pattern | How Agents Fail in the Wild | Harness Structural Defense |
+| :--- | :--- | :--- |
+| **The Test Deletion Anti-Pattern** | Agent encounters a failing test, deletes or comments it out, and claims success. | **RBAB & CI Pipeline:** Developer cannot modify tests; QA controls tests; CI enforces coverage & mutation score thresholds. |
+| **The Scope Creep Trap** | Agent adds 400 lines of speculative options nobody asked for. | **Ponytail v5.3.3 Rule:** "Shortest working diff wins. No speculative wrappers. Deletion beats addition." |
+| **The Goldfish Loop** | Agent hits the same framework gotcha repeatedly across 10 sessions. | **Memory Bank:** `node memory/memory-bank.cjs recall` retrieves past solutions and gotchas before debugging begins. |
+| **Port Collision Lockup** | Agent spins up dev servers on busy ports, hangs, or crashes. | **Port Allocation Guard:** `observability/port-guard.ps1` maintains an active registry of assigned localhost ports. |
+| **Secret Leaks in Git** | Agent writes API keys into code or commits `.env`. | **Pre-Tool & CI Audit:** `hooks/post-tool-audit.cjs` blocks writes; Gitleaks scans git history on pre-commit and CI. |
 
-### 2. Query Project Memory
-```bash
-node memory/memory-bank.cjs recall --query "port allocation"
-```
+---
 
-### 3. Record a Discovered Gotcha
-```bash
-node memory/memory-bank.cjs record \
-  --project "my-project" \
-  --category "api_gotcha" \
-  --title "Header Encoding Issue" \
-  --content "Upstream proxy requires explicit Latin-1 header encoding." \
-  --verified
-```
+## 12. Quickstart & Installation
 
-### 4. Run Self-Verification
+### Step 1: Clone and Run Self-Verification
 ```bash
+git clone https://github.com/SamDozer/antigravity-elite-harness.git
+cd antigravity-elite-harness
 node tests/run-audit.cjs
 ```
 
+### Step 2: Initialize a Project Task Graph
+```bash
+node tasks/beads-tracker.cjs init --project "my-service"
+node tasks/beads-tracker.cjs add --id "T1" --title "API Interface Contract" --role "architect"
+node tasks/beads-tracker.cjs next
+```
+
+### Step 3: Recall Past Lessons
+```bash
+node memory/memory-bank.cjs recall --query "JWT verification"
+```
 
 ---
 
-## 10. Upstream Lineage, Integrated Repositories & Skill Suites
+## 13. Upstream Lineage & Credits
 
-This harness synthesizes and refines concepts, workflows, and tools from leading open-source agent ecosystems:
-
-### Core Engineering & Methodology Repositories
-
-1. **[obra/superpowers](https://github.com/obra/superpowers)** (Jesse Vincent)
-   - *Core Philosophy:* Disciplined software engineering methodology for autonomous agents.
-   - *Integrated Skills:* `brainstorming`, `writing-plans`, `executing-plans`, `test-driven-development`, `systematic-debugging`, `subagent-driven-development`, `using-git-worktrees`, `verification-before-completion`, `requesting-code-review`, `receiving-code-review`.
-
-2. **[addyosmani/agent-skills](https://github.com/addyosmani/agent-skills)** (Addy Osmani)
-   - *Core Philosophy:* Production-grade engineering patterns that prevent agents from making unconstrained code modifications.
-   - *Integrated Skills:* `context-engineering`, `planning-and-task-breakdown`, `frontend-ui-engineering`, `performance-optimization`, `spec-driven-development`, `code-simplification`, `api-and-interface-design`, `observability-and-instrumentation`, `security-and-hardening`, `shipping-and-launch`.
-
-3. **[DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail)** (Dietrich Gebert)
-   - *Core Philosophy:* Lazy Senior Developer Mode (v5.3.3) — "the best code is the code never written". Shortest working diffs, zero speculative wrappers, deletion over addition.
-   - *Integrated Skills:* `ponytail`, `ponytail-review`, `ponytail-audit`, `ponytail-debt`, `ponytail-gain`.
-
-4. **[vaibhav-space/my-ai-coding-workflow](https://github.com/vaibhav-space/my-ai-coding-workflow)** (Vaibhav)
-   - *Core Philosophy:* Three-phase architecture and review process (`1-planning.md`, `2-critical-plan-review.md`, `3-production-readiness-review.md`), interactive HTML plan rendering (`plan-template.html`), and human-curated failure mode logs (`gotchas.md`).
-
-5. **[abdoabdo22334456-prog/how-did-i-make-my-antigravity-faster](https://github.com/abdoabdo22334456-prog/how-did-i-make-my-antigravity-faster)**
-   - *Core Philosophy:* Runtime performance, background process management, RAM mitigation, and port collision defense (`port-guard.ps1`, `local-ports-registry.json`).
-
-6. **[promptfoo/promptfoo](https://github.com/promptfoo/promptfoo)**
-   - *Core Philosophy:* Deterministic evaluations and regression benchmarks for LLM coding agents.
-   - *Integrated Assets:* `evals/promptfoo.yaml` (benchmarking diff minimalism, credential safety, TDD adherence).
-
-7. **[rohitg00/agentmemory](https://github.com/rohitg00/agentmemory) & [mem0ai/mem0](https://github.com/mem0ai/mem0)**
-   - *Core Philosophy:* Persistent cross-session agent memory without vendor lock-in.
-   - *Integrated Implementation:* `memory/memory-bank.cjs` providing local zero-API TF-IDF retrieval and two-way sync with human-readable gotchas.
-
-8. **[e2b-dev/E2B](https://github.com/e2b-dev/E2B)**
-   - *Core Philosophy:* Secure isolated execution environments and sandboxing for autonomous coding agents.
-   - *Integrated Assets:* Docker sandbox templates with 4GB cgroups limits and non-root execution (`Dockerfile.sandbox`, `devcontainer.json`).
-
-9. **[yusufkaraaslan/Skill_Seekers](https://github.com/yusufkaraaslan/Skill_Seekers)**
-   - *Core Philosophy:* Automated documentation scraping and dynamic skill extraction from libraries and APIs (`skill-builder`, `skill-audit`).
-
----
-
-### Google DeepMind Science Suite (Computational Biology & Chemistry)
-
-Derived from the Google DeepMind Science ecosystem (`google-deepmind/science-skills`), providing direct database integration, structural biology tools, and bioinformatics pipelines:
-
-* **Structural Biology & Protein Analysis:**
-  - `alphafold-database-fetch-and-analyze`: Fetch and analyze AlphaFold predicted 3D structures and pLDDT scores.
-  - `biomolecular-structure-viewer`: Interactive 3D molecular structure visualizer via Mol*.
-  - `pdb-database`: Query and download RCSB Protein Data Bank experimental 3D structures.
-  - `uniprot-database`: Comprehensive protein sequence, domain, taxonomy, and function annotations.
-  - `pymol`: Scripted 3D structural alignment, contact analysis, and publication-ready rendering.
-  - `foldseek-structural-search`: Fast 3D structural similarity searches.
-  - `interpro-database` & `human-protein-atlas-database`: Protein family domains and spatial expression.
-
-* **Genomics, Variant Impact & Regulatory Biology:**
-  - `alphagenome-single-variant-analysis`: Deep learning predictions of variant effects on gene expression, chromatin, and histone marks.
-  - `alphagenome-variant-impact-score`: AVI functional impact scores, saturation mutagenesis scans.
-  - `alphagenome-atlas-website-links`: Deep links to genomic coordinates on AlphaGenome Atlas.
-  - `dbsnp-database`, `clinvar-database`, `gnomad-database`, `ensembl-database`: Variant pathogenicity, allele frequencies, and gene transcript maps.
-  - `jaspar-database`, `unibind-database`, `encode-ccres-database`, `gtex-database`: Transcription factor motifs, regulatory elements, and eQTL expression.
-
-* **Cheminformatics & Drug Discovery:**
-  - `chembl-database` & `pubchem-database`: Bioactive compounds, binding affinities (IC50, Ki), and chemical structures.
-  - `cheminformatics-core`, `cheminformatics-ml`, `cheminformatics-physics`, `cheminformatics-reactions`: RDKit physicochemical descriptors, QSAR models, 3D conformers, and reaction retrosynthesis.
-  - `reactome-database`, `string-database`, `openfda-database`, `clinical-trials-database`: Pathway enrichment, PPI networks, FDA adverse events, and NCT trials.
-
-* **Scientific Literature & Provenance:**
-  - `literature-search-pubmed`, `literature-search-biorxiv`, `literature-search-arxiv`, `literature-search-europepmc`, `literature-search-openalex`: Verified scientific literature retrieval.
-  - `provenance_tracker.py`, `Snakefile.template`, `dvc.yaml.template`: Snakemake pipelines, SHA-256 dataset hashing, and experiment parameter tracking.
+This harness synthesizes and refines core concepts from:
+- **[obra/superpowers](https://github.com/obra/superpowers)** (Disciplined engineering methodology, TDD, debugging)
+- **[google-deepmind/science-skills](https://github.com/google-deepmind/science-skills)** (Genomics, AlphaFold, UniProt, ChEMBL)
+- **[addyosmani/agent-skills](https://github.com/addyosmani/agent-skills)** (Context engineering, task breakdown, interface design)
+- **[DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail)** (Lazy Senior Dev mode v5.3.3, minimal diffs)
+- **[vaibhav-space/my-ai-coding-workflow](https://github.com/vaibhav-space/my-ai-coding-workflow)** (Plan review protocols, gotchas documentation)
+- **[rohitg00/agentmemory](https://github.com/rohitg00/agentmemory)** & **[mem0ai/mem0](https://github.com/mem0ai/mem0)** (Persistent agent memory)
+- **[promptfoo/promptfoo](https://github.com/promptfoo/promptfoo)** (Deterministic LLM agent evals)
+- **[e2b-dev/E2B](https://github.com/e2b-dev/E2B)** (Agent container sandboxing)

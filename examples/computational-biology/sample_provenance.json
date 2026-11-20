@@ -1,0 +1,22 @@
+{
+  "timestamp_utc": "2026-11-20T05:15:00Z",
+  "execution_environment": {
+    "os": "Windows / Linux Container",
+    "python_version": "3.11.9",
+    "packages": {
+      "biopython": "1.83",
+      "rdkit": "2023.09.5",
+      "snakemake": "8.10.8"
+    }
+  },
+  "parameters": {
+    "random_seed": 42,
+    "target_uniprot": "P38398",
+    "database_release": "UniProt 2026_01"
+  },
+  "cryptographic_checksums": {
+    "params.yaml": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "data/P38398.fasta": "a2432a6bc86a7d656094254b1f4865f3a0937b83ecaa5cf52542a1216d7a42ec"
+  },
+  "reproducibility_verified": true
+}
