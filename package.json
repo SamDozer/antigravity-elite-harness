@@ -5,7 +5,7 @@
   "main": "memory/memory-bank.cjs",
   "scripts": {
     "test": "node tests/run-audit.cjs",
-    "verify": "node tests/run-audit.cjs",
+    "verify": "node scripts/validate.js && node tests/run-audit.cjs",
     "validate": "node scripts/validate.js",
     "skills:validate": "node scripts/validate.js",
     "audit:diff": "py -3 skills/core/diff-reviewer/scripts/review_diff.py",

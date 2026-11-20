@@ -1,13 +1,70 @@
 param(
     [ValidateSet("all", "full", "frontend", "bio", "comp-bio")]
     [string]$Profile = "full",
-    [switch]$DryRun
+    [switch]$DryRun,
+    [switch]$Uninstall
 )
 
 $targetDir = Join-Path $HOME ".gemini\config"
+$repoDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+
+if ($Uninstall) {
+    Write-Host "=== Uninstalling Antigravity Elite Harness ===" -ForegroundColor Yellow
+    Write-Host "Target: $targetDir"
+
+    # Remove installed harness component directories
+    $dirs = @("hooks", "memory", "tasks", "agents")
+    foreach ($d in $dirs) {
+        $path = Join-Path $targetDir $d
+        if (Test-Path $path) {
+            Write-Host "Removing $path..." -ForegroundColor Gray
+            Remove-Item -Path $path -Recurse -Force -ErrorAction SilentlyContinue
+        }
+    }
+
+    # Remove installed harness skills
+    $targetSkillsDir = Join-Path $targetDir "skills"
+    if (Test-Path $targetSkillsDir) {
+        $skillSubs = @("core", "frontend", "comp-bio")
+        foreach ($sub in $skillSubs) {
+            $srcSub = Join-Path $repoDir "skills\$sub"
+            if (Test-Path $srcSub) {
+                Get-ChildItem -Directory $srcSub | ForEach-Object {
+                    $skillDest = Join-Path $targetSkillsDir $_.Name
+                    if (Test-Path $skillDest) {
+                        Write-Host "Removing skill: $skillDest..." -ForegroundColor Gray
+                        Remove-Item -Path $skillDest -Recurse -Force -ErrorAction SilentlyContinue
+                    }
+                }
+            }
+        }
+    }
+
+    # Remove top-level configuration artifacts
+    Remove-Item (Join-Path $targetDir "hooks.json") -Force -ErrorAction SilentlyContinue
+    Remove-Item (Join-Path $targetDir "SECURITY_ARCHITECTURE.md") -Force -ErrorAction SilentlyContinue
+    Remove-Item (Join-Path $targetDir "rules\global-core.md") -Force -ErrorAction SilentlyContinue
+
+    # Restore from latest backup if available
+    $geminiDir = Join-Path $HOME ".gemini"
+    $latestBackup = Get-ChildItem -Path $geminiDir -Directory -Filter "backup_*" | 
+                    Sort-Object CreationTime -Descending | 
+                    Select-Object -First 1
+
+    if ($latestBackup) {
+        Write-Host "Restoring previous configuration from $($latestBackup.FullName)..." -ForegroundColor Green
+        Copy-Item -Path "$($latestBackup.FullName)\*" -Destination $targetDir -Recurse -Force -ErrorAction SilentlyContinue
+        Write-Host "Restoration complete." -ForegroundColor Green
+    } else {
+        Write-Host "No prior backup directory found." -ForegroundColor Gray
+    }
+
+    Write-Host "Uninstallation finished cleanly." -ForegroundColor Green
+    return
+}
+
 $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
 $backupDir = Join-Path $HOME ".gemini\backup_$timestamp"
-$repoDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 
 Write-Host "=== Antigravity Elite Harness Windows Installer ===" -ForegroundColor Cyan
 Write-Host "Source:  $repoDir"
@@ -27,7 +84,7 @@ if ($Profile -in @("all", "full")) {
 if ($DryRun) {
     Write-Host "[DRY RUN] Would backup $targetDir -> $backupDir" -ForegroundColor Yellow
     Write-Host "[DRY RUN] Would copy hooks, rules, memory, tasks, agents, and skills ($($skillSubdirs -join ', '))" -ForegroundColor Yellow
-    Write-Host "[DRY RUN] Verification would run via tests/run-audit.cjs and scripts/validate_skills.py" -ForegroundColor Yellow
+    Write-Host "[DRY RUN] Verification would run via npm run verify" -ForegroundColor Yellow
     return
 }
 
@@ -62,7 +119,9 @@ foreach ($sub in $skillSubdirs) {
 }
 
 Copy-Item -Path "$repoDir\hooks\hooks.json" -Destination "$targetDir\hooks.json" -Force
-Copy-Item -Path "$repoDir\SECURITY_ARCHITECTURE.md" -Destination "$targetDir\SECURITY_ARCHITECTURE.md" -Force
+if (Test-Path "$repoDir\docs\security-architecture.md") {
+    Copy-Item -Path "$repoDir\docs\security-architecture.md" -Destination "$targetDir\SECURITY_ARCHITECTURE.md" -Force
+}
 
 Write-Host "Running runtime verification..." -ForegroundColor Cyan
 node "$repoDir\tests\run-audit.cjs"
