@@ -5,16 +5,27 @@ set -euo pipefail
 DRY_RUN=false
 PROFILE="full"
 
-for arg in "$@"; do
-  case "$arg" in
+while [[ $# -gt 0 ]]; do
+  case "$1" in
     --dry-run)
       DRY_RUN=true
+      shift
+      ;;
+    --profile)
+      PROFILE="$2"
+      shift 2
       ;;
     --profile=*)
-      PROFILE="${arg#*=}"
+      PROFILE="${1#*=}"
+      shift
       ;;
     frontend|bio|comp-bio|all|full)
-      PROFILE="$arg"
+      PROFILE="$1"
+      shift
+      ;;
+    *)
+      echo "Unknown argument: $1"
+      exit 1
       ;;
   esac
 done
@@ -66,10 +77,17 @@ cp -r "${REPO_DIR}/tasks/"* "${TARGET_DIR}/tasks/"
 cp -r "${REPO_DIR}/agents/"* "${TARGET_DIR}/agents/"
 
 for sub in "${SKILL_SUBDIRS[@]}"; do
-  if [ -d "${REPO_DIR}/skills/${sub}" ]; then
-    mkdir -p "${TARGET_DIR}/skills/${sub}"
-    cp -r "${REPO_DIR}/skills/${sub}/"* "${TARGET_DIR}/skills/${sub}/"
-    echo "Installed skill suite: skills/${sub}"
+  src_sub="${REPO_DIR}/skills/${sub}"
+  if [ -d "${src_sub}" ]; then
+    for skill_path in "${src_sub}"/*; do
+      if [ -d "${skill_path}" ]; then
+        skill_name="$(basename "${skill_path}")"
+        dest_skill="${TARGET_DIR}/skills/${skill_name}"
+        mkdir -p "${dest_skill}"
+        cp -r "${skill_path}/"* "${dest_skill}/"
+        echo "Installed skill: ${skill_name} (from ${sub})"
+      fi
+    done
   fi
 done
 

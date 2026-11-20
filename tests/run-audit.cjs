@@ -117,6 +117,54 @@ runCheck('Domain Tools: Contrast, Biostats, SLURM, and 8th-Vector Diff Review', 
   const slurmTemplate = path.join(repoRoot, 'skills', 'comp-bio', 'hpc-containers-pipelines', 'assets', 'slurm_template.sh');
   const slurmOut = execSync(`${pythonCmd} "${slurmScript}" --script "${slurmTemplate}"`, { encoding: 'utf8' });
   if (!slurmOut.includes('APPROVED')) throw new Error('validate_slurm.py failed on template');
+
+  // Ensembl & PubMed grounding verification
+  const verifyIdsScript = path.join(repoRoot, 'skills', 'comp-bio', 'bio-literature-grounding', 'scripts', 'verify_ids.py');
+  const ensemblOut = execSync(`${pythonCmd} "${verifyIdsScript}" --type ensembl --id ENSG00000141510`, { encoding: 'utf8' });
+  if (!ensemblOut.includes('VERIFIED')) throw new Error('verify_ids.py failed to verify Ensembl ID');
+  const pubmedOut = execSync(`${pythonCmd} "${verifyIdsScript}" --type pubmed --id 23945592`, { encoding: 'utf8' });
+  if (!pubmedOut.includes('VERIFIED')) throw new Error('verify_ids.py failed to verify PubMed ID');
+
+  // Binary Biofile Inspection (.npy, .xtc, .h5ad)
+  const inspectScript = path.join(repoRoot, 'skills', 'comp-bio', 'bio-orchestrator', 'scripts', 'inspect_biofile.py');
+  const dummyNpy = path.join(__dirname, 'test.npy');
+  const npyHeader = "{'descr': '<f8', 'fortran_order': False, 'shape': (10, 5)}";
+  const hdrBuf = Buffer.from(npyHeader, 'ascii');
+  const lenBuf = Buffer.alloc(2);
+  lenBuf.writeUInt16LE(hdrBuf.length);
+  const npyBuf = Buffer.concat([
+    Buffer.from([0x93, 0x4e, 0x55, 0x4d, 0x50, 0x59, 0x01, 0x00]),
+    lenBuf,
+    hdrBuf
+  ]);
+  fs.writeFileSync(dummyNpy, npyBuf);
+  const npyOut = execSync(`${pythonCmd} "${inspectScript}" --file "${dummyNpy}"`, { encoding: 'utf8' });
+  fs.rmSync(dummyNpy, { force: true });
+  if (!npyOut.includes('NumPy Binary Array')) throw new Error('inspect_biofile.py failed on NPY');
+
+  // 8th Vector Diff Review
+  const reviewScript = path.join(repoRoot, 'skills', 'core', 'diff-reviewer', 'scripts', 'review_diff.py');
+  const dummyDiff = path.join(__dirname, 'test.diff');
+  fs.writeFileSync(dummyDiff, [
+    '--- a/model.py',
+    '+++ b/model.py',
+    '+ log2fc = np.log(a / b)',
+    '+ RUN pip install scanpy',
+    '+ X_scaled = StandardScaler().fit_transform(X) # train later',
+    '+ p = "C:\\\\Users\\\\alice\\\\data"'
+  ].join('\n'), 'utf8');
+  let reviewPassed = false;
+  try {
+    execSync(`${pythonCmd} "${reviewScript}" --diff "${dummyDiff}" --bio`, { encoding: 'utf8' });
+  } catch (err) {
+    // Expected to reject with non-zero exit
+    if (err.stdout && err.stdout.includes('V8-UNIT-LOG') && err.stdout.includes('V8-DATA-LEAKAGE')) {
+      reviewPassed = true;
+    }
+  } finally {
+    fs.rmSync(dummyDiff, { force: true });
+  }
+  if (!reviewPassed) throw new Error('review_diff.py failed to catch 8th vector scientific issues');
 });
 
 console.log('\n====================================================');

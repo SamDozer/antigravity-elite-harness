@@ -44,17 +44,20 @@ foreach ($d in $dirs) {
     Copy-Item -Path "$repoDir\$d\*" -Destination $dest -Recurse -Force
 }
 
-# Copy skills according to profile
+# Copy skills according to profile directly into target skills root so Antigravity discovers them
 $targetSkillsDir = Join-Path $targetDir "skills"
 New-Item -ItemType Directory -Force -Path $targetSkillsDir | Out-Null
 
 foreach ($sub in $skillSubdirs) {
     $srcSub = Join-Path $repoDir "skills\$sub"
     if (Test-Path $srcSub) {
-        $destSub = Join-Path $targetSkillsDir $sub
-        New-Item -ItemType Directory -Force -Path $destSub | Out-Null
-        Copy-Item -Path "$srcSub\*" -Destination $destSub -Recurse -Force
-        Write-Host "Installed skill suite: skills/$sub" -ForegroundColor Green
+        Get-ChildItem -Directory $srcSub | ForEach-Object {
+            $skillName = $_.Name
+            $destSkill = Join-Path $targetSkillsDir $skillName
+            New-Item -ItemType Directory -Force -Path $destSkill | Out-Null
+            Copy-Item -Path "$($_.FullName)\*" -Destination $destSkill -Recurse -Force
+            Write-Host "Installed skill: $skillName (from $sub)" -ForegroundColor Green
+        }
     }
 }
 
