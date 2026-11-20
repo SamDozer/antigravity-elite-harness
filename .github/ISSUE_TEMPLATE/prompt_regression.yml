@@ -1,0 +1,25 @@
+name: Prompt / Behavioral Regression
+description: Report an instance where an agent ignored a rule or degraded output
+labels: ["prompt-regression"]
+body:
+  - type: input
+    id: model
+    attributes:
+      label: Model Used
+      description: e.g. Claude 3.5 Sonnet, Gemini 2.0 Pro, GPT-4o
+    validations:
+      required: true
+  - type: textarea
+    id: rule_ignored
+    attributes:
+      label: Rule or Boundary Ignored
+      description: Which rule in rules/ or agents/ was not respected?
+    validations:
+      required: true
+  - type: textarea
+    id: transcript_excerpt
+    attributes:
+      label: Transcript Excerpt
+      render: markdown
+    validations:
+      required: true

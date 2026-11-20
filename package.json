@@ -1,0 +1,32 @@
+{
+  "name": "antigravity-elite-harness",
+  "version": "1.0.0",
+  "description": "Production-grade autonomous engineering harness: 3-tier security, cross-session memory, Beads task DAG, and scientific reproducibility.",
+  "main": "memory/memory-bank.cjs",
+  "scripts": {
+    "test": "node tests/run-audit.cjs",
+    "verify": "node tests/run-audit.cjs",
+    "validate": "node scripts/validate.js",
+    "memory:recall": "node memory/memory-bank.cjs recall",
+    "memory:record": "node memory/memory-bank.cjs record",
+    "memory:stats": "node memory/memory-bank.cjs stats",
+    "tasks:init": "node tasks/beads-tracker.cjs init",
+    "tasks:next": "node tasks/beads-tracker.cjs next",
+    "tasks:graph": "node tasks/beads-tracker.cjs graph",
+    "tasks:status": "node tasks/beads-tracker.cjs status",
+    "trace:analyze": "node observability/trace-analyzer.cjs"
+  },
+  "keywords": [
+    "antigravity",
+    "ai-agents",
+    "coding-agents",
+    "multi-agent-systems",
+    "beads-dag",
+    "sandboxing",
+    "tdd",
+    "computational-biology",
+    "bioinformatics"
+  ],
+  "author": "Antigravity Engineering Community",
+  "license": "MIT"
+}

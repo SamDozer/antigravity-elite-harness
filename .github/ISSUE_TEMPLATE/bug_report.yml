@@ -1,0 +1,25 @@
+name: Bug report
+description: Create a report to help us fix a defect in the harness
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What went wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction Steps
+      description: Exact CLI command or agent action that failed.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Terminal Output / Error Logs
+      render: shell
+    validations:
+      required: true

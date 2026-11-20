@@ -14,3 +14,5 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .hypothesis/
+tests/test-beads-audit/
+tests/test-memory/

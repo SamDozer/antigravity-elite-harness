@@ -1,0 +1,35 @@
+{
+  "name": "antigravity-elite-harness",
+  "version": "1.0.0",
+  "description": "Production-grade autonomous engineering harness: 3-tier security boundaries, persistent memory bank, Beads task DAG, and scientific reproducibility.",
+  "author": "Antigravity Engineering Community",
+  "license": "MIT",
+  "entrypoint": "hooks/hooks.json",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "run_command",
+        "command": "node hooks/pre-tool-guard.cjs"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "write_file|edit_file",
+        "command": "node hooks/post-tool-audit.cjs"
+      }
+    ]
+  },
+  "capabilities": [
+    "memory-bank",
+    "beads-dag",
+    "three-tier-security",
+    "computational-biology",
+    "mutation-testing"
+  ],
+  "compatibility": {
+    "antigravity_ide": ">=2.0.0",
+    "agy_cli": ">=1.5.0",
+    "node": ">=20.0.0",
+    "python": ">=3.10.0"
+  }
+}
