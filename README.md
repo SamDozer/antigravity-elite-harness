@@ -24,6 +24,7 @@ A production-grade engineering architecture and runtime governance harness for a
 11. [Failure Modes & Anti-Pattern Defense Catalog](#11-failure-modes--anti-pattern-defense-catalog)
 12. [Quickstart & Installation](#12-quickstart--installation)
 13. [Upstream Lineage & Credits](#13-upstream-lineage--credits)
+14. [Claude-Grade Modular Skill Architecture (4 Layers)](#14-claude-grade-modular-skill-architecture-4-layers)
 
 ---
 
@@ -44,9 +45,9 @@ node scripts/validate.js
 # 3. Run runtime verification suite (100% Passing Guarantee)
 node tests/run-audit.cjs
 
-# 4. Optional: Install into Antigravity CLI or active environment
-# For POSIX (macOS/Linux): ./install.sh --dry-run && ./install.sh
-# For Windows PowerShell:  .\install.ps1 -DryRun; .\install.ps1
+# 4. Optional: Install into Antigravity CLI with domain profile (frontend, bio, or full)
+# For POSIX (macOS/Linux): ./install.sh --dry-run && ./install.sh --profile=full
+# For Windows PowerShell:  .\install.ps1 -DryRun; .\install.ps1 -Profile full
 ```
 
 ---
@@ -467,3 +468,61 @@ This harness synthesizes and refines core concepts from:
 - **[rohitg00/agentmemory](https://github.com/rohitg00/agentmemory)** & **[mem0ai/mem0](https://github.com/mem0ai/mem0)** (Persistent agent memory)
 - **[promptfoo/promptfoo](https://github.com/promptfoo/promptfoo)** (Deterministic LLM agent evals)
 - **[e2b-dev/E2B](https://github.com/e2b-dev/E2B)** (Agent container sandboxing)
+
+---
+
+## 14. Claude-Grade Modular Skill Architecture (4 Layers)
+
+Prompt-only skill harnesses inflate global context with massive single-file Markdown prompts that models frequently hallucinate or rubber-stamp. This harness uses a **4-layer progressive disclosure architecture** with deterministic tool execution and self-verification:
+
+```text
+skills/
+├── core/
+│   ├── architect-planner/          # Read-only planning + implementation_plan.md validation
+│   └── diff-reviewer/              # 7-vector Ponytail review + optional 8th scientific vector
+├── frontend/
+│   ├── app-ui-system/              # Dense dashboards, 400/500 weights, dark tokens, WCAG contrast
+│   ├── web-editorial-design/       # Expressive marketing sites, 3x scale contrast, fluid clamp()
+│   ├── frontend-interaction-states/# 5 states: Loading, Empty, Error, Optimistic, Focus management
+│   ├── data-viz-ui/                # Single-axis rule, colorblind palettes, virtualization (>1k rows)
+│   └── ui-visual-qa/               # Playwright closed-loop audit (1440px/375px, dark/light, overflow)
+└── comp-bio/
+    ├── bio-orchestrator/           # Header inspector, SHA-256 provenance logging, toy-subset dry runs
+    ├── structural-bio-md/          # PDB validator, PBC trajectory unwrapping, GROMACS .mdp sanity
+    ├── bio-sequence-stats/         # 0-based vs 1-based coordinates, Benjamini-Hochberg FDR, ML leakage
+    ├── hpc-containers-pipelines/   # SLURM linting, Apptainer/Docker, scratch staging, trap cleanup
+    ├── scientific-figures/         # Publication figures (Nature/Cell/Science 85mm/178mm, 300+ DPI)
+    └── bio-literature-grounding/   # Prevents hallucinated IDs/DOIs via live UniProt/PDB/Crossref APIs
+```
+
+### The 4 Progressive Layers
+1. **`SKILL.md` (<= 350 lines):** Lean trigger description, strict workflow steps, and hard constraints. Must include explicit `Use when...` and `Do NOT use when...` boundary clauses to eliminate skill cross-firing.
+2. **`scripts/`:** Executable Python and Node.js tools the agent executes directly in the environment (e.g. `check_contrast.py`, `inspect_biofile.py`, `validate_pdb.py`).
+3. **`references/`:** Deep domain knowledge, specifications, and cheat sheets loaded only when a subtask requires them.
+4. **`assets/`:** Copyable starter templates (e.g. `tokens.css`, `slurm_template.sh`, `pub_style.mplstyle`) preventing boilerplate hallucination.
+
+### The 8th Vector: Scientific Integrity
+The standard 7-vector diff reviewer is upgraded with an optional **8th vector (`scientific-integrity`)** that activates on biological and data repositories:
+1. **Unit consistency:** nm vs. Å (factor 10), kJ/mol vs. kcal/mol (factor 4.184), log2 vs. ln.
+2. **Indexing & silent broadcasting:** NumPy/Pandas shape mismatches and silent `.dropna()` data loss.
+3. **Statistical & ML leakage:** Preprocessing and scaling fit on full dataset before train/test split.
+4. **Cluster portability:** Hardcoded local directory paths (`/home/user`, `C:\Users`) and unpinned environments.
+
+### Profile-Based Installation
+Keep your Antigravity workspace razor-sharp without paying context tax for unrelated domains:
+```bash
+# Frontend-only workspace (core + frontend skills)
+./install.sh --profile=frontend
+# or on Windows:
+.\install.ps1 -Profile frontend
+
+# Computational biology workspace (core + bio skills)
+./install.sh --profile=bio
+# or on Windows:
+.\install.ps1 -Profile bio
+
+# Full workspace (all 13 skills)
+./install.sh --profile=full
+# or on Windows:
+.\install.ps1 -Profile full
+```

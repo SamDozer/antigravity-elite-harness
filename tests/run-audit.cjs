@@ -88,6 +88,37 @@ runCheck('Trace Analyzer: Help and Parser Execution', () => {
   }
 });
 
+// 5. Modular Skills Architecture CI Gate
+runCheck('Modular Skills: 4-Layer Architecture and Trigger Boundaries', () => {
+  const script = path.join(repoRoot, 'scripts', 'validate_skills.py');
+  const pythonCmd = process.platform === 'win32' ? 'py -3' : 'python3';
+  const out = execSync(`${pythonCmd} "${script}"`, { encoding: 'utf8' });
+  if (!out.includes('ALL SKILLS SATISFY CLAUDE-GRADE ARCHITECTURE GATES')) {
+    throw new Error('validate_skills.py did not report complete pass');
+  }
+});
+
+// 6. Deterministic Domain Scripts Execution
+runCheck('Domain Tools: Contrast, Biostats, SLURM, and 8th-Vector Diff Review', () => {
+  const pythonCmd = process.platform === 'win32' ? 'py -3' : 'python3';
+
+  // Contrast check
+  const contrastScript = path.join(repoRoot, 'skills', 'frontend', 'app-ui-system', 'scripts', 'check_contrast.py');
+  const contrastOut = execSync(`${pythonCmd} "${contrastScript}" --fg "#94a3b8" --bg "#090a0f"`, { encoding: 'utf8' });
+  if (!contrastOut.includes('[PASS]')) throw new Error('check_contrast.py failed to verify valid contrast');
+
+  // Stats FDR check
+  const statsScript = path.join(repoRoot, 'skills', 'comp-bio', 'bio-sequence-stats', 'scripts', 'stats_guard.py');
+  const statsOut = execSync(`${pythonCmd} "${statsScript}" fdr --pvalues "0.001,0.01,0.05"`, { encoding: 'utf8' });
+  if (!statsOut.includes('BENJAMINI-HOCHBERG')) throw new Error('stats_guard.py failed to execute FDR');
+
+  // SLURM validation
+  const slurmScript = path.join(repoRoot, 'skills', 'comp-bio', 'hpc-containers-pipelines', 'scripts', 'validate_slurm.py');
+  const slurmTemplate = path.join(repoRoot, 'skills', 'comp-bio', 'hpc-containers-pipelines', 'assets', 'slurm_template.sh');
+  const slurmOut = execSync(`${pythonCmd} "${slurmScript}" --script "${slurmTemplate}"`, { encoding: 'utf8' });
+  if (!slurmOut.includes('APPROVED')) throw new Error('validate_slurm.py failed on template');
+});
+
 console.log('\n====================================================');
 console.log(`VERIFICATION SUMMARY: ${results.filter(r => r.status === 'PASS').length}/${results.length} PASSED`);
 console.log('====================================================');

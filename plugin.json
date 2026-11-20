@@ -24,7 +24,10 @@
     "beads-dag",
     "three-tier-security",
     "computational-biology",
-    "mutation-testing"
+    "mutation-testing",
+    "claude-grade-skills",
+    "frontend-design",
+    "8-vector-diff-review"
   ],
   "compatibility": {
     "antigravity_ide": ">=2.0.0",

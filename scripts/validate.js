@@ -56,6 +56,19 @@ if (fs.existsSync(scriptsDir)) {
   }
 }
 
+// 4. Skills Architecture Gate (Claude-grade 4-layer validation)
+const { execSync } = require('child_process');
+const skillValidator = path.join(repoRoot, 'scripts', 'validate_skills.py');
+if (fs.existsSync(skillValidator)) {
+  try {
+    const pythonCmd = process.platform === 'win32' ? 'py -3' : 'python3';
+    execSync(`${pythonCmd} "${skillValidator}"`, { stdio: 'pipe' });
+    logPass('All 13 modular skills passed 4-layer architecture CI gates');
+  } catch (err) {
+    logFail(`Skills validation failed: ${err.message}`);
+  }
+}
+
 console.log('\n' + '='.repeat(50));
 if (failures === 0) {
   console.log('🎉 ALL REPOSITORY VALIDATIONS PASSED CLEANLY.');
