@@ -1,0 +1,119 @@
+[
+  {
+    "id": "compbio-01-orchestrator-checksum",
+    "category": "bio-orchestrator",
+    "prompt": "Start a pipeline processing a 15GB FASTQ sequencing run.",
+    "expected_checks": [
+      "Auto-inspects file header and compression format before coding",
+      "Calculates and logs SHA-256 checksum of raw inputs into provenance manifest",
+      "Executes a toy subset (e.g. 100 reads) dry run before launching cluster compute",
+      "Explicitly sets random seeds for any stochastic algorithm"
+    ],
+    "negative_checks": [
+      "Naive open('file.fastq').readlines() loading 15GB into memory",
+      "Unseeded random clustering"
+    ]
+  },
+  {
+    "id": "compbio-02-md-pbc-unwrapping",
+    "category": "structural-bio-md",
+    "prompt": "Calculate protein backbone RMSD across a 500ns GROMACS molecular dynamics trajectory.",
+    "expected_checks": [
+      "Enforces periodic boundary condition (PBC) unwrapping and centering before calculating RMSD",
+      "Calls gmx trjconv with -pbc nojump or -center -pbc mol",
+      "Verifies that coordinates are not raw folded across periodic box boundaries",
+      "Checks that simulation used physical timestep constraints (LINCS with dt=0.002 ps)"
+    ],
+    "negative_checks": [
+      "Computing RMSD directly on raw folded trajectory without PBC centering",
+      "Unconstrained simulation with dt >= 2 fs"
+    ]
+  },
+  {
+    "id": "compbio-03-coordinate-systems",
+    "category": "bio-sequence-stats",
+    "prompt": "Intersect transcription factor peaks from a BED file with exon coordinates from a GFF3 file.",
+    "expected_checks": [
+      "Explicitly distinguishes 0-based half-open (BED) from 1-based inclusive (GFF3) coordinates",
+      "Converts BED [start, end) to 1-based [start + 1, end] or vice versa before overlap",
+      "Verifies span lengths remain identical during transformation"
+    ],
+    "negative_checks": [
+      "Naive integer equality join on start coordinates without offset adjustment",
+      "Off-by-one error on sequence slice length"
+    ]
+  },
+  {
+    "id": "compbio-04-multiple-testing-fdr",
+    "category": "bio-sequence-stats",
+    "prompt": "Report candidate biomarkers from a 20,000 gene microarray differential expression experiment.",
+    "expected_checks": [
+      "Applies multiple hypothesis testing correction (Benjamini-Hochberg FDR / q-value)",
+      "Rejects reporting raw unadjusted p-values (< 0.05) as statistically significant discoveries",
+      "Distinguishes biological replicates from technical replicates in degrees of freedom"
+    ],
+    "negative_checks": [
+      "Calling 1,000 genes significant based purely on raw p < 0.05 without FDR",
+      "Treating technical replicates as independent biological samples"
+    ]
+  },
+  {
+    "id": "compbio-05-ml-data-leakage",
+    "category": "bio-sequence-stats",
+    "prompt": "Build a cancer prognostic classifier from RNA-seq expression profiles.",
+    "expected_checks": [
+      "Performs train/test split before fitting StandardScaler, imputers, or PCA",
+      "Uses scaler.fit(X_train) followed by scaler.transform(X_test)",
+      "Strictly avoids data leakage across cross-validation folds"
+    ],
+    "negative_checks": [
+      "StandardScaler().fit_transform(X) applied across all samples prior to splitting",
+      "Feature selection performed on the entire dataset"
+    ]
+  },
+  {
+    "id": "compbio-06-slurm-hpc-staging",
+    "category": "hpc-containers-pipelines",
+    "prompt": "Write a SLURM submission script to run high-throughput variant calling on 32 cores.",
+    "expected_checks": [
+      "Declares explicit resource bounds: --time, --mem, --cpus-per-task, --output, --error",
+      "Stages heavy I/O to local node scratch ($TMPDIR or /scratch)",
+      "Includes bash trap handler (trap ... EXIT) for scratch directory cleanup",
+      "Uses containerized environment (Apptainer / Singularity) or pinned lockfile"
+    ],
+    "negative_checks": [
+      "Writing millions of intermediate read files to shared NFS home directory",
+      "Submitting batch job without memory or time limits"
+    ]
+  },
+  {
+    "id": "compbio-07-publication-figures",
+    "category": "scientific-figures",
+    "prompt": "Prepare a two-panel figure for a Nature manuscript submission comparing drug efficacy.",
+    "expected_checks": [
+      "Exports vector format (PDF/SVG) or high-resolution raster (>= 300 DPI)",
+      "Sets figure width to exact journal column specifications (85-89 mm single column or 180 mm double column)",
+      "Mandates sample size (n=...) annotation on all statistical panels",
+      "Explicitly defines error bars in caption (mean ± s.e.m. or mean ± s.d.)",
+      "Uses colorblind-safe palettes (Okabe-Ito, Viridis)"
+    ],
+    "negative_checks": [
+      "Saving figure at default 72 DPI screen resolution",
+      "Error bars without definition of whether they represent SD, SEM, or 95% CI"
+    ]
+  },
+  {
+    "id": "compbio-08-literature-grounding",
+    "category": "bio-literature-grounding",
+    "prompt": "Reference the structural mutation mechanism of human p53 and cite the primary structural paper.",
+    "expected_checks": [
+      "Verifies UniProt identifier P04637 against official UniProt API or verified cache",
+      "Verifies PDB accession 1TUP against RCSB PDB API",
+      "Validates paper DOI against Crossref to prevent hallucinated citations"
+    ],
+    "negative_checks": [
+      "Fabricated 4-letter PDB code that does not exist in RCSB database",
+      "Hallucinated author list or non-resolving DOI"
+    ]
+  }
+]

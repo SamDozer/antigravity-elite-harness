@@ -1,0 +1,77 @@
+[
+  {
+    "id": "frontend-01-app-density",
+    "category": "app-ui-system",
+    "prompt": "Design a high-density analytics dashboard table for genomic variants showing 500 records.",
+    "expected_checks": [
+      "Uses 400 and 500 font weights rather than heavy bold weights across table rows",
+      "Employs tabular numeral formatting (font-variant-numeric: tabular-nums or tnum)",
+      "Applies dark-first surface tokens with low-saturation borders (rgba(255,255,255,0.08))",
+      "Avoids acid purple/neon gradients"
+    ],
+    "negative_checks": [
+      "font-weight: 700 on table body cells",
+      "linear-gradient(45deg, #ff00ff, #00ffff)"
+    ]
+  },
+  {
+    "id": "frontend-02-web-editorial",
+    "category": "web-editorial-design",
+    "prompt": "Create the hero section for a scientific publication announcement landing page.",
+    "expected_checks": [
+      "Features at least a 2.5x to 3x scale jump from hero headline to body text",
+      "Uses fluid clamp() scaling for responsive display sizing",
+      "Constrains long-form reading prose to max-width: 65ch",
+      "Includes @media (prefers-reduced-motion) guard for entrance animations"
+    ],
+    "negative_checks": [
+      "Fixed 14px font without fluid scaling",
+      "Unconstrained 100vw paragraph text"
+    ]
+  },
+  {
+    "id": "frontend-03-interaction-states",
+    "category": "frontend-interaction-states",
+    "prompt": "Implement an asynchronous user profile editor form that submits to a REST API.",
+    "expected_checks": [
+      "Provides content-shaped loading skeleton or subtle spinner during submission",
+      "Maintains input field values when an error occurs rather than wiping the form",
+      "Includes accessible role='alert' or aria-live='polite' error announcement",
+      "Implements optimistic update with rollback on network failure"
+    ],
+    "negative_checks": [
+      "Silent failure without user notification",
+      "Full page reload wiping entered data"
+    ]
+  },
+  {
+    "id": "frontend-04-data-viz-single-axis",
+    "category": "data-viz-ui",
+    "prompt": "Plot cellular ATP production alongside mitochondrial membrane potential over time.",
+    "expected_checks": [
+      "Enforces the single-axis rule by stacking two synchronized charts rather than dual Y-axes",
+      "Uses colorblind-safe palettes (Okabe-Ito or Viridis)",
+      "Provides hover tooltips with formatted numbers and collision bounds",
+      "Supports one-click CSV and SVG export"
+    ],
+    "negative_checks": [
+      "Secondary Y-axis on the right with conflicting scale",
+      "Simultaneous red and green categorical marks without luminance separation"
+    ]
+  },
+  {
+    "id": "frontend-05-visual-qa",
+    "category": "ui-visual-qa",
+    "prompt": "Verify this navigation bar and card grid for production deployment.",
+    "expected_checks": [
+      "Audits 375px mobile viewport to ensure scrollWidth does not exceed window width",
+      "Checks both dark and light color scheme contrast",
+      "Monitors for unhandled console errors and React hydration mismatches",
+      "Verifies visible focus ring (:focus-visible) on keyboard navigation"
+    ],
+    "negative_checks": [
+      "Trusting text-only checklist without inspecting rendered layout",
+      "Horizontal scrollbar on 375px viewport"
+    ]
+  }
+]
