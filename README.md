@@ -27,6 +27,108 @@ A production-grade engineering architecture and runtime governance harness for a
 
 ---
 
+---
+
+## ⚡ 60-Second Quickstart & Verification
+
+Top-tier engineering requires immediate mechanical proof. Verify and install the harness in 30 seconds:
+
+```bash
+# 1. Clone repository
+git clone https://github.com/SamDozer/antigravity-elite-harness.git
+cd antigravity-elite-harness
+
+# 2. Run automated validation (Schema, Token Budgets, Zero Unpinned Downloads)
+node scripts/validate.js
+
+# 3. Run runtime verification suite (100% Passing Guarantee)
+node tests/run-audit.cjs
+
+# 4. Optional: Install into Antigravity CLI or active environment
+# For POSIX (macOS/Linux): ./install.sh --dry-run && ./install.sh
+# For Windows PowerShell:  .\install.ps1 -DryRun; .\install.ps1
+```
+
+---
+
+## 🔍 "Show, Don't Assert" — Before vs. After Evidence
+
+Top harnesses prove changes with artifacts, not marketing claims. Explore the generated outputs below:
+
+<details>
+<summary><b>1. UI Design System Proof: Default AI Slop vs. Tokenized Accessible UI</b> (Click to expand)</summary>
+
+* **❌ Before (Default Prompt-less Agent Output):**
+  - Harsh saturated gradients (`linear-gradient(135deg, #667eea, #764ba2)`)
+  - Arbitrary font-weight bloat (`800`, `900`), non-semantic tags, neon glow box-shadows.
+  - Inaccessible contrast on bright buttons.
+* **✅ After (Harness UI Design System):**
+  - Tokenized CSS variables (`--surface-card`, `--text-primary`).
+  - Restrained **400/500 typography weights**, sentence case capitalization.
+  - Verified **WCAG 2.2 AA contrast (14.8:1)**, dark-first styling, and visible keyboard focus rings.
+  - *Full Code Comparison:* [`examples/artifacts/before-after-ui.md`](examples/artifacts/before-after-ui.md)
+
+</details>
+
+<details>
+<summary><b>2. 7-Vector Ponytail Review: Real Critique Catching Hidden Defects</b> (Click to expand)</summary>
+
+* **Raw Input:** A 4-file PR introducing speculative caching and payment processing.
+* **Critiques Caught by Harness:**
+  - 🔴 **Logic (Critical):** Caught IEEE 754 floating-point currency calculation (`amount * 1.14`) causing fractional rounding errors.
+  - 🔴 **Security (Critical):** Caught raw SQL string interpolation in `UPDATE accounts`.
+  - 🟡 **Reliability (High):** Caught unbounded in-memory map without TTL causing a V8 memory leak.
+  - 🔴 **Minimalism (High):** Flagged speculative `userId` cache; ordered deletion under Ponytail v5.3.3.
+  - *Full Critique Log:* [`examples/artifacts/diff_review_critique.md`](examples/artifacts/diff_review_critique.md)
+
+</details>
+
+<details>
+<summary><b>3. Architect Planner: Real Implementation Plan Output</b> (Click to expand)</summary>
+
+* Demonstrates read-only architectural phase before any production code is touched:
+  - **User Review Required:** Explicit blocking decisions surfaced upfront.
+  - **Open Questions & Risk Assessment:** Clock skew and timeout fail-open mitigations.
+  - **Proposed Changes & Contracts:** Minimal typed function signatures.
+  - **Verification Checklist:** TDD invariant test requirements.
+  - *Full Plan Artifact:* [`examples/artifacts/sample_implementation_plan.md`](examples/artifacts/sample_implementation_plan.md)
+
+</details>
+
+---
+
+## 💻 Compatibility & Environment Matrix
+
+| Client / Environment | Support Level | Mechanics & Integration Notes |
+| :--- | :---: | :--- |
+| **Google Antigravity IDE** | **Native** (Tier 1 & 2) | Full support for `hooks.json` (`PreToolUse`, `PostToolUse`) and workspace sandbox. |
+| **Antigravity CLI (`agy`)** | **Native** (Tier 1 & 2) | Official manifest support via `plugin.json` (`agy plugin validate .`, `agy plugin install .`). |
+| **Docker / DevContainers** | **Native** (Tier 3) | Full kernel isolation, cgroup 4GB RAM caps, and non-root user execution (`templates/sandbox/`). |
+| **Claude Code / Cursor** | **Compatible** | Prompts and rules in `rules/` and `agents/` map cleanly to project instructions; hooks require shell wrappers. |
+| **macOS / Linux / WSL2** | **Full** | Native POSIX installer (`install.sh`) and zero platform-specific binary dependencies. |
+| **Windows (PowerShell)** | **Full** | Native PowerShell installer (`install.ps1`) with UTF-8 BOM protection. |
+
+---
+
+## 📊 Scannable Inventory & Token Budget Matrix
+
+Context tax directly impacts agent reasoning and cost. This harness strictly separates **always-on core rules** from **lazy-loaded on-demand skills**:
+
+| Component Name | Type | When It Fires / Trigger | Read/Write | Context Size (KB) | Output Artifact |
+| :--- | :--- | :--- | :---: | :---: | :--- |
+| **`rules/GEMINI.md`** | Core Rule | Every turn (Always-on) | Read | 5.3 KB (~1.3k tokens) | Operational guidelines |
+| **`rules/ponytail.md`** | Core Rule | Code writing / refactor | Read | 3.9 KB (~950 tokens) | Minimal diff constraint |
+| **`rules/superpowers-methodology.md`** | Core Rule | Task start & planning | Read | 3.6 KB (~880 tokens) | TDD & review discipline |
+| **`rules/goal-sloc-debloat.md`** | Core Rule | Refactoring / cleanup | Read | 3.2 KB (~780 tokens) | Complexity reduction |
+| **`rules/local-port-allocation-guard.md`** | Core Rule | Dev server startup | Read | 3.2 KB (~780 tokens) | Port reservation |
+| **`rules/electron-first.md`** | Core Rule | App prototyping | Read | 2.9 KB (~720 tokens) | Desktop framework default |
+| **`hooks/pre-tool-guard.cjs`** | Lifecycle Hook | Pre-execution of `run_command` | **Mechanical Guard** | 0 KB (Out-of-context) | `decision: allow/deny` |
+| **`memory/memory-bank.cjs`** | Tool Utility | On-demand search & recording | Read/Write | 0 KB (Out-of-context) | `memory-bank.jsonl` |
+| **`tasks/beads-tracker.cjs`** | Tool Utility | Task transitions | Read/Write | 0 KB (Out-of-context) | `tasks.json` (DAG) |
+| **`DeepMind Science Suite`** | Skill Suite | On-demand domain questions | Read/Write | Lazy-loaded (0 tax) | Provenance & pdb models |
+
+---
+
 ## 1. Why Most AI Coding Setups Fail in Production
 
 When developers first experiment with AI coding agents, they typically install dozens of prompt instruction files ("skills"). Under production workloads, this unstructured setup breaks down into five fatal failure modes:
