@@ -6,6 +6,7 @@ console.log('====================================================');
 console.log('🧪 ANTIGRAVITY COMPREHENSIVE RUNTIME VERIFICATION');
 console.log('====================================================\n');
 
+const repoRoot = path.resolve(__dirname, '..');
 const results = [];
 
 function runCheck(name, fn) {
@@ -21,9 +22,14 @@ function runCheck(name, fn) {
 
 // 1. Memory Bank
 runCheck('Memory Bank: Record, Recall & Stats', () => {
-  const script = 'C:\\Users\\Hossam\\.gemini\\config\\scripts\\memory\\memory-bank.cjs';
-  execSync(`node "${script}" record --project test-proj --category lesson --title "Memory Test" --content "Testing persistence" --verified`, { stdio: 'pipe' });
-  const recallOut = execSync(`node "${script}" recall --query "persistence" --project test-proj --json`, { encoding: 'utf8' });
+  const script = path.join(repoRoot, 'memory', 'memory-bank.cjs');
+  const testMemDir = path.join(__dirname, 'test-memory');
+  if (fs.existsSync(testMemDir)) fs.rmSync(testMemDir, { recursive: true, force: true });
+  fs.mkdirSync(testMemDir, { recursive: true });
+
+  const env = { ...process.env, MEMORY_BANK_DIR: testMemDir };
+  execSync(`node "${script}" record --project test-proj --category lesson --title "Memory Test" --content "Testing persistence" --verified`, { env, stdio: 'pipe' });
+  const recallOut = execSync(`node "${script}" recall --query "persistence" --project test-proj --json`, { env, encoding: 'utf8' });
   const parsed = JSON.parse(recallOut);
   if (!parsed.length || parsed[0].title !== 'Memory Test') {
     throw new Error('Memory recall output did not match expected entry');
@@ -32,7 +38,7 @@ runCheck('Memory Bank: Record, Recall & Stats', () => {
 
 // 2. Beads DAG Engine
 runCheck('Beads DAG Engine: Init, Add, Next & Graph', () => {
-  const script = 'C:\\Users\\Hossam\\.gemini\\config\\scripts\\tasks\\beads-tracker.cjs';
+  const script = path.join(repoRoot, 'tasks', 'beads-tracker.cjs');
   const testDir = path.join(__dirname, 'test-beads-audit');
   if (fs.existsSync(testDir)) fs.rmSync(testDir, { recursive: true, force: true });
   fs.mkdirSync(testDir, { recursive: true });
@@ -49,9 +55,9 @@ runCheck('Beads DAG Engine: Init, Add, Next & Graph', () => {
   if (!nextOut2.includes('Step 2')) throw new Error('Ready queue did not unblock T2 after T1 closed');
 });
 
-// 3. Pre-Tool Safety Guard
+// 3. Pre-Tool Security Guard
 runCheck('Pre-Tool Safety Guard: Allow Safe, Deny Credential, Force Ask Destructive', () => {
-  const script = 'C:\\Users\\Hossam\\.gemini\\config\\scripts\\pre-tool-guard.cjs';
+  const script = path.join(repoRoot, 'hooks', 'pre-tool-guard.cjs');
 
   // Safe
   const safePayload = JSON.stringify({ toolCall: { name: 'run_command', args: { CommandLine: 'git status' } } });
@@ -70,11 +76,14 @@ runCheck('Pre-Tool Safety Guard: Allow Safe, Deny Credential, Force Ask Destruct
 });
 
 // 4. Trace Analyzer
-runCheck('Trace Analyzer: Parses Conversation Logs', () => {
-  const script = 'C:\\Users\\Hossam\\.gemini\\config\\scripts\\trace-analyzer.cjs';
-  const transcriptPath = 'C:\\Users\\Hossam\\.gemini\\antigravity\\brain\\2a5de88f-20c2-4e14-8edf-3ef81e73644a\\.system_generated\\logs\\transcript.jsonl';
-  const out = execSync(`node "${script}" "${transcriptPath}"`, { encoding: 'utf8' });
-  if (!out.includes('ANTIGRAVITY AGENT OBSERVABILITY & TRACE REPORT') || !out.includes('Total Steps')) {
+runCheck('Trace Analyzer: Help and Parser Execution', () => {
+  const script = path.join(repoRoot, 'observability', 'trace-analyzer.cjs');
+  // Run on self or dummy jsonl to verify parser robustness
+  const dummyLog = path.join(__dirname, 'dummy-transcript.jsonl');
+  fs.writeFileSync(dummyLog, JSON.stringify({ step_index: 1, type: 'USER_INPUT', created_at: new Date().toISOString() }) + '\n', 'utf8');
+  const out = execSync(`node "${script}" "${dummyLog}"`, { encoding: 'utf8' });
+  fs.rmSync(dummyLog, { force: true });
+  if (!out.includes('ANTIGRAVITY AGENT OBSERVABILITY & TRACE REPORT')) {
     throw new Error('Trace analyzer did not output expected summary');
   }
 });

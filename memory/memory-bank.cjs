@@ -9,7 +9,21 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
-const GLOBAL_MEMORY_DIR = path.join('C:', 'Users', 'Hossam', '.gemini', 'config', 'memory');
+const DEFAULT_CONFIG_DIR = path.join('C:', 'Users', 'Hossam', '.gemini', 'config', 'memory');
+const LOCAL_FALLBACK_DIR = path.join(__dirname, '..', '.memory');
+
+let GLOBAL_MEMORY_DIR = process.env.MEMORY_BANK_DIR;
+if (!GLOBAL_MEMORY_DIR) {
+  try {
+    if (fs.existsSync(DEFAULT_CONFIG_DIR)) {
+      GLOBAL_MEMORY_DIR = DEFAULT_CONFIG_DIR;
+    } else {
+      GLOBAL_MEMORY_DIR = LOCAL_FALLBACK_DIR;
+    }
+  } catch (e) {
+    GLOBAL_MEMORY_DIR = LOCAL_FALLBACK_DIR;
+  }
+}
 const GLOBAL_MEMORY_FILE = path.join(GLOBAL_MEMORY_DIR, 'memory-bank.jsonl');
 
 function parseArgs() {
