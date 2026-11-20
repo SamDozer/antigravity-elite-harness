@@ -1,0 +1,26 @@
+{
+  "uniprot:P04637": {
+    "accession": "P04637",
+    "primary_gene": "TP53",
+    "organism": "Homo sapiens (Human)",
+    "protein_name": "Cellular tumor antigen p53"
+  },
+  "uniprot:P00533": {
+    "accession": "P00533",
+    "primary_gene": "EGFR",
+    "organism": "Homo sapiens (Human)",
+    "protein_name": "Epidermal growth factor receptor"
+  },
+  "pdb:1TUP": {
+    "pdb_id": "1TUP",
+    "title": "TUMOR SUPPRESSOR P53 COMPLEXED WITH DNA",
+    "method": "X-RAY DIFFRACTION",
+    "resolution": 2.2
+  },
+  "doi:10.1038/nature12373": {
+    "doi": "10.1038/nature12373",
+    "title": "Signatures of mutational processes in human cancer",
+    "container_title": "Nature",
+    "year": 2013
+  }
+}

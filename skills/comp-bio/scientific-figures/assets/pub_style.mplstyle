@@ -1,0 +1,45 @@
+# Matplotlib Publication-Ready Style Sheet
+# Optimized for Nature, Cell, Science standards (300 DPI, Outward Ticks, Okabe-Ito Colors)
+
+figure.dpi: 300
+savefig.dpi: 300
+savefig.format: pdf
+savefig.bbox: tight
+savefig.pad_inches: 0.05
+
+font.family: sans-serif
+font.sans-serif: Arial, Helvetica, "DejaVu Sans"
+font.size: 7.0
+
+axes.titlesize: 8.0
+axes.labelsize: 7.0
+axes.linewidth: 0.6
+axes.spines.top: False
+axes.spines.right: False
+axes.edgecolor: "#222222"
+axes.labelcolor: "#111111"
+
+# Colorblind-Safe Qualitative Palette (Okabe-Ito)
+axes.prop_cycle: cycler('color', ['0072B2', 'D55E00', '009E73', 'CC79A7', 'F0E442', '56B4E9', 'E69F00', '000000'])
+
+xtick.direction: out
+ytick.direction: out
+xtick.major.size: 3.0
+xtick.minor.size: 1.5
+ytick.major.size: 3.0
+ytick.minor.size: 1.5
+xtick.major.width: 0.6
+ytick.major.width: 0.6
+xtick.labelsize: 6.0
+ytick.labelsize: 6.0
+xtick.color: "#222222"
+ytick.color: "#222222"
+
+legend.fontsize: 6.0
+legend.frameon: False
+legend.numpoints: 1
+legend.scatterpoints: 1
+
+lines.linewidth: 1.0
+lines.markersize: 3.0
+errorbar.capsize: 2.0

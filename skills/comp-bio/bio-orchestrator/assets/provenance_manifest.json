@@ -1,0 +1,24 @@
+{
+  "pipeline_name": "example_bio_pipeline",
+  "version": "1.0.0",
+  "run_timestamp": "2026-11-20T00:00:00Z",
+  "random_seed": 42,
+  "inputs": [
+    {
+      "path": "data/sample.fastq.gz",
+      "format": "FASTQ",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "records_count": 1000000
+    }
+  ],
+  "environment": {
+    "python_version": "3.11.8",
+    "pinned_packages": {
+      "biopython": "1.83",
+      "scanpy": "1.9.8",
+      "numpy": "1.26.4",
+      "pandas": "2.2.1"
+    }
+  },
+  "dry_run_verified": true
+}

@@ -1,0 +1,50 @@
+; sample_nvt.mdp - Physical NVT Equilibration Parameters
+title                   = NVT Equilibration
+define                  = -DPOSRES ; Position restrain the protein heavy atoms
+
+; Run parameters
+integrator              = md
+nsteps                  = 50000     ; 100 ps
+dt                      = 0.002     ; 2 fs (strictly requires LINCS constraints)
+
+; Output control
+nstxout-compressed      = 5000      ; save compressed coordinates every 10 ps
+nstenergy               = 5000      ; save energies every 10 ps
+nstlog                  = 5000      ; update log every 10 ps
+
+; Bond parameters
+continuation            = no        ; first dynamics run
+constraint_algorithm    = lincs     ; holonomic constraints
+constraints             = h-bonds   ; constrain bonds with hydrogen
+lincs_iter              = 1         ; accuracy of LINCS
+lincs_order             = 4         ; order of LINCS
+
+; Nonbonded settings
+cutoff-scheme           = Verlet
+ns_type                 = grid
+nstlist                 = 10
+rcoulomb                = 1.0       ; 1.0 nm = 10 Angstroms
+rvdw                    = 1.0       ; 1.0 nm = 10 Angstroms
+DispCorr                = EnerPres  ; account for cut-off vdW scheme
+
+; Electrostatics
+coulombtype             = PME       ; Particle Mesh Ewald for long-range electrostatics
+pme_order               = 4         ; cubic interpolation
+fourierspacing          = 0.16      ; grid spacing for FFT
+
+; Temperature coupling (NVT uses V-rescale)
+tcoupl                  = V-rescale
+tc-grps                 = Protein Non-Protein
+tau_t                   = 0.1     0.1
+ref_t                   = 300     300
+
+; Pressure coupling is OFF in NVT
+pcoupl                  = no
+
+; Periodic boundary conditions
+pbc                     = xyz
+
+; Velocity generation
+gen_vel                 = yes
+gen_temp                = 300
+gen_seed                = -1
