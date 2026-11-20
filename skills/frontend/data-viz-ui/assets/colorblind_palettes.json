@@ -1,0 +1,44 @@
+{
+  "okabe_ito": {
+    "name": "Okabe-Ito (Categorical Colorblind Safe)",
+    "colors": [
+      "#E69F00",
+      "#56B4E9",
+      "#009E73",
+      "#F0E442",
+      "#0072B2",
+      "#D55E00",
+      "#CC79A7",
+      "#000000"
+    ]
+  },
+  "viridis": {
+    "name": "Viridis (Perceptually Uniform Sequential)",
+    "colors": [
+      "#440154",
+      "#482878",
+      "#3e4989",
+      "#31688e",
+      "#26828e",
+      "#1f9e89",
+      "#35b779",
+      "#6ece58",
+      "#b5de2b",
+      "#fde725"
+    ]
+  },
+  "tol_muted": {
+    "name": "Paul Tol Muted Qualitative",
+    "colors": [
+      "#CC6677",
+      "#332288",
+      "#DDCC77",
+      "#117733",
+      "#88CCEE",
+      "#882255",
+      "#44AA99",
+      "#999933",
+      "#AA4499"
+    ]
+  }
+}
