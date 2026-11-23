@@ -4,6 +4,7 @@ set -euo pipefail
 
 DRY_RUN=false
 UNINSTALL=false
+ALL_RULES=false
 PROFILE="full"
 
 while [[ $# -gt 0 ]]; do
@@ -14,6 +15,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --uninstall)
       UNINSTALL=true
+      shift
+      ;;
+    --all-rules)
+      ALL_RULES=true
       shift
       ;;
     --profile)
@@ -124,7 +129,11 @@ fi
 
 mkdir -p "${TARGET_DIR}/hooks" "${TARGET_DIR}/rules" "${TARGET_DIR}/memory" "${TARGET_DIR}/tasks" "${TARGET_DIR}/agents" "${TARGET_DIR}/skills"
 cp -r "${REPO_DIR}/hooks/"* "${TARGET_DIR}/hooks/"
-cp -r "${REPO_DIR}/rules/"* "${TARGET_DIR}/rules/"
+if [ "$ALL_RULES" = true ]; then
+  cp -r "${REPO_DIR}/rules/"* "${TARGET_DIR}/rules/"
+else
+  cp "${REPO_DIR}/rules/global-core.md" "${TARGET_DIR}/rules/global-core.md"
+fi
 cp -r "${REPO_DIR}/memory/"* "${TARGET_DIR}/memory/"
 cp -r "${REPO_DIR}/tasks/"* "${TARGET_DIR}/tasks/"
 cp -r "${REPO_DIR}/agents/"* "${TARGET_DIR}/agents/"
@@ -144,7 +153,7 @@ for sub in "${SKILL_SUBDIRS[@]}"; do
   fi
 done
 
-cp "${REPO_DIR}/hooks/hooks.json" "${TARGET_DIR}/hooks.json"
+node -e "const fs=require('fs'),p=process.argv[1],t=process.argv[2];const cfg=JSON.parse(fs.readFileSync(p,'utf8'));const s=JSON.stringify(cfg,null,2).replace(/node hooks\/([a-zA-Z0-9._-]+)/g,(_,f)=>'node \\\"'+t+'/hooks/'+f+'\\\"');fs.writeFileSync(t+'/hooks.json',s+'\n','utf8');" "${REPO_DIR}/hooks/hooks.json" "${TARGET_DIR}"
 if [ -f "${REPO_DIR}/docs/security-architecture.md" ]; then
   cp "${REPO_DIR}/docs/security-architecture.md" "${TARGET_DIR}/SECURITY_ARCHITECTURE.md"
 fi

@@ -6,10 +6,11 @@
  */
 
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 const crypto = require('crypto');
 
-const DEFAULT_CONFIG_DIR = path.join('C:', 'Users', 'Hossam', '.gemini', 'config', 'memory');
+const DEFAULT_CONFIG_DIR = path.join(os.homedir(), '.gemini', 'config', 'memory');
 const LOCAL_FALLBACK_DIR = path.join(__dirname, '..', '.memory');
 
 let GLOBAL_MEMORY_DIR = process.env.MEMORY_BANK_DIR;

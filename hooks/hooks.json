@@ -1,4 +1,4 @@
-﻿{
+{
   "antigravity-system-guard": {
     "enabled": true,
     "PreToolUse": [
@@ -7,7 +7,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:/Users/Hossam/.gemini/config/scripts/pre-tool-guard.cjs\"",
+            "command": "node hooks/pre-tool-guard.cjs",
             "timeout": 10
           }
         ]
@@ -19,7 +19,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:/Users/Hossam/.gemini/config/scripts/post-tool-audit.cjs\"",
+            "command": "node hooks/post-tool-audit.cjs",
             "timeout": 10
           }
         ]

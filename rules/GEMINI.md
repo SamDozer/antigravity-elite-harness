@@ -24,22 +24,22 @@ When writing or refactoring code, evaluate against four distinct dimensions:
 - **Idempotency & Replay Safety:** For state-changing operations and background writes, enforce explicit deduplication or idempotency keys.
 
 ## 5. Intelligent Persistent Memory & Repository Gotchas
-- **Check Existing Memory First:** Query the cross-session memory bank (`node C:/Users/Hossam/.gemini/config/scripts/memory/memory-bank.cjs recall --query "<context>"`) and check `gotchas.md` in the project root before beginning architecture or debugging.
-- **Capture Resolved Gotchas:** Whenever an undocumented API limitation, insidious bug root-cause, or key architectural decision is resolved, record it immediately via `node C:/Users/Hossam/.gemini/config/scripts/memory/memory-bank.cjs record --project <name> --category <cat> --title <title> --content <desc>`.
+- **Check Existing Memory First:** Query the cross-session memory bank (`node ~/.gemini/config/memory/memory-bank.cjs recall --query "<context>"`) and check `gotchas.md` in the project root before beginning architecture or debugging.
+- **Capture Resolved Gotchas:** Whenever an undocumented API limitation, insidious bug root-cause, or key architectural decision is resolved, record it immediately via `node ~/.gemini/config/memory/memory-bank.cjs record --project <name> --category <cat> --title <title> --content <desc>`.
 - **Sync Gotchas Documentation:** Use `node memory-bank.cjs sync-gotchas` to synchronize between the structured memory store and human-readable `gotchas.md`.
 
 ## 6. Durable Task Management (Beads DAG Pattern)
-- For non-trivial tasks spanning multiple steps or subagents, initialize a dependency-directed task graph via `node C:/Users/Hossam/.gemini/config/scripts/tasks/beads-tracker.cjs init`.
+- For non-trivial tasks spanning multiple steps or subagents, initialize a dependency-directed task graph via `node ~/.gemini/config/tasks/beads-tracker.cjs init`.
 - Keep task state durable against context window compaction. Only close tasks when concrete runtime verification evidence is demonstrated.
 
 ## 7. Role-Based Agent Boundaries (RBAB)
-- Respect role permissions defined in `C:/Users/Hossam/.gemini/config/agents/ROLES_AND_BOUNDARIES.md`.
+- Respect role permissions defined in `~/.gemini/config/agents/ROLES_AND_BOUNDARIES.md`.
 - Read-only agents (Architect, Researcher, Security Auditor) must never write code directly.
 - Developers implement via TDD (Red -> Green -> Refactor) and never self-certify security.
 - QA Engineers challenge implementations with boundary fuzzing and mutation tests.
 
 ## 8. Three-Tier Security Defense
-- Adhere to the Three-Tier Security Model (`C:/Users/Hossam/.gemini/config/SECURITY_ARCHITECTURE.md`):
+- Adhere to the Three-Tier Security Model (`~/.gemini/config/SECURITY_ARCHITECTURE.md`):
   1. *Tier 1:* Application hooks (`pre-tool-guard.cjs`) for early semantic filtering.
   2. *Tier 2:* Antigravity Sandbox for process & workspace isolation.
   3. *Tier 3:* Docker/DevContainers for hard OS kernel isolation.

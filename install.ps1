@@ -2,7 +2,8 @@ param(
     [ValidateSet("all", "full", "frontend", "bio", "comp-bio")]
     [string]$Profile = "full",
     [switch]$DryRun,
-    [switch]$Uninstall
+    [switch]$Uninstall,
+    [switch]$AllRules
 )
 
 $targetDir = Join-Path $HOME ".gemini\config"
@@ -94,11 +95,19 @@ if (Test-Path $targetDir) {
     Copy-Item -Path "$targetDir\*" -Destination $backupDir -Recurse -Force
 }
 
-$dirs = @("hooks", "rules", "memory", "tasks", "agents")
+$dirs = @("hooks", "memory", "tasks", "agents")
 foreach ($d in $dirs) {
     $dest = Join-Path $targetDir $d
     New-Item -ItemType Directory -Force -Path $dest | Out-Null
     Copy-Item -Path "$repoDir\$d\*" -Destination $dest -Recurse -Force
+}
+
+$rulesDest = Join-Path $targetDir "rules"
+New-Item -ItemType Directory -Force -Path $rulesDest | Out-Null
+if ($AllRules) {
+    Copy-Item -Path "$repoDir\rules\*" -Destination $rulesDest -Recurse -Force
+} else {
+    Copy-Item -Path "$repoDir\rules\global-core.md" -Destination (Join-Path $rulesDest "global-core.md") -Force
 }
 
 # Copy skills according to profile directly into target skills root so Antigravity discovers them
@@ -118,7 +127,10 @@ foreach ($sub in $skillSubdirs) {
     }
 }
 
-Copy-Item -Path "$repoDir\hooks\hooks.json" -Destination "$targetDir\hooks.json" -Force
+$targetDirPosix = $targetDir -replace '\\', '/'
+$hooksJson = Get-Content "$repoDir\hooks\hooks.json" -Raw -Encoding UTF8
+$hooksJson = $hooksJson -replace 'node hooks/([a-zA-Z0-9._-]+)', "node \`"$targetDirPosix/hooks/`$1\`""
+[System.IO.File]::WriteAllText((Join-Path $targetDir "hooks.json"), $hooksJson, (New-Object System.Text.UTF8Encoding $false))
 if (Test-Path "$repoDir\docs\security-architecture.md") {
     Copy-Item -Path "$repoDir\docs\security-architecture.md" -Destination "$targetDir\SECURITY_ARCHITECTURE.md" -Force
 }

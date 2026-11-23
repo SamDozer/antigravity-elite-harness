@@ -69,6 +69,48 @@ if (fs.existsSync(skillValidator)) {
   }
 }
 
+// 5. Strict JSON Validity & Zero UTF-8 BOM Gate
+function walkFiles(dir, acc = []) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (['.git', 'node_modules', 'graphify-out', '__pycache__'].includes(entry.name)) continue;
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) walkFiles(full, acc);
+    else acc.push(full);
+  }
+  return acc;
+}
+
+const allRepoFiles = walkFiles(repoRoot);
+const jsonFiles = allRepoFiles.filter(f => f.endsWith('.json'));
+let jsonOk = true;
+for (const jf of jsonFiles) {
+  const buf = fs.readFileSync(jf);
+  if (buf.length >= 3 && buf[0] === 0xEF && buf[1] === 0xBB && buf[2] === 0xBF) {
+    logFail(`UTF-8 BOM detected in JSON file: ${path.relative(repoRoot, jf)}`);
+    jsonOk = false;
+    continue;
+  }
+  try {
+    JSON.parse(buf.toString('utf8'));
+  } catch (e) {
+    logFail(`Invalid JSON in ${path.relative(repoRoot, jf)}: ${e.message}`);
+    jsonOk = false;
+  }
+}
+if (jsonOk) logPass(`All ${jsonFiles.length} JSON files are valid and UTF-8 BOM-free`);
+
+// 6. Portability Gate (Zero hardcoded personal home paths)
+const textFiles = allRepoFiles.filter(f => /\.(js|cjs|mjs|py|json|md|sh|ps1|yml|yaml)$/i.test(f));
+let portableOk = true;
+for (const tf of textFiles) {
+  const content = fs.readFileSync(tf, 'utf8');
+  if (/C:[\\/]Users[\\/]Hossam/i.test(content)) {
+    logFail(`Hardcoded personal path found in ${path.relative(repoRoot, tf)}`);
+    portableOk = false;
+  }
+}
+if (portableOk) logPass(`Portability check: zero hardcoded personal paths across ${textFiles.length} files`);
+
 console.log('\n' + '='.repeat(50));
 if (failures === 0) {
   console.log('🎉 ALL REPOSITORY VALIDATIONS PASSED CLEANLY.');
