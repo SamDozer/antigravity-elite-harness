@@ -166,7 +166,8 @@ def inspect_file(filepath: str):
             detected_format = "VCF (1-based inclusive variants)"
         elif ext in ['.csv', '.tsv']:
             sep = '\t' if ext == '.tsv' or '\t' in first_line else ','
-            detected_format = f"Delimited Table ({'TSV' if sep == '\t' else 'CSV'})"
+            tbl_kind = 'TSV' if sep == '\t' else 'CSV'
+            detected_format = f"Delimited Table ({tbl_kind})"
             cols = first_line.split(sep)
             details.append(f"Header columns count: {len(cols)}")
             details.append(f"Sample columns: {', '.join(cols[:5])}...")
