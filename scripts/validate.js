@@ -63,7 +63,7 @@ if (fs.existsSync(skillValidator)) {
   try {
     const pythonCmd = process.platform === 'win32' ? 'py -3' : 'python3';
     execSync(`${pythonCmd} "${skillValidator}"`, { stdio: 'pipe' });
-    logPass('All 13 modular skills passed 4-layer architecture CI gates');
+    logPass('All 23 modular skills passed 4-layer architecture CI gates');
   } catch (err) {
     logFail(`Skills validation failed: ${err.message}`);
   }

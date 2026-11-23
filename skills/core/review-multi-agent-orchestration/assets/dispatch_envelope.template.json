@@ -1,0 +1,33 @@
+{
+  "workflow_id": "wf-101",
+  "tasks": [
+    {
+      "task_id": "T1",
+      "owner": "architect",
+      "depends_on": [],
+      "write_paths": [
+        "docs/spec.md"
+      ]
+    },
+    {
+      "task_id": "T2",
+      "owner": "developer-1",
+      "depends_on": [
+        "T1"
+      ],
+      "write_paths": [
+        "src/engine.ts"
+      ]
+    },
+    {
+      "task_id": "T3",
+      "owner": "developer-2",
+      "depends_on": [
+        "T1"
+      ],
+      "write_paths": [
+        "tests/engine.test.ts"
+      ]
+    }
+  ]
+}

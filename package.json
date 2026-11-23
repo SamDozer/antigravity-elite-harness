@@ -1,6 +1,6 @@
 {
   "name": "antigravity-elite-harness",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Production-grade autonomous engineering harness: 3-tier security, cross-session memory, Beads task DAG, and scientific reproducibility.",
   "main": "memory/memory-bank.cjs",
   "scripts": {

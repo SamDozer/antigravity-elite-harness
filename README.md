@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/SamDozer/antigravity-elite-harness/actions/workflows/ci.yml/badge.svg)](https://github.com/SamDozer/antigravity-elite-harness/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Release](https://img.shields.io/badge/Release-v1.0.0-blue.svg)](https://github.com/SamDozer/antigravity-elite-harness/releases)
+[![Release](https://img.shields.io/badge/Release-v1.1.0-blue.svg)](https://github.com/SamDozer/antigravity-elite-harness/releases)
 [![Verification](https://img.shields.io/badge/Verification-100%25%20Passing-brightgreen.svg)](#-runtime-verification--eval-scores)
 [![Context Budget](https://img.shields.io/badge/Core%20Rule-%3C1k%20Tokens-success.svg)](rules/global-core.md)
 
@@ -104,25 +104,35 @@ Eliminates unplanned modifications and hallucinations by presenting clear trade-
 
 ---
 
-## 🗂️ 13 Modular Skills Inventory (4-Layer Progressive Disclosure)
+## 🗂️ 23 Modular Skills Inventory (4-Layer Progressive Disclosure)
 
 Every skill maintains an operational contract (`SKILL.md` < 350 lines), deterministic CLI scripts (`scripts/`), domain cheat sheets (`references/`), and production starter templates (`assets/`).
 
 | Skill | Domain | Explicit Trigger Boundary | Included Tools / Assets |
 | :--- | :--- | :--- | :--- |
-| **`architect-planner`** | Core | **Use:** Designing features, specs, ADRs.<br/>**Do NOT use:** Direct code implementation or bugfixes. | Structured spec schema |
+| **`architect-planner`** | Core | **Use:** Designing features, specs, ADRs.<br/>**Do NOT use:** Direct code implementation or bugfixes. | `validate_plan.py`, spec template |
 | **`diff-reviewer`** | Core | **Use:** Pull requests, pre-commit diffs, code audits.<br/>**Do NOT use:** High-level architectural planning. | `review_diff.py` (8-vector AST reviewer) |
-| **`app-ui-system`** | Frontend | **Use:** Web app UI, dashboards, layout components.<br/>**Do NOT use:** Static marketing landing pages or comp-bio. | `design_tokens.json` (CSS baseline tokens) |
+| **`break-ai-fix-loops`** | Core | **Use:** Repeated patch cycles or failing real execution paths.<br/>**Do NOT use:** One-shot edits whose acceptance check passes. | `fingerprint.py` (SHA-256 failure digest) |
+| **`audit-agent-run-evidence`** | Core | **Use:** Verifying agent completion claims against real traces.<br/>**Do NOT use:** Designing future telemetry or running mutations. | `audit_evidence.py`, claim ledger template |
+| **`agent-harness-fault-injection`** | Core | **Use:** Testing sandbox, MCP timeout, and checkpoint recovery.<br/>**Do NOT use:** Live production targets or customer data. | `validate_fault_schedule.py`, fault matrix |
+| **`review-multi-agent-orchestration`** | Core | **Use:** Auditing swarm, supervisor, and parallel agent DAGs.<br/>**Do NOT use:** Single sequential tool calls without concurrency. | `check_orchestration_dag.py`, envelope schema |
+| **`app-ui-system`** | Frontend | **Use:** Web app UI, dashboards, layout components.<br/>**Do NOT use:** Static marketing landing pages or comp-bio. | `check_contrast.py`, `tokens.css` |
 | **`web-editorial-design`** | Frontend | **Use:** Editorial typography, marketing pages, blogs.<br/>**Do NOT use:** Dense data tables or desktop Electron renderers. | Responsive type scale presets |
 | **`frontend-interaction-states`** | Frontend | **Use:** Loading, empty, error, disabled component states.<br/>**Do NOT use:** Pure backend business logic. | State machine checklist |
 | **`data-viz-ui`** | Frontend | **Use:** Interactive charts, SVG dashboards, sparklines.<br/>**Do NOT use:** Matplotlib publication science figures. | 3:1 contrast color palette scales |
 | **`ui-visual-qa`** | Frontend | **Use:** Auditing CSS contrast, responsive layout bugs.<br/>**Do NOT use:** Unit testing pure business logic functions. | `visual_audit.mjs` (WCAG 2.2 AA validator) |
+| **`electron-development`** | Frontend | **Use:** Electron desktop apps, preload IPC, `.exe` packaging.<br/>**Do NOT use:** Web-only apps, mobile apps, or backend APIs. | `audit_electron_security.py`, `preload.template.ts` |
+| **`ghost-qa`** | Frontend | **Use:** Multi-viewport Playwright QA (`375px`/`768px`/`1440px`).<br/>**Do NOT use:** Unauthorized third-party production sites. | `check_responsive_css.py`, 8-trap matrix |
+| **`tailwind-design-system`** | Frontend | **Use:** Tailwind token architecture, CVA variants, dark mode.<br/>**Do NOT use:** Non-Tailwind native apps or backend services. | `audit_tailwind_tokens.py`, `tokens.tailwind.css` |
 | **`bio-orchestrator`** | Comp-Bio | **Use:** Multi-step bioinformatics pipelines, Snakemake.<br/>**Do NOT use:** Web frontend styling or marketing UI. | `inspect_biofile.py` (Binary magic parser) |
 | **`structural-bio-md`** | Comp-Bio | **Use:** PDB/mmCIF files, AlphaFold models, MD runs.<br/>**Do NOT use:** Plain sequence alignments without 3D structures. | `validate_pdb.py` (pLDDT & coordinate validator) |
 | **`bio-sequence-stats`** | Comp-Bio | **Use:** Differential expression, FDR, GWAS statistics.<br/>**Do NOT use:** Non-scientific business metric calculations. | `stats_guard.py` (FDR/Bonferroni corrector) |
-| **`hpc-containers-pipelines`** | Comp-Bio | **Use:** SLURM cluster submission, Apptainer/Singularity.<br/>**Do NOT use:** Standard local single-process shell scripts. | `slurm_template.sh` (GPU/CPU cluster script) |
+| **`hpc-containers-pipelines`** | Comp-Bio | **Use:** SLURM cluster submission, Apptainer/Singularity.<br/>**Do NOT use:** Standard local single-process shell scripts. | `validate_slurm.py`, `slurm_template.sh` |
 | **`scientific-figures`** | Comp-Bio | **Use:** Publication figures for Nature/Cell, vector plots.<br/>**Do NOT use:** Interactive web dashboard sparklines. | `pub_style.mplstyle` (300 DPI style sheet) |
 | **`bio-literature-grounding`** | Comp-Bio | **Use:** Verifying UniProt, PDB, Ensembl, PubMed IDs.<br/>**Do NOT use:** General web scraping or non-bio citations. | `verify_ids.py` (REST accession validator) |
+| **`biopython`** | Comp-Bio | **Use:** `Bio.SeqIO`, `AlignIO`, NCBI Entrez, FASTA/GenBank QC.<br/>**Do NOT use:** Single-cell AnnData clustering or non-bio code. | `seq_stats.py` (N50 & GC% calculator) |
+| **`scanpy`** | Comp-Bio | **Use:** Single-cell RNA-seq (`scRNA-seq`) on `.h5ad` AnnData.<br/>**Do NOT use:** Bulk RNA-seq without single-cell barcodes. | `qc_analysis.py`, `analysis_template.py` |
+| **`falsify`** | Comp-Bio | **Use:** Scientific hypothesis falsification & Bayesian Brier scoring.<br/>**Do NOT use:** Trivial single-lookup facts or boilerplate edits. | `score_ledger.py`, `thinking-ledger.md` |
 
 ---
 
@@ -133,8 +143,8 @@ We test our harness with the same rigor we expect from agent-generated code.
 | Benchmark / Test Suite | Scope | Target | Result | Status |
 | :--- | :--- | :---: | :---: | :---: |
 | **`scripts/validate.js`** | Manifest schema, token budgets, supply chain checks | 100% | **15/15 Passed** | ✅ Pass |
-| **`tests/run-audit.cjs`** | Memory bank, Beads DAG, AST security, domain scripts | 100% | **6/6 Suites Passed** | ✅ Pass |
-| **`scripts/validate_skills.py`** | 4-layer structure, lines < 350, negative trigger bounds | 100% | **13/13 Skills Passed** | ✅ Pass |
+| **`tests/run-audit.cjs`** | Memory bank, Beads DAG, AST security, domain scripts | 100% | **7/7 Suites Passed** | ✅ Pass |
+| **`scripts/validate_skills.py`** | 4-layer structure, lines < 350, negative trigger bounds | 100% | **23/23 Skills Passed** | ✅ Pass |
 | **Golden Prompt Evals** | Negative trigger non-firing, TDD compliance, secret denial | $\ge 95\%$ | **100% Pass Rate** | ✅ Pass |
 
 ---
@@ -157,6 +167,7 @@ This harness synthesizes foundational principles from the broader AI engineering
 * **[Superpowers Methodology](https://github.com/obra/superpowers)** — Strict TDD discipline, Red-Green-Refactor cycles, and evidence-first assertions.
 * **[Ponytail](https://github.com/DietrichGebert/ponytail)** — Lazy Senior Dev Mode: minimalist diffs, YAGNI enforcement, and complexity debloating.
 * **[ByteDance Deer-Flow](https://github.com/bytedance/deer-flow)** — Task DAG orchestration and sandboxed subagent workflows.
+* **[Agentic Awesome Skills (`sickn33/agentic-awesome-skills`)](https://github.com/sickn33/agentic-awesome-skills)** — Curated upstream agentic skills catalog audited and upgraded to 4-layer progressive disclosure.
 
 ---
 

@@ -1,8 +1,8 @@
 {
   "project": "antigravity-elite-harness",
-  "timestamp": "2026-11-20T04:54:12.782Z",
-  "total_nodes": 121,
-  "total_edges": 42,
+  "timestamp": "2026-11-23T02:41:55.690Z",
+  "total_nodes": 174,
+  "total_edges": 62,
   "communities": [
     "Quality & CI/CD",
     "Observability & Rules",
@@ -18,11 +18,11 @@
   "god_nodes": [
     {
       "id": "tests/run-audit.cjs",
-      "degree": 17
+      "degree": 27
     },
     {
       "id": "scripts/validate_skills.py",
-      "degree": 13
+      "degree": 23
     },
     {
       "id": "tasks/beads-tracker.cjs",
@@ -888,6 +888,377 @@
       "community": "Skills: Frontend",
       "path": "skills/frontend/web-editorial-design/SKILL.md",
       "size": 15
+    },
+    {
+      "id": "skills/comp-bio/biopython/assets/entrez_pipeline.template.py",
+      "label": "entrez_pipeline.template.py",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/biopython/assets/entrez_pipeline.template.py",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/biopython/references/advanced.md",
+      "label": "advanced.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/biopython/references/advanced.md",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/biopython/references/alignment.md",
+      "label": "alignment.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/biopython/references/alignment.md",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/biopython/references/blast.md",
+      "label": "blast.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/biopython/references/blast.md",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/biopython/references/databases.md",
+      "label": "databases.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/biopython/references/databases.md",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/biopython/references/extended_cookbook.md",
+      "label": "extended_cookbook.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/biopython/references/extended_cookbook.md",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/biopython/references/phylogenetics.md",
+      "label": "phylogenetics.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/biopython/references/phylogenetics.md",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/biopython/references/sequence_io.md",
+      "label": "sequence_io.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/biopython/references/sequence_io.md",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/biopython/references/structure.md",
+      "label": "structure.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/biopython/references/structure.md",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/biopython/scripts/seq_stats.py",
+      "label": "seq_stats.py",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/biopython/scripts/seq_stats.py",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/biopython/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/biopython/SKILL.md",
+      "size": 15
+    },
+    {
+      "id": "skills/comp-bio/falsify/assets/thinking-ledger.md",
+      "label": "thinking-ledger.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/falsify/assets/thinking-ledger.md",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/falsify/references/bias-catalog.md",
+      "label": "bias-catalog.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/falsify/references/bias-catalog.md",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/falsify/references/mental-models.md",
+      "label": "mental-models.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/falsify/references/mental-models.md",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/falsify/references/stage_playbooks.md",
+      "label": "stage_playbooks.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/falsify/references/stage_playbooks.md",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/falsify/scripts/score_ledger.py",
+      "label": "score_ledger.py",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/falsify/scripts/score_ledger.py",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/falsify/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/falsify/SKILL.md",
+      "size": 15
+    },
+    {
+      "id": "skills/comp-bio/scanpy/assets/analysis_template.py",
+      "label": "analysis_template.py",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/scanpy/assets/analysis_template.py",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/scanpy/references/api_reference.md",
+      "label": "api_reference.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/scanpy/references/api_reference.md",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/scanpy/references/plotting_guide.md",
+      "label": "plotting_guide.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/scanpy/references/plotting_guide.md",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/scanpy/references/standard_workflow.md",
+      "label": "standard_workflow.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/scanpy/references/standard_workflow.md",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/scanpy/references/trajectory_and_markers.md",
+      "label": "trajectory_and_markers.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/scanpy/references/trajectory_and_markers.md",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/scanpy/scripts/qc_analysis.py",
+      "label": "qc_analysis.py",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/scanpy/scripts/qc_analysis.py",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/scanpy/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/scanpy/SKILL.md",
+      "size": 15
+    },
+    {
+      "id": "skills/core/agent-harness-fault-injection/assets/fault_schedule.template.json",
+      "label": "fault_schedule.template.json",
+      "community": "Skills: Core",
+      "path": "skills/core/agent-harness-fault-injection/assets/fault_schedule.template.json",
+      "size": 10
+    },
+    {
+      "id": "skills/core/agent-harness-fault-injection/references/fault_matrix.md",
+      "label": "fault_matrix.md",
+      "community": "Skills: Core",
+      "path": "skills/core/agent-harness-fault-injection/references/fault_matrix.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/agent-harness-fault-injection/scripts/validate_fault_schedule.py",
+      "label": "validate_fault_schedule.py",
+      "community": "Skills: Core",
+      "path": "skills/core/agent-harness-fault-injection/scripts/validate_fault_schedule.py",
+      "size": 10
+    },
+    {
+      "id": "skills/core/agent-harness-fault-injection/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: Core",
+      "path": "skills/core/agent-harness-fault-injection/SKILL.md",
+      "size": 15
+    },
+    {
+      "id": "skills/core/audit-agent-run-evidence/assets/claim_ledger.template.json",
+      "label": "claim_ledger.template.json",
+      "community": "Skills: Core",
+      "path": "skills/core/audit-agent-run-evidence/assets/claim_ledger.template.json",
+      "size": 10
+    },
+    {
+      "id": "skills/core/audit-agent-run-evidence/references/witness_hierarchy.md",
+      "label": "witness_hierarchy.md",
+      "community": "Skills: Core",
+      "path": "skills/core/audit-agent-run-evidence/references/witness_hierarchy.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/audit-agent-run-evidence/scripts/audit_evidence.py",
+      "label": "audit_evidence.py",
+      "community": "Skills: Core",
+      "path": "skills/core/audit-agent-run-evidence/scripts/audit_evidence.py",
+      "size": 10
+    },
+    {
+      "id": "skills/core/audit-agent-run-evidence/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: Core",
+      "path": "skills/core/audit-agent-run-evidence/SKILL.md",
+      "size": 15
+    },
+    {
+      "id": "skills/core/break-ai-fix-loops/assets/attempt_record.template.json",
+      "label": "attempt_record.template.json",
+      "community": "Skills: Core",
+      "path": "skills/core/break-ai-fix-loops/assets/attempt_record.template.json",
+      "size": 10
+    },
+    {
+      "id": "skills/core/break-ai-fix-loops/references/evidence-ledger.md",
+      "label": "evidence-ledger.md",
+      "community": "Skills: Core",
+      "path": "skills/core/break-ai-fix-loops/references/evidence-ledger.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/break-ai-fix-loops/scripts/fingerprint.py",
+      "label": "fingerprint.py",
+      "community": "Skills: Core",
+      "path": "skills/core/break-ai-fix-loops/scripts/fingerprint.py",
+      "size": 10
+    },
+    {
+      "id": "skills/core/break-ai-fix-loops/scripts/test_fingerprint.py",
+      "label": "test_fingerprint.py",
+      "community": "Skills: Core",
+      "path": "skills/core/break-ai-fix-loops/scripts/test_fingerprint.py",
+      "size": 10
+    },
+    {
+      "id": "skills/core/break-ai-fix-loops/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: Core",
+      "path": "skills/core/break-ai-fix-loops/SKILL.md",
+      "size": 15
+    },
+    {
+      "id": "skills/core/review-multi-agent-orchestration/assets/dispatch_envelope.template.json",
+      "label": "dispatch_envelope.template.json",
+      "community": "Skills: Core",
+      "path": "skills/core/review-multi-agent-orchestration/assets/dispatch_envelope.template.json",
+      "size": 10
+    },
+    {
+      "id": "skills/core/review-multi-agent-orchestration/references/state_ownership_patterns.md",
+      "label": "state_ownership_patterns.md",
+      "community": "Skills: Core",
+      "path": "skills/core/review-multi-agent-orchestration/references/state_ownership_patterns.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/review-multi-agent-orchestration/scripts/check_orchestration_dag.py",
+      "label": "check_orchestration_dag.py",
+      "community": "Skills: Core",
+      "path": "skills/core/review-multi-agent-orchestration/scripts/check_orchestration_dag.py",
+      "size": 10
+    },
+    {
+      "id": "skills/core/review-multi-agent-orchestration/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: Core",
+      "path": "skills/core/review-multi-agent-orchestration/SKILL.md",
+      "size": 15
+    },
+    {
+      "id": "skills/frontend/electron-development/assets/preload.template.ts",
+      "label": "preload.template.ts",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/electron-development/assets/preload.template.ts",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/electron-development/references/detailed-guide.md",
+      "label": "detailed-guide.md",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/electron-development/references/detailed-guide.md",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/electron-development/scripts/audit_electron_security.py",
+      "label": "audit_electron_security.py",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/electron-development/scripts/audit_electron_security.py",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/electron-development/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/electron-development/SKILL.md",
+      "size": 15
+    },
+    {
+      "id": "skills/frontend/ghost-qa/assets/viewports.config.json",
+      "label": "viewports.config.json",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/ghost-qa/assets/viewports.config.json",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/ghost-qa/references/eight_trap_engine.md",
+      "label": "eight_trap_engine.md",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/ghost-qa/references/eight_trap_engine.md",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/ghost-qa/scripts/check_responsive_css.py",
+      "label": "check_responsive_css.py",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/ghost-qa/scripts/check_responsive_css.py",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/ghost-qa/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/ghost-qa/SKILL.md",
+      "size": 15
+    },
+    {
+      "id": "skills/frontend/tailwind-design-system/assets/tokens.tailwind.css",
+      "label": "tokens.tailwind.css",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/tailwind-design-system/assets/tokens.tailwind.css",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/tailwind-design-system/references/implementation-playbook.md",
+      "label": "implementation-playbook.md",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/tailwind-design-system/references/implementation-playbook.md",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/tailwind-design-system/scripts/audit_tailwind_tokens.py",
+      "label": "audit_tailwind_tokens.py",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/tailwind-design-system/scripts/audit_tailwind_tokens.py",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/tailwind-design-system/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/tailwind-design-system/SKILL.md",
+      "size": 15
     }
   ],
   "edges": [
@@ -1099,6 +1470,106 @@
     {
       "source": "tests/run-audit.cjs",
       "target": "skills/frontend/web-editorial-design/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/comp-bio/biopython/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/comp-bio/biopython/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/comp-bio/falsify/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/comp-bio/falsify/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/comp-bio/scanpy/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/comp-bio/scanpy/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/core/agent-harness-fault-injection/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/core/agent-harness-fault-injection/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/core/audit-agent-run-evidence/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/core/audit-agent-run-evidence/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/core/break-ai-fix-loops/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/core/break-ai-fix-loops/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/core/review-multi-agent-orchestration/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/core/review-multi-agent-orchestration/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/frontend/electron-development/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/frontend/electron-development/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/frontend/ghost-qa/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/frontend/ghost-qa/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/frontend/tailwind-design-system/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/frontend/tailwind-design-system/SKILL.md",
       "label": "audits"
     }
   ]

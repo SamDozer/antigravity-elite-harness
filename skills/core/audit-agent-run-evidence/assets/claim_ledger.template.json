@@ -1,0 +1,14 @@
+{
+  "run_id": "run-001",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "predicate": "Unit and integration test suite exited with code 0",
+      "required_witness": "CI or local shell runner exit status",
+      "evidence_refs": [
+        "step-42:exit_code=0"
+      ],
+      "counterevidence_refs": []
+    }
+  ]
+}

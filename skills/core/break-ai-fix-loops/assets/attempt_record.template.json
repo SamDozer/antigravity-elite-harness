@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "command": "npm test",
+  "input_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "exit_code": 1,
+  "failure_class": "assertion_failure",
+  "stable_excerpt": "Expected status 200 but received 500 in auth middleware",
+  "real_path_state": "HTTP 500 on POST /api/session"
+}

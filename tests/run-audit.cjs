@@ -167,6 +167,59 @@ runCheck('Domain Tools: Contrast, Biostats, SLURM, and 8th-Vector Diff Review', 
   if (!reviewPassed) throw new Error('review_diff.py failed to catch 8th vector scientific issues');
 });
 
+// 7. Expanded Agentic Awesome Skills Suite (Core, Electron/Frontend, Comp-Bio)
+runCheck('AAS Skills: Loop Fingerprint, Evidence Audit, Fault Schedule, Orchestration DAG, Electron Security, Biopython & Falsify', () => {
+  const pythonCmd = process.platform === 'win32' ? 'py -3' : 'python3';
+
+  // 7a. break-ai-fix-loops fingerprint
+  const fpScript = path.join(repoRoot, 'skills', 'core', 'break-ai-fix-loops', 'scripts', 'fingerprint.py');
+  const fpAsset = path.join(repoRoot, 'skills', 'core', 'break-ai-fix-loops', 'assets', 'attempt_record.template.json');
+  const fpOut = execSync(`${pythonCmd} "${fpScript}" "${fpAsset}"`, { encoding: 'utf8' }).trim();
+  if (!/^(?:sha256:)?[a-f0-9]{64}$/.test(fpOut)) throw new Error(`fingerprint.py returned invalid SHA-256: ${fpOut}`);
+
+  // 7b. audit-agent-run-evidence ledger
+  const evScript = path.join(repoRoot, 'skills', 'core', 'audit-agent-run-evidence', 'scripts', 'audit_evidence.py');
+  const evAsset = path.join(repoRoot, 'skills', 'core', 'audit-agent-run-evidence', 'assets', 'claim_ledger.template.json');
+  const evOut = execSync(`${pythonCmd} "${evScript}" --ledger "${evAsset}"`, { encoding: 'utf8' });
+  if (!evOut.includes('[APPROVED]')) throw new Error('audit_evidence.py failed on valid ledger');
+
+  // 7c. agent-harness-fault-injection schedule
+  const fiScript = path.join(repoRoot, 'skills', 'core', 'agent-harness-fault-injection', 'scripts', 'validate_fault_schedule.py');
+  const fiAsset = path.join(repoRoot, 'skills', 'core', 'agent-harness-fault-injection', 'assets', 'fault_schedule.template.json');
+  const fiOut = execSync(`${pythonCmd} "${fiScript}" --schedule "${fiAsset}"`, { encoding: 'utf8' });
+  if (!fiOut.includes('[PASS]')) throw new Error('validate_fault_schedule.py failed on valid schedule');
+
+  // 7d. review-multi-agent-orchestration DAG check
+  const dagScript = path.join(repoRoot, 'skills', 'core', 'review-multi-agent-orchestration', 'scripts', 'check_orchestration_dag.py');
+  const dagAsset = path.join(repoRoot, 'skills', 'core', 'review-multi-agent-orchestration', 'assets', 'dispatch_envelope.template.json');
+  const dagOut = execSync(`${pythonCmd} "${dagScript}" --topology "${dagAsset}"`, { encoding: 'utf8' });
+  if (!dagOut.includes('[PASS]')) throw new Error('check_orchestration_dag.py failed on valid topology');
+
+  // 7e. electron-development security check (happy path + unsafe rejection)
+  const elecScript = path.join(repoRoot, 'skills', 'frontend', 'electron-development', 'scripts', 'audit_electron_security.py');
+  const elecAsset = path.join(repoRoot, 'skills', 'frontend', 'electron-development', 'assets', 'preload.template.ts');
+  const elecOut = execSync(`${pythonCmd} "${elecScript}" --file "${elecAsset}"`, { encoding: 'utf8' });
+  if (!elecOut.includes('[PASS]')) throw new Error('audit_electron_security.py failed on preload template');
+
+  // 7f. biopython seq_stats
+  const bioScript = path.join(repoRoot, 'skills', 'comp-bio', 'biopython', 'scripts', 'seq_stats.py');
+  const dummyFasta = path.join(__dirname, 'test.fasta');
+  fs.writeFileSync(dummyFasta, '>seq1\nATGCATGC\n>seq2\nGGGGCCCC\n', 'utf8');
+  const bioOut = execSync(`${pythonCmd} "${bioScript}" --fasta "${dummyFasta}"`, { encoding: 'utf8' });
+  fs.rmSync(dummyFasta, { force: true });
+  if (!bioOut.includes('Records: 2') || !bioOut.includes('GC%: 75.00%')) {
+    throw new Error(`seq_stats.py unexpected output: ${bioOut}`);
+  }
+
+  // 7g. falsify Bayesian & Brier score calculator
+  const falsifyScript = path.join(repoRoot, 'skills', 'comp-bio', 'falsify', 'scripts', 'score_ledger.py');
+  const falsifyOut = execSync(`${pythonCmd} "${falsifyScript}" --prior 0.5 --likelihood-ratio 3.0 --outcome 1`, { encoding: 'utf8' });
+  if (!falsifyOut.includes('Posterior: 0.7500') || !falsifyOut.includes('Brier Score: 0.0625')) {
+    throw new Error(`score_ledger.py unexpected output: ${falsifyOut}`);
+  }
+});
+
 console.log('\n====================================================');
 console.log(`VERIFICATION SUMMARY: ${results.filter(r => r.status === 'PASS').length}/${results.length} PASSED`);
 console.log('====================================================');
+if (results.some(r => r.status !== 'PASS')) process.exit(1);

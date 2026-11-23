@@ -1,0 +1,16 @@
+{
+  "seed": "harness-fixture-07",
+  "faults": [
+    {
+      "event": "tool.call",
+      "ordinal": 2,
+      "kind": "timeout",
+      "tool": "search"
+    },
+    {
+      "event": "worker.start",
+      "ordinal": 2,
+      "kind": "restart"
+    }
+  ]
+}

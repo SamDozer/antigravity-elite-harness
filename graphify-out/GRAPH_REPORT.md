@@ -1,106 +1,108 @@
 # Knowledge Graph Architectural Report: Antigravity Elite Harness
 
-Generated at: 2026-11-20T05:22:00.000Z
+Generated at: 2026-11-23T02:41:55.690Z
 
 ## Executive Summary
-- **Total Graph Nodes:** 128
-- **Total Edges:** 48
+- **Total Graph Nodes:** 174
+- **Total Edges:** 62
 - **Detected Functional Communities:** 10
 
----
-
 ## Functional Communities
-
-### 1. Technical Documentation & Whitepapers (6 components)
-- `docs/architecture.md` (System overview, 5 failure modes, execution lifecycle)
-- `docs/security-architecture.md` (Three-tier defense, hook IPC specifications)
-- `docs/memory-and-beads.md` (Cross-session memory bank and Beads task DAG)
-- `docs/rbab-and-ci.md` (Role-based boundaries, 8 specialized agents, CI/CD pipeline)
-- `docs/comp-bio-provenance.md` (Bioinformatics workflows, Snakemake, and cryptographic ledgers)
-- `docs/assets/ui-comparison.png` (Visual before/after UI contrast proof)
-
-### 2. Quality & CI/CD (12 components)
-- `.github/workflows/ci.yml` (Zero-dependency GitHub Actions quality gate)
+### Quality & CI/CD (11 components)
 - `.github/pull_request_template.md`
-- `scripts/validate.js` (Schema, token budget, and supply-chain auditor)
-- `scripts/validate_skills.py` (Claude-grade 4-layer architecture validator)
-- `tests/run-audit.cjs` (Comprehensive runtime verification suite)
+- `.github/workflows/agent-pipeline.yml`
+- `templates/ci-cd/.github/workflows/agent-pipeline.yml`
 - `templates/ci-cd/pull_request_template.md`
 - `templates/ci-cd/semgrep.yml`
 - `templates/testing/fast-check.example.ts`
 - `templates/testing/hypothesis_example.py`
 - `templates/testing/mutmut.ini.template`
-- `evals/eval_runner.js`
-- `evals/eval_cases.json`
+- *...and 3 more*
 
-### 3. Core Engine & Packaging (8 components)
-- `package.json` (Unifed test/verify/audit entrypoints)
-- `plugin.json` (Official Antigravity plugin manifest)
-- `LICENSE` (MIT License)
-- `.gitattributes` (Linguist language filtering)
-- `install.sh` (POSIX multi-profile installer with rollback)
-- `install.ps1` (PowerShell multi-profile installer with rollback)
-- `CHANGELOG.md` (v1.0.0 release notes)
-- `README.md` (Scannable landing page with visual proof)
+### Observability & Rules (32 components)
+- `.gitignore`
+- `evals/promptfoo.yaml`
+- `observability/local-ports-registry.json`
+- `observability/LOCAL_PORTS_DIRECTORY.md`
+- `observability/port-guard.ps1`
+- `observability/trace-analyzer.cjs`
+- `README.md`
+- `rules/adaptive-responsive-ui.md`
+- *...and 24 more*
 
-### 4. Agent Roles & Boundaries (RBAB) (10 components)
+### Agent Roles (RBAB) (10 components)
 - `agents/agents.json`
-- `agents/ROLES_AND_BOUNDARIES.md`
 - `agents/architect.md`
-- `agents/developer.md`
-- `agents/qa-engineer.md`
-- `agents/security-auditor.md`
 - `agents/debugger.md`
+- `agents/developer.md`
 - `agents/performance-engineer.md`
+- `agents/qa-engineer.md`
 - `agents/researcher.md`
-- `agents/bio-specialist.md`
+- `agents/ROLES_AND_BOUNDARIES.md`
+- *...and 2 more*
 
-### 5. Security & Lifecycle Hooks (3 components)
-- `hooks/hooks.json` (Lifecycle event registrations)
-- `hooks/pre-tool-guard.cjs` (AST command inspection & credential protection)
-- `hooks/post-tool-audit.cjs` (Execution auditing & telemetry)
+### Security & Lifecycle (4 components)
+- `hooks/hooks.json`
+- `hooks/post-tool-audit.cjs`
+- `hooks/pre-tool-guard.cjs`
+- `SECURITY_ARCHITECTURE.md`
 
-### 6. Persistent Memory & State (3 components)
-- `memory/memory-bank.cjs` (Zero-API TF-IDF retrieval engine)
+### Memory & Context (2 components)
+- `memory/memory-bank.cjs`
 - `memory/memory-bank.jsonl`
-- `tasks/beads-tracker.cjs` (Context-resilient task DAG engine)
 
-### 7. Core Skills (9 components)
-- `skills/core/architect-planner/` (Spec schema, validation, implementation planning)
-- `skills/core/diff-reviewer/` (`review_diff.py` 8-vector AST pull request reviewer)
+### Task Orchestration (1 components)
+- `tasks/beads-tracker.cjs`
 
-### 8. Frontend UI Skills (22 components)
-- `skills/frontend/app-ui-system/` (CSS design tokens, responsive typography)
-- `skills/frontend/web-editorial-design/` (Editorial typography & marketing presets)
-- `skills/frontend/frontend-interaction-states/` (Loading, empty, error, disabled states)
-- `skills/frontend/data-viz-ui/` (Single-axis palettes, accessible data viz)
-- `skills/frontend/ui-visual-qa/` (`visual_audit.mjs` WCAG 2.2 AA contrast auditor)
-
-### 9. Computational Biology Skills (25 components)
-- `skills/comp-bio/bio-orchestrator/` (`inspect_biofile.py` binary magic byte parser)
-- `skills/comp-bio/structural-bio-md/` (`validate_pdb.py` pLDDT & structure validator)
-- `skills/comp-bio/bio-sequence-stats/` (`stats_guard.py` Benjamini-Hochberg FDR corrector)
-- `skills/comp-bio/hpc-containers-pipelines/` (`slurm_template.sh` GPU cluster script)
-- `skills/comp-bio/scientific-figures/` (`pub_style.mplstyle` Nature publication styles)
-- `skills/comp-bio/bio-literature-grounding/` (`verify_ids.py` UniProt/PDB/Ensembl/PubMed validator)
-
-### 10. Science Templates & Provenance (5 components)
-- `templates/science-provenance/Snakefile.template`
+### Science & Provenance (5 components)
 - `templates/science-provenance/dvc.yaml.template`
 - `templates/science-provenance/params.yaml.template`
 - `templates/science-provenance/provenance_tracker.py`
 - `templates/science-provenance/SCIENTIFIC_PROVENANCE_GUIDE.md`
+- `templates/science-provenance/Snakefile.template`
 
----
+### Skills: CompBio (49 components)
+- `skills/comp-bio/bio-literature-grounding/assets/verified_identifiers_cache.json`
+- `skills/comp-bio/bio-literature-grounding/references/database_apis.md`
+- `skills/comp-bio/bio-literature-grounding/scripts/verify_ids.py`
+- `skills/comp-bio/bio-literature-grounding/SKILL.md`
+- `skills/comp-bio/bio-orchestrator/assets/provenance_manifest.json`
+- `skills/comp-bio/bio-orchestrator/references/bio_data_standards.md`
+- `skills/comp-bio/bio-orchestrator/scripts/inspect_biofile.py`
+- `skills/comp-bio/bio-orchestrator/scripts/__pycache__/inspect_biofile.cpython-314.pyc`
+- *...and 41 more*
+
+### Skills: Core (26 components)
+- `skills/core/architect-planner/assets/implementation_plan.template.md`
+- `skills/core/architect-planner/references/plan_rubric.md`
+- `skills/core/architect-planner/scripts/validate_plan.py`
+- `skills/core/architect-planner/SKILL.md`
+- `skills/core/diff-reviewer/assets/review_report.template.md`
+- `skills/core/diff-reviewer/references/review_vectors.md`
+- `skills/core/diff-reviewer/scripts/review_diff.py`
+- `skills/core/diff-reviewer/scripts/__pycache__/review_diff.cpython-314.pyc`
+- *...and 18 more*
+
+### Skills: Frontend (34 components)
+- `skills/frontend/app-ui-system/assets/tokens.css`
+- `skills/frontend/app-ui-system/references/font-pairings.md`
+- `skills/frontend/app-ui-system/references/palettes.md`
+- `skills/frontend/app-ui-system/scripts/check_contrast.py`
+- `skills/frontend/app-ui-system/SKILL.md`
+- `skills/frontend/data-viz-ui/assets/colorblind_palettes.json`
+- `skills/frontend/data-viz-ui/references/dataviz_heuristics.md`
+- `skills/frontend/data-viz-ui/scripts/export_viz_helper.js`
+- *...and 26 more*
 
 ## God Nodes / Central Architectural Hubs
-1. **`tests/run-audit.cjs`** (Centrality Degree: 17) — Coordinates runtime verification across memory, tasks, hooks, and domain tools.
-2. **`scripts/validate_skills.py`** (Centrality Degree: 13) — Validates architectural rules across all 13 modular skills.
-3. **`scripts/validate.js`** (Centrality Degree: 8) — CI schema and token budget verification anchor.
-4. **`tasks/beads-tracker.cjs`** (Centrality Degree: 6) — Context-resilient task coordination DAG.
-
----
+- **`tests/run-audit.cjs`** (Centrality Degree: 27)
+- **`scripts/validate_skills.py`** (Centrality Degree: 23)
+- **`tasks/beads-tracker.cjs`** (Centrality Degree: 4)
+- **`hooks/pre-tool-guard.cjs`** (Centrality Degree: 3)
+- **`memory/memory-bank.cjs`** (Centrality Degree: 3)
+- **`hooks/hooks.json`** (Centrality Degree: 2)
 
 ## Suggested Graph Explorations
-* Query 1: *"How does `pre-tool-guard.cjs` intercept and block destructive bash commands before execution?"*
-* Query 2: *"What is the dependency chain between `inspect_biofile.py`, `stats_guard.py`, and `provenance_manifest.json` in computational biology pipelines?"*
+1. **Trace skills architecture validation:** `scripts/validate_skills.py` -> `skills/frontend/ui-visual-qa/SKILL.md` -> `skills/frontend/ui-visual-qa/scripts/visual_audit.mjs`
+2. **Trace biological data governance:** `rules/global-core.md` -> `skills/comp-bio/bio-orchestrator/scripts/inspect_biofile.py` -> `skills/comp-bio/bio-sequence-stats/scripts/stats_guard.py`
+3. **Trace 8-vector diff review:** `skills/core/diff-reviewer/scripts/review_diff.py` -> `tests/run-audit.cjs` -> `hooks/pre-tool-guard.cjs`

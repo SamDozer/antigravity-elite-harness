@@ -1,0 +1,12 @@
+@layer base {
+  :root {
+    --bg-canvas: 222 47% 6%;
+    --bg-surface: 222 42% 10%;
+    --bg-elevated: 220 38% 14%;
+    --fg-primary: 210 40% 96%;
+    --fg-muted: 215 20% 68%;
+    --accent-primary: 217 91% 60%;
+    --border-subtle: 217 32% 18%;
+    --radius-md: 0.5rem;
+  }
+}
