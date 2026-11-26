@@ -6,7 +6,7 @@
 [![Verification](https://img.shields.io/badge/Verification-100%25%20Passing-brightgreen.svg)](#-runtime-verification--eval-scores)
 [![Context Budget](https://img.shields.io/badge/Core%20Rule-%3C1k%20Tokens-success.svg)](rules/global-core.md)
 
-A production-grade autonomous engineering harness for Google Antigravity and AI coding workflows. It pairs an ultra-lean operational core (< 1,000 tokens) with a 4-layer progressive disclosure skill engine, cross-session memory bank, context-resilient Beads task DAG, and 3-tier security defense spanning fullstack applications and computational biology.
+A production-grade autonomous engineering harness for Google Antigravity and AI coding workflows. It pairs an ultra-lean operational core (< 1,000 tokens) with **26 modular 4-layer skills**, a cross-session TF-IDF memory bank, a context-resilient Beads task DAG, and 3-tier security defense spanning **fullstack/Electron apps**, **GUI-to-CLI automation**, **Scrapling web extraction**, and **computational biology**.
 
 ---
 
@@ -19,17 +19,21 @@ cd antigravity-elite-harness
 
 # 2. Install desired domain profile (full, frontend, or bio)
 # Linux / macOS:
-./install.sh --profile=full
+./install.sh --profile=frontend    # Core (9) + Frontend/Electron (8)
+./install.sh --profile=full        # Core (9) + Frontend/Electron (8) + Comp-Bio (9)
 
 # Windows PowerShell:
-.\install.ps1 -Profile full
+.\install.ps1 -Profile frontend    # Core + Frontend/Electron only
+.\install.ps1 -Profile full        # Everything (all 26 skills)
 
-# 3. Verify installation (runs schema audits, AST guards, and domain test suites)
+# 3. Verify installation (schema audits, BOM/portability gates, and 7 runtime suites)
 npm run verify
 ```
 
-*Need to preview without touching disk?* Run `./install.sh --dry-run` or `.\install.ps1 -DryRun`.  
-*Need to rollback?* Run `./install.sh --uninstall` or `.\install.ps1 -Uninstall`.
+**Installer Options:**
+- **Lean Context by Default:** Installers copy only `rules/global-core.md` (< 1k tokens). Pass `--all-rules` (`-AllRules`) to also install the optional rule pack.
+- **Preview / Rollback:** Run `./install.sh --dry-run` (`-DryRun`) to preview, or `./install.sh --uninstall` (`-Uninstall`) to restore your previous backup.
+- **Optional Web Scraping Runtime:** `pip install "scrapling[ai]"` enables `scrapling extract --ai-targeted` and `scrapling mcp` (`scrapling install --force` adds headless browser binaries).
 
 ---
 
@@ -106,36 +110,48 @@ Eliminates unplanned modifications and hallucinations by presenting clear trade-
 
 ## 🗂️ 26 Modular Skills Inventory (4-Layer Progressive Disclosure)
 
-Every skill maintains an operational contract (`SKILL.md` < 350 lines), deterministic CLI scripts (`scripts/`), domain cheat sheets (`references/`), and production starter templates (`assets/`).
+Every skill maintains a lean operational contract (`SKILL.md` ≤ 350 lines & ≤ 15 KB), deterministic CLI scripts (`scripts/`), domain cheat sheets (`references/`), and production starter templates (`assets/`).
 
-| Skill | Domain | Explicit Trigger Boundary | Included Tools / Assets |
-| :--- | :--- | :--- | :--- |
-| **`architect-planner`** | Core | **Use:** Designing features, specs, ADRs.<br/>**Do NOT use:** Direct code implementation or bugfixes. | `validate_plan.py`, spec template |
-| **`diff-reviewer`** | Core | **Use:** Pull requests, pre-commit diffs, code audits.<br/>**Do NOT use:** High-level architectural planning. | `review_diff.py` (8-vector AST reviewer) |
-| **`break-ai-fix-loops`** | Core | **Use:** Repeated patch cycles or failing real execution paths.<br/>**Do NOT use:** One-shot edits whose acceptance check passes. | `fingerprint.py` (SHA-256 failure digest) |
-| **`audit-agent-run-evidence`** | Core | **Use:** Verifying agent completion claims against real traces.<br/>**Do NOT use:** Designing future telemetry or running mutations. | `audit_evidence.py`, claim ledger template |
-| **`agent-harness-fault-injection`** | Core | **Use:** Testing sandbox, MCP timeout, and checkpoint recovery.<br/>**Do NOT use:** Live production targets or customer data. | `validate_fault_schedule.py`, fault matrix |
-| **`review-multi-agent-orchestration`** | Core | **Use:** Auditing swarm, supervisor, and parallel agent DAGs.<br/>**Do NOT use:** Single sequential tool calls without concurrency. | `check_orchestration_dag.py`, envelope schema |
-| **`cli-anything`** | Core | **Use:** Turning any GUI/desktop app into an agent-native Python CLI or discovering CLI-Hub tools.<br/>**Do NOT use:** Building standalone web UIs or Electron renderers from scratch. | `validate_harness.py`, `repl_skin.py`, `skill_generator.py` |
-| **`find-skills`** | Core | **Use:** Discovering and installing skills via `npx skills`, `skills.sh`, and `agenticskills.io`.<br/>**Do NOT use:** Auditing suspicious skill code (`skill-audit`) or authoring new skills. | `check_skill_source.py`, `skills_ecosystem.md` |
-| **`scrapling`** | Core | **Use:** Default web scraping, JS rendering, adaptive parsing, and spiders (`--ai-targeted`).<br/>**Do NOT use:** Authenticated visual UI flows (`browser` subagent) or bypassing CAPTCHAs. | `check_scrapling.py`, `examples/` |
-| **`app-ui-system`** | Frontend | **Use:** Web app UI, dashboards, layout components.<br/>**Do NOT use:** Static marketing landing pages or comp-bio. | `check_contrast.py`, `tokens.css` |
-| **`web-editorial-design`** | Frontend | **Use:** Editorial typography, marketing pages, blogs.<br/>**Do NOT use:** Dense data tables or desktop Electron renderers. | Responsive type scale presets |
-| **`frontend-interaction-states`** | Frontend | **Use:** Loading, empty, error, disabled component states.<br/>**Do NOT use:** Pure backend business logic. | State machine checklist |
-| **`data-viz-ui`** | Frontend | **Use:** Interactive charts, SVG dashboards, sparklines.<br/>**Do NOT use:** Matplotlib publication science figures. | 3:1 contrast color palette scales |
-| **`ui-visual-qa`** | Frontend | **Use:** Auditing CSS contrast, responsive layout bugs.<br/>**Do NOT use:** Unit testing pure business logic functions. | `visual_audit.mjs` (WCAG 2.2 AA validator) |
-| **`electron-development`** | Frontend | **Use:** Electron desktop apps, preload IPC, `.exe` packaging.<br/>**Do NOT use:** Web-only apps, mobile apps, or backend APIs. | `audit_electron_security.py`, `preload.template.ts` |
-| **`ghost-qa`** | Frontend | **Use:** Multi-viewport Playwright QA (`375px`/`768px`/`1440px`).<br/>**Do NOT use:** Unauthorized third-party production sites. | `check_responsive_css.py`, 8-trap matrix |
-| **`tailwind-design-system`** | Frontend | **Use:** Tailwind token architecture, CVA variants, dark mode.<br/>**Do NOT use:** Non-Tailwind native apps or backend services. | `audit_tailwind_tokens.py`, `tokens.tailwind.css` |
-| **`bio-orchestrator`** | Comp-Bio | **Use:** Multi-step bioinformatics pipelines, Snakemake.<br/>**Do NOT use:** Web frontend styling or marketing UI. | `inspect_biofile.py` (Binary magic parser) |
-| **`structural-bio-md`** | Comp-Bio | **Use:** PDB/mmCIF files, AlphaFold models, MD runs.<br/>**Do NOT use:** Plain sequence alignments without 3D structures. | `validate_pdb.py` (pLDDT & coordinate validator) |
-| **`bio-sequence-stats`** | Comp-Bio | **Use:** Differential expression, FDR, GWAS statistics.<br/>**Do NOT use:** Non-scientific business metric calculations. | `stats_guard.py` (FDR/Bonferroni corrector) |
-| **`hpc-containers-pipelines`** | Comp-Bio | **Use:** SLURM cluster submission, Apptainer/Singularity.<br/>**Do NOT use:** Standard local single-process shell scripts. | `validate_slurm.py`, `slurm_template.sh` |
-| **`scientific-figures`** | Comp-Bio | **Use:** Publication figures for Nature/Cell, vector plots.<br/>**Do NOT use:** Interactive web dashboard sparklines. | `pub_style.mplstyle` (300 DPI style sheet) |
-| **`bio-literature-grounding`** | Comp-Bio | **Use:** Verifying UniProt, PDB, Ensembl, PubMed IDs.<br/>**Do NOT use:** General web scraping or non-bio citations. | `verify_ids.py` (REST accession validator) |
-| **`biopython`** | Comp-Bio | **Use:** `Bio.SeqIO`, `AlignIO`, NCBI Entrez, FASTA/GenBank QC.<br/>**Do NOT use:** Single-cell AnnData clustering or non-bio code. | `seq_stats.py` (N50 & GC% calculator) |
-| **`scanpy`** | Comp-Bio | **Use:** Single-cell RNA-seq (`scRNA-seq`) on `.h5ad` AnnData.<br/>**Do NOT use:** Bulk RNA-seq without single-cell barcodes. | `qc_analysis.py`, `analysis_template.py` |
-| **`falsify`** | Comp-Bio | **Use:** Scientific hypothesis falsification & Bayesian Brier scoring.<br/>**Do NOT use:** Trivial single-lookup facts or boilerplate edits. | `score_ledger.py`, `thinking-ledger.md` |
+### Core Agent Engineering, Discovery & Scraping (9 Skills — Included in All Profiles)
+
+| Skill | Explicit Trigger Boundary | Included Tools / Assets |
+| :--- | :--- | :--- |
+| **`architect-planner`** | **Use:** Designing features, specs, ADRs.<br/>**Do NOT use:** Direct code implementation or bugfixes. | `validate_plan.py`, spec template |
+| **`diff-reviewer`** | **Use:** Pull requests, pre-commit diffs, code audits.<br/>**Do NOT use:** High-level architectural planning. | `review_diff.py` (8-vector AST reviewer) |
+| **`break-ai-fix-loops`** | **Use:** Repeated patch cycles or failing real execution paths.<br/>**Do NOT use:** One-shot edits whose acceptance check passes. | `fingerprint.py` (SHA-256 failure digest) |
+| **`audit-agent-run-evidence`** | **Use:** Verifying agent completion claims against real traces.<br/>**Do NOT use:** Designing future telemetry or running mutations. | `audit_evidence.py`, claim ledger template |
+| **`agent-harness-fault-injection`** | **Use:** Testing sandbox, MCP timeout, and checkpoint recovery.<br/>**Do NOT use:** Live production targets or customer data. | `validate_fault_schedule.py`, fault matrix |
+| **`review-multi-agent-orchestration`** | **Use:** Auditing swarm, supervisor, and parallel agent DAGs.<br/>**Do NOT use:** Single sequential tool calls without concurrency. | `check_orchestration_dag.py`, envelope schema |
+| **`cli-anything`** | **Use:** Turning any GUI/desktop app into an agent-native Python CLI or discovering CLI-Hub tools.<br/>**Do NOT use:** Building standalone web UIs or Electron renderers from scratch. | `validate_harness.py`, `repl_skin.py`, `skill_generator.py` |
+| **`find-skills`** | **Use:** Discovering and installing skills via `npx skills`, `skills.sh`, and `agenticskills.io`.<br/>**Do NOT use:** Auditing suspicious skill code (`skill-audit`) or authoring new skills. | `check_skill_source.py`, `skills_ecosystem.md` |
+| **`scrapling`** | **Use:** Default web scraping, JS rendering, adaptive parsing, and spiders (`--ai-targeted`).<br/>**Do NOT use:** Authenticated visual UI flows (`browser` subagent) or bypassing CAPTCHAs. | `check_scrapling.py`, `examples/` |
+
+### Frontend, Electron Desktop & Browser QA (8 Skills — `--profile=frontend` / `full`)
+
+| Skill | Explicit Trigger Boundary | Included Tools / Assets |
+| :--- | :--- | :--- |
+| **`app-ui-system`** | **Use:** Web app UI, dashboards, layout components.<br/>**Do NOT use:** Static marketing landing pages or comp-bio. | `check_contrast.py`, `tokens.css` |
+| **`web-editorial-design`** | **Use:** Editorial typography, marketing pages, blogs.<br/>**Do NOT use:** Dense data tables or desktop Electron renderers. | `audit_typography.py`, responsive type presets |
+| **`frontend-interaction-states`** | **Use:** Loading, empty, error, disabled component states.<br/>**Do NOT use:** Pure backend business logic. | `check_state_coverage.py`, state checklist |
+| **`data-viz-ui`** | **Use:** Interactive charts, SVG dashboards, sparklines.<br/>**Do NOT use:** Matplotlib publication science figures. | `export_viz_helper.js`, 3:1 contrast palettes |
+| **`ui-visual-qa`** | **Use:** Auditing CSS contrast, responsive layout bugs.<br/>**Do NOT use:** Unit testing pure business logic functions. | `visual_audit.mjs` (WCAG 2.2 AA validator) |
+| **`electron-development`** | **Use:** Electron desktop apps, preload IPC, `.exe` packaging.<br/>**Do NOT use:** Web-only apps, mobile apps, or backend APIs. | `audit_electron_security.py`, `preload.template.ts` |
+| **`ghost-qa`** | **Use:** Multi-viewport Playwright QA (`375px`/`768px`/`1440px`).<br/>**Do NOT use:** Unauthorized third-party production sites. | `check_responsive_css.py`, 8-trap matrix |
+| **`tailwind-design-system`** | **Use:** Tailwind token architecture, CVA variants, dark mode.<br/>**Do NOT use:** Non-Tailwind native apps or backend services. | `audit_tailwind_tokens.py`, `tokens.tailwind.css` |
+
+### Computational Biology & Scientific Reasoning (9 Skills — `--profile=bio` / `full`)
+
+| Skill | Explicit Trigger Boundary | Included Tools / Assets |
+| :--- | :--- | :--- |
+| **`bio-orchestrator`** | **Use:** Multi-step bioinformatics pipelines, Snakemake.<br/>**Do NOT use:** Web frontend styling or marketing UI. | `inspect_biofile.py` (Binary magic parser) |
+| **`structural-bio-md`** | **Use:** PDB/mmCIF files, AlphaFold models, MD runs.<br/>**Do NOT use:** Plain sequence alignments without 3D structures. | `validate_pdb.py` (pLDDT & coordinate validator) |
+| **`bio-sequence-stats`** | **Use:** Differential expression, FDR, GWAS statistics.<br/>**Do NOT use:** Non-scientific business metric calculations. | `stats_guard.py` (FDR/Bonferroni corrector) |
+| **`hpc-containers-pipelines`** | **Use:** SLURM cluster submission, Apptainer/Singularity.<br/>**Do NOT use:** Standard local single-process shell scripts. | `validate_slurm.py`, `slurm_template.sh` |
+| **`scientific-figures`** | **Use:** Publication figures for Nature/Cell, vector plots.<br/>**Do NOT use:** Interactive web dashboard sparklines. | `check_figure.py`, `pub_style.mplstyle` |
+| **`bio-literature-grounding`** | **Use:** Verifying UniProt, PDB, Ensembl, PubMed IDs.<br/>**Do NOT use:** General web scraping or non-bio citations. | `verify_ids.py` (REST accession validator) |
+| **`biopython`** | **Use:** `Bio.SeqIO`, `AlignIO`, NCBI Entrez, FASTA/GenBank QC.<br/>**Do NOT use:** Single-cell AnnData clustering or non-bio code. | `seq_stats.py` (N50 & GC% calculator) |
+| **`scanpy`** | **Use:** Single-cell RNA-seq (`scRNA-seq`) on `.h5ad` AnnData.<br/>**Do NOT use:** Bulk RNA-seq without single-cell barcodes. | `qc_analysis.py`, `analysis_template.py` |
+| **`falsify`** | **Use:** Scientific hypothesis falsification & Bayesian Brier scoring.<br/>**Do NOT use:** Trivial single-lookup facts or boilerplate edits. | `score_ledger.py`, `thinking-ledger.md` |
 
 ---
 
@@ -145,10 +161,10 @@ We test our harness with the same rigor we expect from agent-generated code.
 
 | Benchmark / Test Suite | Scope | Target | Result | Status |
 | :--- | :--- | :---: | :---: | :---: |
-| **`scripts/validate.js`** | Manifest schema, token budgets, supply chain checks | 100% | **15/15 Passed** | ✅ Pass |
-| **`tests/run-audit.cjs`** | Memory bank, Beads DAG, AST security, domain scripts | 100% | **7/7 Suites Passed** | ✅ Pass |
-| **`scripts/validate_skills.py`** | 4-layer structure, lines < 350, negative trigger bounds | 100% | **26/26 Skills Passed** | ✅ Pass |
-| **Golden Prompt Evals** | Negative trigger non-firing, TDD compliance, secret denial | $\ge 95\%$ | **100% Pass Rate** | ✅ Pass |
+| **`scripts/validate.js`** | Manifest schema, rule budgets, BOM-free JSONs, portability, supply chain | 100% | **17/17 Passed** | ✅ Pass |
+| **`tests/run-audit.cjs`** | Memory bank, Beads DAG, AST security, trace analyzer, all domain CLIs | 100% | **7/7 Suites Passed** | ✅ Pass |
+| **`scripts/validate_skills.py`** | 4-layer structure, lines ≤ 350, negative trigger bounds | 100% | **26/26 Skills Passed** | ✅ Pass |
+| **Golden Prompt Evals** | Negative trigger non-firing, TDD compliance, secret denial | ≥ 95% | **100% Pass Rate** | ✅ Pass |
 
 ---
 
