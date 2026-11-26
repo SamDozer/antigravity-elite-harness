@@ -1,8 +1,8 @@
 {
   "project": "antigravity-elite-harness",
-  "timestamp": "2026-11-23T02:41:55.690Z",
-  "total_nodes": 174,
-  "total_edges": 62,
+  "timestamp": "2026-11-26T17:28:39.809Z",
+  "total_nodes": 219,
+  "total_edges": 64,
   "communities": [
     "Quality & CI/CD",
     "Observability & Rules",
@@ -18,11 +18,11 @@
   "god_nodes": [
     {
       "id": "tests/run-audit.cjs",
-      "degree": 27
+      "degree": 28
     },
     {
       "id": "scripts/validate_skills.py",
-      "degree": 23
+      "degree": 24
     },
     {
       "id": "tasks/beads-tracker.cjs",
@@ -1259,6 +1259,321 @@
       "community": "Skills: Frontend",
       "path": "skills/frontend/tailwind-design-system/SKILL.md",
       "size": 15
+    },
+    {
+      "id": "skills/comp-bio/bio-literature-grounding/scripts/__pycache__/verify_ids.cpython-314.pyc",
+      "label": "verify_ids.cpython-314.pyc",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/bio-literature-grounding/scripts/__pycache__/verify_ids.cpython-314.pyc",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/bio-sequence-stats/assets/__pycache__/diff_exp_template.cpython-314.pyc",
+      "label": "diff_exp_template.cpython-314.pyc",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/bio-sequence-stats/assets/__pycache__/diff_exp_template.cpython-314.pyc",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/bio-sequence-stats/scripts/__pycache__/stats_guard.cpython-314.pyc",
+      "label": "stats_guard.cpython-314.pyc",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/bio-sequence-stats/scripts/__pycache__/stats_guard.cpython-314.pyc",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/biopython/assets/__pycache__/entrez_pipeline.template.cpython-314.pyc",
+      "label": "entrez_pipeline.template.cpython-314.pyc",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/biopython/assets/__pycache__/entrez_pipeline.template.cpython-314.pyc",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/biopython/scripts/__pycache__/seq_stats.cpython-314.pyc",
+      "label": "seq_stats.cpython-314.pyc",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/biopython/scripts/__pycache__/seq_stats.cpython-314.pyc",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/falsify/scripts/__pycache__/score_ledger.cpython-314.pyc",
+      "label": "score_ledger.cpython-314.pyc",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/falsify/scripts/__pycache__/score_ledger.cpython-314.pyc",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/hpc-containers-pipelines/scripts/__pycache__/validate_slurm.cpython-314.pyc",
+      "label": "validate_slurm.cpython-314.pyc",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/hpc-containers-pipelines/scripts/__pycache__/validate_slurm.cpython-314.pyc",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/scanpy/assets/__pycache__/analysis_template.cpython-314.pyc",
+      "label": "analysis_template.cpython-314.pyc",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/scanpy/assets/__pycache__/analysis_template.cpython-314.pyc",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/scanpy/scripts/__pycache__/qc_analysis.cpython-314.pyc",
+      "label": "qc_analysis.cpython-314.pyc",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/scanpy/scripts/__pycache__/qc_analysis.cpython-314.pyc",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/scientific-figures/scripts/__pycache__/check_figure.cpython-314.pyc",
+      "label": "check_figure.cpython-314.pyc",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/scientific-figures/scripts/__pycache__/check_figure.cpython-314.pyc",
+      "size": 10
+    },
+    {
+      "id": "skills/comp-bio/structural-bio-md/scripts/__pycache__/validate_pdb.cpython-314.pyc",
+      "label": "validate_pdb.cpython-314.pyc",
+      "community": "Skills: CompBio",
+      "path": "skills/comp-bio/structural-bio-md/scripts/__pycache__/validate_pdb.cpython-314.pyc",
+      "size": 10
+    },
+    {
+      "id": "skills/core/agent-harness-fault-injection/scripts/__pycache__/validate_fault_schedule.cpython-314.pyc",
+      "label": "validate_fault_schedule.cpython-314.pyc",
+      "community": "Skills: Core",
+      "path": "skills/core/agent-harness-fault-injection/scripts/__pycache__/validate_fault_schedule.cpython-314.pyc",
+      "size": 10
+    },
+    {
+      "id": "skills/core/architect-planner/scripts/__pycache__/validate_plan.cpython-314.pyc",
+      "label": "validate_plan.cpython-314.pyc",
+      "community": "Skills: Core",
+      "path": "skills/core/architect-planner/scripts/__pycache__/validate_plan.cpython-314.pyc",
+      "size": 10
+    },
+    {
+      "id": "skills/core/audit-agent-run-evidence/scripts/__pycache__/audit_evidence.cpython-314.pyc",
+      "label": "audit_evidence.cpython-314.pyc",
+      "community": "Skills: Core",
+      "path": "skills/core/audit-agent-run-evidence/scripts/__pycache__/audit_evidence.cpython-314.pyc",
+      "size": 10
+    },
+    {
+      "id": "skills/core/break-ai-fix-loops/scripts/__pycache__/fingerprint.cpython-314.pyc",
+      "label": "fingerprint.cpython-314.pyc",
+      "community": "Skills: Core",
+      "path": "skills/core/break-ai-fix-loops/scripts/__pycache__/fingerprint.cpython-314.pyc",
+      "size": 10
+    },
+    {
+      "id": "skills/core/break-ai-fix-loops/scripts/__pycache__/test_fingerprint.cpython-314.pyc",
+      "label": "test_fingerprint.cpython-314.pyc",
+      "community": "Skills: Core",
+      "path": "skills/core/break-ai-fix-loops/scripts/__pycache__/test_fingerprint.cpython-314.pyc",
+      "size": 10
+    },
+    {
+      "id": "skills/core/cli-anything/assets/SKILL.md.template",
+      "label": "SKILL.md.template",
+      "community": "Skills: Core",
+      "path": "skills/core/cli-anything/assets/SKILL.md.template",
+      "size": 10
+    },
+    {
+      "id": "skills/core/cli-anything/references/cli-hub.md",
+      "label": "cli-hub.md",
+      "community": "Skills: Core",
+      "path": "skills/core/cli-anything/references/cli-hub.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/cli-anything/references/commands/cli-anything.md",
+      "label": "cli-anything.md",
+      "community": "Skills: Core",
+      "path": "skills/core/cli-anything/references/commands/cli-anything.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/cli-anything/references/commands/list.md",
+      "label": "list.md",
+      "community": "Skills: Core",
+      "path": "skills/core/cli-anything/references/commands/list.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/cli-anything/references/commands/refine.md",
+      "label": "refine.md",
+      "community": "Skills: Core",
+      "path": "skills/core/cli-anything/references/commands/refine.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/cli-anything/references/commands/test.md",
+      "label": "test.md",
+      "community": "Skills: Core",
+      "path": "skills/core/cli-anything/references/commands/test.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/cli-anything/references/commands/validate.md",
+      "label": "validate.md",
+      "community": "Skills: Core",
+      "path": "skills/core/cli-anything/references/commands/validate.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/cli-anything/references/guides/auto-save-dry-run.md",
+      "label": "auto-save-dry-run.md",
+      "community": "Skills: Core",
+      "path": "skills/core/cli-anything/references/guides/auto-save-dry-run.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/cli-anything/references/guides/filter-translation.md",
+      "label": "filter-translation.md",
+      "community": "Skills: Core",
+      "path": "skills/core/cli-anything/references/guides/filter-translation.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/cli-anything/references/guides/mcp-backend.md",
+      "label": "mcp-backend.md",
+      "community": "Skills: Core",
+      "path": "skills/core/cli-anything/references/guides/mcp-backend.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/cli-anything/references/guides/preview-methodology.md",
+      "label": "preview-methodology.md",
+      "community": "Skills: Core",
+      "path": "skills/core/cli-anything/references/guides/preview-methodology.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/cli-anything/references/guides/pypi-publishing.md",
+      "label": "pypi-publishing.md",
+      "community": "Skills: Core",
+      "path": "skills/core/cli-anything/references/guides/pypi-publishing.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/cli-anything/references/guides/session-locking.md",
+      "label": "session-locking.md",
+      "community": "Skills: Core",
+      "path": "skills/core/cli-anything/references/guides/session-locking.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/cli-anything/references/guides/skill-generation.md",
+      "label": "skill-generation.md",
+      "community": "Skills: Core",
+      "path": "skills/core/cli-anything/references/guides/skill-generation.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/cli-anything/references/guides/timecode-precision.md",
+      "label": "timecode-precision.md",
+      "community": "Skills: Core",
+      "path": "skills/core/cli-anything/references/guides/timecode-precision.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/cli-anything/references/HARNESS.md",
+      "label": "HARNESS.md",
+      "community": "Skills: Core",
+      "path": "skills/core/cli-anything/references/HARNESS.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/cli-anything/references/PREVIEW_PROTOCOL.md",
+      "label": "PREVIEW_PROTOCOL.md",
+      "community": "Skills: Core",
+      "path": "skills/core/cli-anything/references/PREVIEW_PROTOCOL.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/cli-anything/scripts/preview_bundle.py",
+      "label": "preview_bundle.py",
+      "community": "Skills: Core",
+      "path": "skills/core/cli-anything/scripts/preview_bundle.py",
+      "size": 10
+    },
+    {
+      "id": "skills/core/cli-anything/scripts/repl_skin.py",
+      "label": "repl_skin.py",
+      "community": "Skills: Core",
+      "path": "skills/core/cli-anything/scripts/repl_skin.py",
+      "size": 10
+    },
+    {
+      "id": "skills/core/cli-anything/scripts/skill_generator.py",
+      "label": "skill_generator.py",
+      "community": "Skills: Core",
+      "path": "skills/core/cli-anything/scripts/skill_generator.py",
+      "size": 10
+    },
+    {
+      "id": "skills/core/cli-anything/scripts/validate_harness.py",
+      "label": "validate_harness.py",
+      "community": "Skills: Core",
+      "path": "skills/core/cli-anything/scripts/validate_harness.py",
+      "size": 10
+    },
+    {
+      "id": "skills/core/cli-anything/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: Core",
+      "path": "skills/core/cli-anything/SKILL.md",
+      "size": 15
+    },
+    {
+      "id": "skills/core/review-multi-agent-orchestration/scripts/__pycache__/check_orchestration_dag.cpython-314.pyc",
+      "label": "check_orchestration_dag.cpython-314.pyc",
+      "community": "Skills: Core",
+      "path": "skills/core/review-multi-agent-orchestration/scripts/__pycache__/check_orchestration_dag.cpython-314.pyc",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/app-ui-system/scripts/__pycache__/check_contrast.cpython-314.pyc",
+      "label": "check_contrast.cpython-314.pyc",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/app-ui-system/scripts/__pycache__/check_contrast.cpython-314.pyc",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/electron-development/scripts/__pycache__/audit_electron_security.cpython-314.pyc",
+      "label": "audit_electron_security.cpython-314.pyc",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/electron-development/scripts/__pycache__/audit_electron_security.cpython-314.pyc",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/frontend-interaction-states/scripts/__pycache__/check_state_coverage.cpython-314.pyc",
+      "label": "check_state_coverage.cpython-314.pyc",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/frontend-interaction-states/scripts/__pycache__/check_state_coverage.cpython-314.pyc",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/ghost-qa/scripts/__pycache__/check_responsive_css.cpython-314.pyc",
+      "label": "check_responsive_css.cpython-314.pyc",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/ghost-qa/scripts/__pycache__/check_responsive_css.cpython-314.pyc",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/tailwind-design-system/scripts/__pycache__/audit_tailwind_tokens.cpython-314.pyc",
+      "label": "audit_tailwind_tokens.cpython-314.pyc",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/tailwind-design-system/scripts/__pycache__/audit_tailwind_tokens.cpython-314.pyc",
+      "size": 10
+    },
+    {
+      "id": "skills/frontend/web-editorial-design/scripts/__pycache__/audit_typography.cpython-314.pyc",
+      "label": "audit_typography.cpython-314.pyc",
+      "community": "Skills: Frontend",
+      "path": "skills/frontend/web-editorial-design/scripts/__pycache__/audit_typography.cpython-314.pyc",
+      "size": 10
     }
   ],
   "edges": [
@@ -1570,6 +1885,16 @@
     {
       "source": "tests/run-audit.cjs",
       "target": "skills/frontend/tailwind-design-system/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/core/cli-anything/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/core/cli-anything/SKILL.md",
       "label": "audits"
     }
   ]

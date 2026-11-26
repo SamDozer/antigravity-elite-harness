@@ -217,6 +217,19 @@ runCheck('AAS Skills: Loop Fingerprint, Evidence Audit, Fault Schedule, Orchestr
   if (!falsifyOut.includes('Posterior: 0.7500') || !falsifyOut.includes('Brier Score: 0.0625')) {
     throw new Error(`score_ledger.py unexpected output: ${falsifyOut}`);
   }
+
+  // 7h. cli-anything harness validator & skill_generator syntax/import check
+  const cliValScript = path.join(repoRoot, 'skills', 'core', 'cli-anything', 'scripts', 'validate_harness.py');
+  const tmpHarness = path.join(__dirname, 'tmp-cli-harness');
+  if (fs.existsSync(tmpHarness)) fs.rmSync(tmpHarness, { recursive: true, force: true });
+  const pkgDir = path.join(tmpHarness, 'cli_anything', 'demoapp');
+  fs.mkdirSync(path.join(pkgDir, 'tests'), { recursive: true });
+  fs.writeFileSync(path.join(tmpHarness, 'setup.py'), 'from setuptools import setup, find_namespace_packages\nsetup(packages=find_namespace_packages(include=["cli_anything.*"]))\n');
+  fs.writeFileSync(path.join(pkgDir, 'demoapp_cli.py'), '# click --json\n');
+  fs.writeFileSync(path.join(pkgDir, 'tests', 'TEST.md'), '# TEST\n');
+  const cliValOut = execSync(`${pythonCmd} "${cliValScript}" --path "${tmpHarness}"`, { encoding: 'utf8' });
+  fs.rmSync(tmpHarness, { recursive: true, force: true });
+  if (!cliValOut.includes('[PASS]')) throw new Error(`validate_harness.py failed: ${cliValOut}`);
 });
 
 console.log('\n====================================================');

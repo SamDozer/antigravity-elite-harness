@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0] - 2026-11-26
+### Added
+- **`cli-anything` 4-Layer Core Skill (from `HKUDS/CLI-Anything`):** Full 7-phase GUI-to-CLI harness methodology (`HARNESS.md`, 5 command modes, 8 implementation guides, `cli-hub.md` discovery), bundled Python stdlib tools (`repl_skin.py`, `preview_bundle.py`, `skill_generator.py`, `validate_harness.py`), and `SKILL.md.template` asset.
+- **Verification Coverage:** Added `validate_harness.py` runtime check to `tests/run-audit.cjs` (24/24 modular skills passing 4-layer CI gates).
+
 ## [1.1.0] - 2026-11-23
 ### Added
 - **10 Audited Skills from `sickn33/agentic-awesome-skills` (Upgraded to 4-Layer Architecture):**

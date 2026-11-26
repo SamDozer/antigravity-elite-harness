@@ -1,10 +1,10 @@
 # Knowledge Graph Architectural Report: Antigravity Elite Harness
 
-Generated at: 2026-11-23T02:41:55.690Z
+Generated at: 2026-11-26T17:28:39.809Z
 
 ## Executive Summary
-- **Total Graph Nodes:** 174
-- **Total Edges:** 62
+- **Total Graph Nodes:** 219
+- **Total Edges:** 64
 - **Detected Functional Communities:** 10
 
 ## Functional Communities
@@ -61,7 +61,7 @@ Generated at: 2026-11-23T02:41:55.690Z
 - `templates/science-provenance/SCIENTIFIC_PROVENANCE_GUIDE.md`
 - `templates/science-provenance/Snakefile.template`
 
-### Skills: CompBio (49 components)
+### Skills: CompBio (60 components)
 - `skills/comp-bio/bio-literature-grounding/assets/verified_identifiers_cache.json`
 - `skills/comp-bio/bio-literature-grounding/references/database_apis.md`
 - `skills/comp-bio/bio-literature-grounding/scripts/verify_ids.py`
@@ -70,9 +70,9 @@ Generated at: 2026-11-23T02:41:55.690Z
 - `skills/comp-bio/bio-orchestrator/references/bio_data_standards.md`
 - `skills/comp-bio/bio-orchestrator/scripts/inspect_biofile.py`
 - `skills/comp-bio/bio-orchestrator/scripts/__pycache__/inspect_biofile.cpython-314.pyc`
-- *...and 41 more*
+- *...and 52 more*
 
-### Skills: Core (26 components)
+### Skills: Core (54 components)
 - `skills/core/architect-planner/assets/implementation_plan.template.md`
 - `skills/core/architect-planner/references/plan_rubric.md`
 - `skills/core/architect-planner/scripts/validate_plan.py`
@@ -81,9 +81,9 @@ Generated at: 2026-11-23T02:41:55.690Z
 - `skills/core/diff-reviewer/references/review_vectors.md`
 - `skills/core/diff-reviewer/scripts/review_diff.py`
 - `skills/core/diff-reviewer/scripts/__pycache__/review_diff.cpython-314.pyc`
-- *...and 18 more*
+- *...and 46 more*
 
-### Skills: Frontend (34 components)
+### Skills: Frontend (40 components)
 - `skills/frontend/app-ui-system/assets/tokens.css`
 - `skills/frontend/app-ui-system/references/font-pairings.md`
 - `skills/frontend/app-ui-system/references/palettes.md`
@@ -92,11 +92,11 @@ Generated at: 2026-11-23T02:41:55.690Z
 - `skills/frontend/data-viz-ui/assets/colorblind_palettes.json`
 - `skills/frontend/data-viz-ui/references/dataviz_heuristics.md`
 - `skills/frontend/data-viz-ui/scripts/export_viz_helper.js`
-- *...and 26 more*
+- *...and 32 more*
 
 ## God Nodes / Central Architectural Hubs
-- **`tests/run-audit.cjs`** (Centrality Degree: 27)
-- **`scripts/validate_skills.py`** (Centrality Degree: 23)
+- **`tests/run-audit.cjs`** (Centrality Degree: 28)
+- **`scripts/validate_skills.py`** (Centrality Degree: 24)
 - **`tasks/beads-tracker.cjs`** (Centrality Degree: 4)
 - **`hooks/pre-tool-guard.cjs`** (Centrality Degree: 3)
 - **`memory/memory-bank.cjs`** (Centrality Degree: 3)
