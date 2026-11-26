@@ -230,6 +230,11 @@ runCheck('AAS Skills: Loop Fingerprint, Evidence Audit, Fault Schedule, Orchestr
   const cliValOut = execSync(`${pythonCmd} "${cliValScript}" --path "${tmpHarness}"`, { encoding: 'utf8' });
   fs.rmSync(tmpHarness, { recursive: true, force: true });
   if (!cliValOut.includes('[PASS]')) throw new Error(`validate_harness.py failed: ${cliValOut}`);
+
+  // 7i. find-skills package spec validator
+  const findSpecScript = path.join(repoRoot, 'skills', 'core', 'find-skills', 'scripts', 'check_skill_source.py');
+  const findSpecOut = execSync(`${pythonCmd} "${findSpecScript}" --spec "vercel-labs/skills@find-skills"`, { encoding: 'utf8' });
+  if (!findSpecOut.includes('[PASS]')) throw new Error(`check_skill_source.py failed: ${findSpecOut}`);
 });
 
 console.log('\n====================================================');

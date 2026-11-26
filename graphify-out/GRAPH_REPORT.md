@@ -1,10 +1,10 @@
 # Knowledge Graph Architectural Report: Antigravity Elite Harness
 
-Generated at: 2026-11-26T17:28:39.809Z
+Generated at: 2026-11-26T17:34:35.849Z
 
 ## Executive Summary
-- **Total Graph Nodes:** 219
-- **Total Edges:** 64
+- **Total Graph Nodes:** 223
+- **Total Edges:** 66
 - **Detected Functional Communities:** 10
 
 ## Functional Communities
@@ -72,7 +72,7 @@ Generated at: 2026-11-26T17:28:39.809Z
 - `skills/comp-bio/bio-orchestrator/scripts/__pycache__/inspect_biofile.cpython-314.pyc`
 - *...and 52 more*
 
-### Skills: Core (54 components)
+### Skills: Core (58 components)
 - `skills/core/architect-planner/assets/implementation_plan.template.md`
 - `skills/core/architect-planner/references/plan_rubric.md`
 - `skills/core/architect-planner/scripts/validate_plan.py`
@@ -81,7 +81,7 @@ Generated at: 2026-11-26T17:28:39.809Z
 - `skills/core/diff-reviewer/references/review_vectors.md`
 - `skills/core/diff-reviewer/scripts/review_diff.py`
 - `skills/core/diff-reviewer/scripts/__pycache__/review_diff.cpython-314.pyc`
-- *...and 46 more*
+- *...and 50 more*
 
 ### Skills: Frontend (40 components)
 - `skills/frontend/app-ui-system/assets/tokens.css`
@@ -95,8 +95,8 @@ Generated at: 2026-11-26T17:28:39.809Z
 - *...and 32 more*
 
 ## God Nodes / Central Architectural Hubs
-- **`tests/run-audit.cjs`** (Centrality Degree: 28)
-- **`scripts/validate_skills.py`** (Centrality Degree: 24)
+- **`tests/run-audit.cjs`** (Centrality Degree: 29)
+- **`scripts/validate_skills.py`** (Centrality Degree: 25)
 - **`tasks/beads-tracker.cjs`** (Centrality Degree: 4)
 - **`hooks/pre-tool-guard.cjs`** (Centrality Degree: 3)
 - **`memory/memory-bank.cjs`** (Centrality Degree: 3)

@@ -1,8 +1,8 @@
 {
   "project": "antigravity-elite-harness",
-  "timestamp": "2026-11-26T17:28:39.809Z",
-  "total_nodes": 219,
-  "total_edges": 64,
+  "timestamp": "2026-11-26T17:34:35.849Z",
+  "total_nodes": 223,
+  "total_edges": 66,
   "communities": [
     "Quality & CI/CD",
     "Observability & Rules",
@@ -18,11 +18,11 @@
   "god_nodes": [
     {
       "id": "tests/run-audit.cjs",
-      "degree": 28
+      "degree": 29
     },
     {
       "id": "scripts/validate_skills.py",
-      "degree": 24
+      "degree": 25
     },
     {
       "id": "tasks/beads-tracker.cjs",
@@ -1574,6 +1574,34 @@
       "community": "Skills: Frontend",
       "path": "skills/frontend/web-editorial-design/scripts/__pycache__/audit_typography.cpython-314.pyc",
       "size": 10
+    },
+    {
+      "id": "skills/core/find-skills/assets/install_checklist.md",
+      "label": "install_checklist.md",
+      "community": "Skills: Core",
+      "path": "skills/core/find-skills/assets/install_checklist.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/find-skills/references/skills_ecosystem.md",
+      "label": "skills_ecosystem.md",
+      "community": "Skills: Core",
+      "path": "skills/core/find-skills/references/skills_ecosystem.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/find-skills/scripts/check_skill_source.py",
+      "label": "check_skill_source.py",
+      "community": "Skills: Core",
+      "path": "skills/core/find-skills/scripts/check_skill_source.py",
+      "size": 10
+    },
+    {
+      "id": "skills/core/find-skills/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: Core",
+      "path": "skills/core/find-skills/SKILL.md",
+      "size": 15
     }
   ],
   "edges": [
@@ -1895,6 +1923,16 @@
     {
       "source": "tests/run-audit.cjs",
       "target": "skills/core/cli-anything/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/core/find-skills/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/core/find-skills/SKILL.md",
       "label": "audits"
     }
   ]

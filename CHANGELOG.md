@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0] - 2026-11-26
+### Added
+- **`find-skills` 4-Layer Core Skill (from `vercel-labs/skills`):** Integrates `npx skills`, `skills.sh`, and `agenticskills.io` discovery with `scripts/check_skill_source.py` slug validation, `references/skills_ecosystem.md`, and `assets/install_checklist.md` paired with `skill-audit`.
+- **Verification Coverage:** Added `check_skill_source.py` check to `tests/run-audit.cjs` (25/25 modular skills passing 4-layer CI gates).
+
 ## [1.2.0] - 2026-11-26
 ### Added
 - **`cli-anything` 4-Layer Core Skill (from `HKUDS/CLI-Anything`):** Full 7-phase GUI-to-CLI harness methodology (`HARNESS.md`, 5 command modes, 8 implementation guides, `cli-hub.md` discovery), bundled Python stdlib tools (`repl_skin.py`, `preview_bundle.py`, `skill_generator.py`, `validate_harness.py`), and `SKILL.md.template` asset.
