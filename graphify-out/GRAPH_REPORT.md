@@ -1,9 +1,9 @@
 # Knowledge Graph Architectural Report: Antigravity Elite Harness
 
-Generated at: 2026-11-26T17:41:15.429Z
+Generated at: 2026-11-26T18:08:03.475Z
 
 ## Executive Summary
-- **Total Graph Nodes:** 248
+- **Total Graph Nodes:** 250
 - **Total Edges:** 68
 - **Detected Functional Communities:** 10
 
@@ -72,7 +72,7 @@ Generated at: 2026-11-26T17:41:15.429Z
 - `skills/comp-bio/bio-orchestrator/scripts/__pycache__/inspect_biofile.cpython-314.pyc`
 - *...and 52 more*
 
-### Skills: Core (83 components)
+### Skills: Core (85 components)
 - `skills/core/architect-planner/assets/implementation_plan.template.md`
 - `skills/core/architect-planner/references/plan_rubric.md`
 - `skills/core/architect-planner/scripts/validate_plan.py`
@@ -81,7 +81,7 @@ Generated at: 2026-11-26T17:41:15.429Z
 - `skills/core/diff-reviewer/references/review_vectors.md`
 - `skills/core/diff-reviewer/scripts/review_diff.py`
 - `skills/core/diff-reviewer/scripts/__pycache__/review_diff.cpython-314.pyc`
-- *...and 75 more*
+- *...and 77 more*
 
 ### Skills: Frontend (40 components)
 - `skills/frontend/app-ui-system/assets/tokens.css`

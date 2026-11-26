@@ -22,17 +22,20 @@ Review pull requests, commits, and working tree diffs with adversarial rigor.
    - *Portability:* Hardcoded user paths (`/home/user`, `C:\Users\...`) and unpinned environment dependencies.
 
 ## Workflow
-1. Extract the active diff:
+1. Inspect full working tree state and extract the active diff:
    ```bash
-   git diff HEAD~1 > patch.diff
+   git status
+   git diff HEAD > patch.diff
    ```
+   - Read **every untracked file** listed in `git status` (`git diff` omits newly created files).
+   - If the session underwent **context compaction**, re-run this audit from the raw `git diff` rather than trusting compacted summaries.
 2. Run automated diff static analysis:
    ```bash
    python skills/core/diff-reviewer/scripts/review_diff.py --diff patch.diff --bio
    ```
 3. Consult the detailed vector definitions in `references/review_vectors.md`.
-4. Synthesize the findings into `assets/review_report.template.md` with an unambiguous verdict (`APPROVED`, `APPROVED WITH WARNINGS`, or `REJECTED`).
+4. Synthesize the findings into `assets/review_report.template.md` with an unambiguous verdict (`APPROVED`, `APPROVED WITH WARNINGS`, or `REJECTED`) and an explicit **`Could not verify`** section.
 
 ## Hard Constraints
-- Ground every criticism in explicit lines from the actual git diff.
-- Never certify a PR without checking at least one neighboring callsite for ripple regressions.
+- Ground every criticism in explicit lines from the actual git diff or untracked files.
+- Never certify a PR without checking **at least one neighboring callsite** for ripple regressions and naming **how a real user reaches the verified path**.

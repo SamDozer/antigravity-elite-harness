@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.0] - 2026-11-26
+### Added & Improved
+- **Diff-Sized Task Routing (`rules/global-core.md`):** Added `Spike`, `Bounded` (≤ 3 named files), and `Architectural` (> 3 files or unnamed files) routing gates.
+- **Adversarial Fresh-Context Plan Red-Teaming (`architect-planner`):** Added `references/critical_plan_review.md` and `assets/plan-template.html` (interactive HTML plan review layout).
+- **Untracked-File & Post-Compaction Diff Audit (`diff-reviewer`):** Enforces inspecting untracked `git status` files, re-auditing from raw `git diff` after compaction, verifying user reachability, and reporting `Could not verify`.
+- **Worktree-Aware Local Git Hook (`templates/git/pre-commit`):** Blocks commits when `.git/workflow-test-cmd` fails, including inside linked git worktrees.
+
 ## [1.4.0] - 2026-11-26
 ### Added
 - **`scrapling` 4-Layer Core Skill (from `D4Vinci/Scrapling`):** Default web scraping framework with `--ai-targeted` prompt-injection protection, `check_scrapling.py` verifier, 18 domain references (`fetching/`, `parsing/`, `spiders/`), and Python starter examples.

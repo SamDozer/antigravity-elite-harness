@@ -26,19 +26,19 @@ Decompose ambitious system requirements into robust, minimal, and dependency-map
 - Keep data structures aligned with platform-native conventions (avoid premature wrappers or speculative abstractions).
 
 ### 3. Task Decomposition (Beads DAG)
-- Formulate tasks using the starter template at `assets/implementation_plan.template.md`.
+- Formulate tasks using `assets/implementation_plan.template.md` (or `assets/plan-template.html` when an interactive HTML artifact review is helpful).
 - Ensure each task represents 2 to 15 minutes of developer effort.
 - Every task MUST contain:
   1. Target file paths.
   2. Input contracts and expected output behavior.
   3. Precise, executable verification commands (e.g. `npm test`, `pytest tests/test_core.py`).
 
-### 4. Deterministic Plan Validation
+### 4. Deterministic Plan Validation & Adversarial Red-Teaming
 - Run the plan validation script before handing off to developers:
   ```bash
   python skills/core/architect-planner/scripts/validate_plan.py --plan implementation_plan.md
   ```
-- The validator enforces that objectives, architecture contracts, Beads tasks, verification gates, and rollback plans are present.
+- For `Architectural` tasks (> 3 files, unnamed files, or schema/API changes), run a **Critical Plan Review** (`references/critical_plan_review.md`) in a **fresh context or separate subagent** to red-team assumptions against actual target code and `gotchas.md`.
 
 ## Hard Constraints
 - No task may depend on an unverified or cyclic dependency.

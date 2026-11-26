@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/SamDozer/antigravity-elite-harness/actions/workflows/ci.yml/badge.svg)](https://github.com/SamDozer/antigravity-elite-harness/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Release](https://img.shields.io/badge/Release-v1.4.0-blue.svg)](https://github.com/SamDozer/antigravity-elite-harness/releases)
+[![Release](https://img.shields.io/badge/Release-v1.5.0-blue.svg)](https://github.com/SamDozer/antigravity-elite-harness/releases)
 [![Verification](https://img.shields.io/badge/Verification-100%25%20Passing-brightgreen.svg)](#-runtime-verification--eval-scores)
 [![Context Budget](https://img.shields.io/badge/Core%20Rule-%3C1k%20Tokens-success.svg)](rules/global-core.md)
 
@@ -34,6 +34,7 @@ npm run verify
 - **Lean Context by Default:** Installers copy only `rules/global-core.md` (< 1k tokens). Pass `--all-rules` (`-AllRules`) to also install the optional rule pack.
 - **Preview / Rollback:** Run `./install.sh --dry-run` (`-DryRun`) to preview, or `./install.sh --uninstall` (`-Uninstall`) to restore your previous backup.
 - **Optional Web Scraping Runtime:** `pip install "scrapling[ai]"` enables `scrapling extract --ai-targeted` and `scrapling mcp` (`scrapling install --force` adds headless browser binaries).
+- **Optional Local Pre-Commit Test Gate:** Copy `templates/git/pre-commit` to `.git/hooks/pre-commit` (worktree-aware) and set `.git/workflow-test-cmd`.
 
 ---
 
@@ -190,6 +191,7 @@ This harness synthesizes foundational principles from the broader AI engineering
 * **[CLI-Anything (`HKUDS/CLI-Anything`)](https://github.com/HKUDS/CLI-Anything)** — 7-phase GUI-to-CLI harness methodology, `ReplSkin`, `preview_bundle`, `skill_generator`, and CLI-Hub discovery.
 * **[Vercel Skills (`vercel-labs/skills`)](https://github.com/vercel-labs/skills)** — `find-skills` discovery protocol for `npx skills`, `skills.sh`, and `agenticskills.io`.
 * **[Scrapling (`D4Vinci/Scrapling`)](https://github.com/D4Vinci/Scrapling)** — Adaptive web scraping, `--ai-targeted` prompt-injection filtering, stealth/JS fetchers, and concurrent spiders.
+* **[My AI Coding Workflow (`vaibhav-space/my-ai-coding-workflow`)](https://github.com/vaibhav-space/my-ai-coding-workflow)** — Diff-sized lifecycle routing (`Spike`/`Bounded`/`Architectural`), fresh-context `Critical Plan Review`, untracked/post-compaction diff audit rules, interactive HTML plan template, and worktree-aware `pre-commit` hook.
 
 ---
 

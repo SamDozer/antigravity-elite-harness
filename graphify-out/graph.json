@@ -1,7 +1,7 @@
 {
   "project": "antigravity-elite-harness",
-  "timestamp": "2026-11-26T17:41:15.429Z",
-  "total_nodes": 248,
+  "timestamp": "2026-11-26T18:08:03.475Z",
+  "total_nodes": 250,
   "total_edges": 68,
   "communities": [
     "Quality & CI/CD",
@@ -1777,6 +1777,20 @@
       "community": "Skills: Core",
       "path": "skills/core/scrapling/SKILL.md",
       "size": 15
+    },
+    {
+      "id": "skills/core/architect-planner/assets/plan-template.html",
+      "label": "plan-template.html",
+      "community": "Skills: Core",
+      "path": "skills/core/architect-planner/assets/plan-template.html",
+      "size": 10
+    },
+    {
+      "id": "skills/core/architect-planner/references/critical_plan_review.md",
+      "label": "critical_plan_review.md",
+      "community": "Skills: Core",
+      "path": "skills/core/architect-planner/references/critical_plan_review.md",
+      "size": 10
     }
   ],
   "edges": [

@@ -32,3 +32,8 @@
 - Delegate all arithmetic, date math, currency, and file stats to deterministic Python or Node.js scripts—never estimate in prose.
 - Enforce idempotency and deduplication for stateful writes and background operations.
 - **Web Scraping:** Always use the `scrapling` skill (`scrapling extract --ai-targeted` or Python `scrapling`) when scraping or extracting data from websites.
+
+## 7. Diff-Sized Task Routing
+- **Spike** (feasibility / quick probe): Run 1 cheap read-only probe -> report finding in 2–3 sentences.
+- **Bounded** (<= 3 files, all named in the ask, no DB/API contract change): Direct TDD + targeted verification.
+- **Architectural** (> 3 files or unnamed files, new subsystems, schema/API changes): Full `architect-planner` spec -> adversarial `Critical Plan Review` (fresh context) -> TDD -> `diff-reviewer` audit.
