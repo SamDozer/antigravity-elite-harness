@@ -235,6 +235,11 @@ runCheck('AAS Skills: Loop Fingerprint, Evidence Audit, Fault Schedule, Orchestr
   const findSpecScript = path.join(repoRoot, 'skills', 'core', 'find-skills', 'scripts', 'check_skill_source.py');
   const findSpecOut = execSync(`${pythonCmd} "${findSpecScript}" --spec "vercel-labs/skills@find-skills"`, { encoding: 'utf8' });
   if (!findSpecOut.includes('[PASS]')) throw new Error(`check_skill_source.py failed: ${findSpecOut}`);
+
+  // 7j. scrapling CLI safety validator
+  const scrapScript = path.join(repoRoot, 'skills', 'core', 'scrapling', 'scripts', 'check_scrapling.py');
+  const scrapOut = execSync(`${pythonCmd} "${scrapScript}" --check-cmd "scrapling extract get https://example.com out.md --ai-targeted"`, { encoding: 'utf8' });
+  if (!scrapOut.includes('[PASS]')) throw new Error(`check_scrapling.py failed: ${scrapOut}`);
 });
 
 console.log('\n====================================================');

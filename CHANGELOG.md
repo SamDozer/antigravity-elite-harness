@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0] - 2026-11-26
+### Added
+- **`scrapling` 4-Layer Core Skill (from `D4Vinci/Scrapling`):** Default web scraping framework with `--ai-targeted` prompt-injection protection, `check_scrapling.py` verifier, 18 domain references (`fetching/`, `parsing/`, `spiders/`), and Python starter examples.
+- **Scraping-First Operational Rule (`rules/global-core.md`):** Mandates using `scrapling` whenever scraping or extracting data from websites.
+- **Verification Coverage:** Added `check_scrapling.py` check to `tests/run-audit.cjs` (26/26 modular skills passing 4-layer CI gates).
+
 ## [1.3.0] - 2026-11-26
 ### Added
 - **`find-skills` 4-Layer Core Skill (from `vercel-labs/skills`):** Integrates `npx skills`, `skills.sh`, and `agenticskills.io` discovery with `scripts/check_skill_source.py` slug validation, `references/skills_ecosystem.md`, and `assets/install_checklist.md` paired with `skill-audit`.

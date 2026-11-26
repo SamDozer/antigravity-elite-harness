@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/SamDozer/antigravity-elite-harness/actions/workflows/ci.yml/badge.svg)](https://github.com/SamDozer/antigravity-elite-harness/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Release](https://img.shields.io/badge/Release-v1.3.0-blue.svg)](https://github.com/SamDozer/antigravity-elite-harness/releases)
+[![Release](https://img.shields.io/badge/Release-v1.4.0-blue.svg)](https://github.com/SamDozer/antigravity-elite-harness/releases)
 [![Verification](https://img.shields.io/badge/Verification-100%25%20Passing-brightgreen.svg)](#-runtime-verification--eval-scores)
 [![Context Budget](https://img.shields.io/badge/Core%20Rule-%3C1k%20Tokens-success.svg)](rules/global-core.md)
 
@@ -104,7 +104,7 @@ Eliminates unplanned modifications and hallucinations by presenting clear trade-
 
 ---
 
-## 🗂️ 25 Modular Skills Inventory (4-Layer Progressive Disclosure)
+## 🗂️ 26 Modular Skills Inventory (4-Layer Progressive Disclosure)
 
 Every skill maintains an operational contract (`SKILL.md` < 350 lines), deterministic CLI scripts (`scripts/`), domain cheat sheets (`references/`), and production starter templates (`assets/`).
 
@@ -118,6 +118,7 @@ Every skill maintains an operational contract (`SKILL.md` < 350 lines), determin
 | **`review-multi-agent-orchestration`** | Core | **Use:** Auditing swarm, supervisor, and parallel agent DAGs.<br/>**Do NOT use:** Single sequential tool calls without concurrency. | `check_orchestration_dag.py`, envelope schema |
 | **`cli-anything`** | Core | **Use:** Turning any GUI/desktop app into an agent-native Python CLI or discovering CLI-Hub tools.<br/>**Do NOT use:** Building standalone web UIs or Electron renderers from scratch. | `validate_harness.py`, `repl_skin.py`, `skill_generator.py` |
 | **`find-skills`** | Core | **Use:** Discovering and installing skills via `npx skills`, `skills.sh`, and `agenticskills.io`.<br/>**Do NOT use:** Auditing suspicious skill code (`skill-audit`) or authoring new skills. | `check_skill_source.py`, `skills_ecosystem.md` |
+| **`scrapling`** | Core | **Use:** Default web scraping, JS rendering, adaptive parsing, and spiders (`--ai-targeted`).<br/>**Do NOT use:** Authenticated visual UI flows (`browser` subagent) or bypassing CAPTCHAs. | `check_scrapling.py`, `examples/` |
 | **`app-ui-system`** | Frontend | **Use:** Web app UI, dashboards, layout components.<br/>**Do NOT use:** Static marketing landing pages or comp-bio. | `check_contrast.py`, `tokens.css` |
 | **`web-editorial-design`** | Frontend | **Use:** Editorial typography, marketing pages, blogs.<br/>**Do NOT use:** Dense data tables or desktop Electron renderers. | Responsive type scale presets |
 | **`frontend-interaction-states`** | Frontend | **Use:** Loading, empty, error, disabled component states.<br/>**Do NOT use:** Pure backend business logic. | State machine checklist |
@@ -146,7 +147,7 @@ We test our harness with the same rigor we expect from agent-generated code.
 | :--- | :--- | :---: | :---: | :---: |
 | **`scripts/validate.js`** | Manifest schema, token budgets, supply chain checks | 100% | **15/15 Passed** | ✅ Pass |
 | **`tests/run-audit.cjs`** | Memory bank, Beads DAG, AST security, domain scripts | 100% | **7/7 Suites Passed** | ✅ Pass |
-| **`scripts/validate_skills.py`** | 4-layer structure, lines < 350, negative trigger bounds | 100% | **25/25 Skills Passed** | ✅ Pass |
+| **`scripts/validate_skills.py`** | 4-layer structure, lines < 350, negative trigger bounds | 100% | **26/26 Skills Passed** | ✅ Pass |
 | **Golden Prompt Evals** | Negative trigger non-firing, TDD compliance, secret denial | $\ge 95\%$ | **100% Pass Rate** | ✅ Pass |
 
 ---
@@ -172,6 +173,7 @@ This harness synthesizes foundational principles from the broader AI engineering
 * **[Agentic Awesome Skills (`sickn33/agentic-awesome-skills`)](https://github.com/sickn33/agentic-awesome-skills)** — Curated upstream agentic skills catalog audited and upgraded to 4-layer progressive disclosure.
 * **[CLI-Anything (`HKUDS/CLI-Anything`)](https://github.com/HKUDS/CLI-Anything)** — 7-phase GUI-to-CLI harness methodology, `ReplSkin`, `preview_bundle`, `skill_generator`, and CLI-Hub discovery.
 * **[Vercel Skills (`vercel-labs/skills`)](https://github.com/vercel-labs/skills)** — `find-skills` discovery protocol for `npx skills`, `skills.sh`, and `agenticskills.io`.
+* **[Scrapling (`D4Vinci/Scrapling`)](https://github.com/D4Vinci/Scrapling)** — Adaptive web scraping, `--ai-targeted` prompt-injection filtering, stealth/JS fetchers, and concurrent spiders.
 
 ---
 

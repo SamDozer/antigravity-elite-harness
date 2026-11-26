@@ -28,6 +28,7 @@
 - Decompose non-trivial tasks into a dependency-directed task graph (`beads-tracker.cjs init`).
 - Record newly discovered architectural lessons, bug root-causes, and API quirks into persistent memory upon resolution.
 
-## 6. Deterministic Execution
+## 6. Deterministic Execution & Web Scraping
 - Delegate all arithmetic, date math, currency, and file stats to deterministic Python or Node.js scripts—never estimate in prose.
 - Enforce idempotency and deduplication for stateful writes and background operations.
+- **Web Scraping:** Always use the `scrapling` skill (`scrapling extract --ai-targeted` or Python `scrapling`) when scraping or extracting data from websites.

@@ -1,8 +1,8 @@
 {
   "project": "antigravity-elite-harness",
-  "timestamp": "2026-11-26T17:34:35.849Z",
-  "total_nodes": 223,
-  "total_edges": 66,
+  "timestamp": "2026-11-26T17:41:15.429Z",
+  "total_nodes": 248,
+  "total_edges": 68,
   "communities": [
     "Quality & CI/CD",
     "Observability & Rules",
@@ -18,11 +18,11 @@
   "god_nodes": [
     {
       "id": "tests/run-audit.cjs",
-      "degree": 29
+      "degree": 30
     },
     {
       "id": "scripts/validate_skills.py",
-      "degree": 25
+      "degree": 26
     },
     {
       "id": "tasks/beads-tracker.cjs",
@@ -1602,6 +1602,181 @@
       "community": "Skills: Core",
       "path": "skills/core/find-skills/SKILL.md",
       "size": 15
+    },
+    {
+      "id": "skills/core/scrapling/assets/examples/01_fetcher_session.py",
+      "label": "01_fetcher_session.py",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/assets/examples/01_fetcher_session.py",
+      "size": 10
+    },
+    {
+      "id": "skills/core/scrapling/assets/examples/02_browser_session.py",
+      "label": "02_browser_session.py",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/assets/examples/02_browser_session.py",
+      "size": 10
+    },
+    {
+      "id": "skills/core/scrapling/assets/examples/03_stealthy_session.py",
+      "label": "03_stealthy_session.py",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/assets/examples/03_stealthy_session.py",
+      "size": 10
+    },
+    {
+      "id": "skills/core/scrapling/assets/examples/04_spider.py",
+      "label": "04_spider.py",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/assets/examples/04_spider.py",
+      "size": 10
+    },
+    {
+      "id": "skills/core/scrapling/assets/examples/README.md",
+      "label": "README.md",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/assets/examples/README.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/scrapling/references/building-rag-systems.md",
+      "label": "building-rag-systems.md",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/references/building-rag-systems.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/scrapling/references/fetching/choosing.md",
+      "label": "choosing.md",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/references/fetching/choosing.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/scrapling/references/fetching/static.md",
+      "label": "static.md",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/references/fetching/static.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/scrapling/references/fetching/stealthy.md",
+      "label": "stealthy.md",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/references/fetching/stealthy.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/scrapling/references/integrations/scrapy.md",
+      "label": "scrapy.md",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/references/integrations/scrapy.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/scrapling/references/mcp-server.md",
+      "label": "mcp-server.md",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/references/mcp-server.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/scrapling/references/migrating_from_beautifulsoup.md",
+      "label": "migrating_from_beautifulsoup.md",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/references/migrating_from_beautifulsoup.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/scrapling/references/parsing/adaptive.md",
+      "label": "adaptive.md",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/references/parsing/adaptive.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/scrapling/references/parsing/main_classes.md",
+      "label": "main_classes.md",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/references/parsing/main_classes.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/scrapling/references/parsing/selection.md",
+      "label": "selection.md",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/references/parsing/selection.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/scrapling/references/spiders/advanced.md",
+      "label": "advanced.md",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/references/spiders/advanced.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/scrapling/references/spiders/architecture.md",
+      "label": "architecture.md",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/references/spiders/architecture.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/scrapling/references/spiders/generic-templates.md",
+      "label": "generic-templates.md",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/references/spiders/generic-templates.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/scrapling/references/spiders/getting-started.md",
+      "label": "getting-started.md",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/references/spiders/getting-started.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/scrapling/references/spiders/platform-templates.md",
+      "label": "platform-templates.md",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/references/spiders/platform-templates.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/scrapling/references/spiders/proxy-blocking.md",
+      "label": "proxy-blocking.md",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/references/spiders/proxy-blocking.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/scrapling/references/spiders/requests-responses.md",
+      "label": "requests-responses.md",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/references/spiders/requests-responses.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/scrapling/references/spiders/sessions.md",
+      "label": "sessions.md",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/references/spiders/sessions.md",
+      "size": 10
+    },
+    {
+      "id": "skills/core/scrapling/scripts/check_scrapling.py",
+      "label": "check_scrapling.py",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/scripts/check_scrapling.py",
+      "size": 10
+    },
+    {
+      "id": "skills/core/scrapling/SKILL.md",
+      "label": "SKILL.md",
+      "community": "Skills: Core",
+      "path": "skills/core/scrapling/SKILL.md",
+      "size": 15
     }
   ],
   "edges": [
@@ -1933,6 +2108,16 @@
     {
       "source": "tests/run-audit.cjs",
       "target": "skills/core/find-skills/SKILL.md",
+      "label": "audits"
+    },
+    {
+      "source": "scripts/validate_skills.py",
+      "target": "skills/core/scrapling/SKILL.md",
+      "label": "validates"
+    },
+    {
+      "source": "tests/run-audit.cjs",
+      "target": "skills/core/scrapling/SKILL.md",
       "label": "audits"
     }
   ]
